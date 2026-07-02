@@ -1,0 +1,242 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #0a0a0f;
+  color: #e5e7eb;
+}
+
+/* CONTENEDOR PRINCIPAL */
+.dashboard {
+  padding: 40px;
+  text-align: center;
+}
+
+/* TITULOS */
+h1, h2, h3 {
+  color: #eaf2ff;
+  text-shadow: 0 0 10px rgba(0, 170, 255, 0.25);
+}
+
+/* BOTONES */
+button {
+  background: linear-gradient(135deg, #38bdf8, #1e3a8a);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  margin: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s ease;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(56, 189, 248, 0.6);
+}
+
+/* INPUTS */
+input {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  width: 260px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.05);
+  color: white;
+  outline: none;
+}
+
+input:focus {
+  border: 1px solid #38bdf8;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+}
+
+/* PANELES */
+.avisos-panel,
+.fases-panel,
+.alumno-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 14px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* AVISOS */
+.aviso-card {
+  background: rgba(56, 189, 248, 0.08);
+  margin-top: 12px;
+  padding: 12px;
+  border-left: 4px solid #38bdf8;
+  border-radius: 8px;
+}
+
+/* FASES */
+.fase {
+  background: rgba(255,255,255,0.05);
+  margin-top: 10px;
+  padding: 12px;
+  border-left: 4px solid #334155;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.fase.activa {
+  background: rgba(56, 189, 248, 0.15);
+  border-left: 4px solid #38bdf8;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+  font-weight: bold;
+}
+
+/* DASHBOARD VINCULACIÓN */
+.dashboard-vinculacion {
+  display: flex;
+  min-height: 100vh;
+  color: white;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 220px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-right: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+}
+
+/* CONTENIDO */
+.content {
+  flex: 1;
+  padding: 30px;
+}
+
+/* KPI */
+.kpi-container {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.kpi-card {
+  width: 220px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  transition: 0.3s;
+  text-align: center;
+}
+
+.kpi-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.kpi-card h2 {
+  font-size: 2rem;
+  color: #00ffcc;
+  margin-bottom: 5px;
+}
+
+.kpi-card p {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.kpi-label {
+  color: #8b8b8b;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+/* ALUMNO PANEL */
+.alumno {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+  background: radial-gradient(circle at top, #1a1a1a, #000);
+}
+
+.alumno h1,
+.alumno h3,
+.alumno p {
+  margin: 10px 0;
+}
+
+.alumno button {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: white;
+  padding: 10px 16px;
+  margin: 8px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+  backdrop-filter: blur(10px);
+}
+
+.alumno button:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.alumno input[type="file"] {
+  margin: 10px;
+  color: white;
+}
+
+.kpi-grid {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.kpi-card:nth-child(1) .kpi-label {
+  color: #00ffcc;
+}
+
+.kpi-card:nth-child(2) .kpi-label {
+  color: #a78bfa;
+}
+
+.kpi-card:nth-child(3) .kpi-label {
+  color: #60a5fa;
+}
+
+.kpi-card:nth-child(1) h2 {
+  color: #00ffcc; /* fase */
+}
+
+.kpi-card:nth-child(2) p:first-child {
+  color: #a78bfa; /* estatus */
+}
+
+.kpi-card:nth-child(3) p:first-child {
+  color: #60a5fa; /* unidad */
+}
+
+
