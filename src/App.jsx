@@ -1,5 +1,6 @@
 import './App.css'
 import { useState, useEffect } from 'react'
+import logo from './assets/logo-gestadias.png'
 
 
 function App() {
@@ -38,7 +39,7 @@ const guardarEdicion = () => {
 const [alumnoEditando, setAlumnoEditando] = useState(null)
 
   const [avisos, setAvisos] = useState([
-    '📢 Bienvenido a GESTADIAS v2',
+    '📢 Bienvenido a GESTADIAS',
     '⚠ Los estudiantes deben subir primero su Carta de Presentación',
     '📄 El sistema controla el avance por fases'
   ])
@@ -81,16 +82,34 @@ const [busqueda, setBusqueda] = useState('')
   }
 
 const iniciarSesion = () => {
-    const alumnoEncontrado = estudiantes.find(
-      (estudiante) => estudiante.matricula === loginMatricula
-    )
+  const alumnoEncontrado = estudiantes.find(
+    (estudiante) => estudiante.matricula === loginMatricula
+  )
 
-    if (alumnoEncontrado) {
-      setAlumnoActual(alumnoEncontrado)
-    } else {
-      alert('Matrícula no encontrada')
-    }
+  if (alumnoEncontrado) {
+    setAlumnoActual(alumnoEncontrado)
+    setPantalla('alumno') // 👈 ESTE ES EL ARREGLO
+  } else {
+    alert('Matrícula no encontrada')
   }
+}
+
+const avisosAlumno = []
+
+if (alumnoActual) {
+  if (!alumnoActual.documentos.presentacion) {
+    avisosAlumno.push('⚠ Debes subir la Carta de Presentación para continuar a la siguiente fase')
+  }
+
+  if (alumnoActual.documentos.presentacion && !alumnoActual.documentos.aceptacion) {
+    avisosAlumno.push('📌 Sube la Carta de Aceptación para avanzar a la Fase 5')
+  }
+
+  if (alumnoActual.documentos.aceptacion && !alumnoActual.documentos.compromiso) {
+    avisosAlumno.push('📄 Sube la Carta Compromiso para avanzar a la Fase 6')
+  }
+}
+
 const cerrarSesion = () => {
   setAlumnoActual(null)
   localStorage.removeItem('gestadias_alumno_actual')
@@ -192,7 +211,7 @@ useEffect(() => {
 
 
 useEffect(() => {
-  if (alumnoActual) {
+  if (pantalla === 'alumno' && alumnoActual) {
     localStorage.setItem(
       'gestadias_alumno_actual',
       JSON.stringify(alumnoActual)
@@ -466,7 +485,17 @@ useEffect(() => {
   Cerrar sesión
 </button>
         <h3>Tu avance en GESTADIAS</h3>
+{avisosAlumno.length > 0 && (
+  <div className="avisos-alumno">
+    <h3>📢 Avisos importantes</h3>
 
+    {avisosAlumno.map((aviso, index) => (
+      <p key={index} className="aviso-item">
+        {aviso}
+      </p>
+    ))}
+  </div>
+)}
         <div className="kpi-grid">
           <div className="kpi-card">
             <h2>{alumnoActual.fase}</h2>
@@ -495,7 +524,7 @@ useEffect(() => {
         {alumnoActual.solicitudCambio && (
           <p>⏳ Solicitud enviada a Vinculación</p>
         )}
-
+<h3>Fase 2</h3>
         <h3>Unidades Económicas disponibles</h3>
 
         {unidadesFiltradas.map((unidad, index) => (
@@ -506,7 +535,27 @@ useEffect(() => {
             {unidad.nombre}
           </button>
         ))}
+<h3>Fase 3</h3>
 
+<h4>Instrucciones para la Carta de Presentación</h4>
+
+<div className="instrucciones">
+  <p>
+    La Dirección de Vinculación te otorga la carta de presentación de estadía que te acredita como alumno de la universidad en su último cuatrimestre.
+  </p>
+
+  <p>
+    Esta carta deberás entregarla a la empresa donde desees ingresar.
+  </p>
+
+  <ul>
+    <li><strong>Conserva</strong> la carta original y realiza copias para las empresas que lo requieran.</li>
+    <li><strong>No entregues</strong> el documento original.</li>
+    <li>Escanea la carta en formato PDF a color.</li>
+    <li>Nombra el archivo como: <strong>MATRÍCULA_PRESENTACIÓN</strong></li>
+    <li>Ejemplo: <strong>21090001_PRESENTACIÓN</strong></li>
+  </ul>
+</div>
         <input type="file" accept=".pdf" />
         <button onClick={subirCartaPresentacion}>
           Subir Carta de Presentación
@@ -519,7 +568,27 @@ useEffect(() => {
 
         {alumnoActual.documentos.presentacion && (
           <div>
-            <h3>Fase 2</h3>
+<h3>Fase 4</h3>
+
+<h4>Instrucciones para la Carta de Aceptación</h4>
+
+<div className="instrucciones">
+  <p>
+    Esta carta es emitida por la empresa donde realizarás tu estadía una vez que haya aceptado tu ingreso.
+  </p>
+
+  <p>
+    Debes utilizar el formato editable y llenarlo con los datos de la empresa correspondiente.
+  </p>
+
+  <ul>
+    <li>Asegúrate de que tu asesor empresarial la firme con pluma azul.</li>
+    <li>Este documento será considerado como original.</li>
+    <li>Escanéala en formato PDF a color.</li>
+    <li>Nombra el archivo como: <strong>MATRÍCULA_ACEPTACIÓN</strong></li>
+    <li>Ejemplo: <strong>21090001_ACEPTACIÓN</strong></li>
+  </ul>
+</div>
 
             <input type="file" accept=".pdf" />
             <button onClick={subirCartaAceptacion}>
@@ -533,8 +602,21 @@ useEffect(() => {
 
             {alumnoActual.documentos.aceptacion && (
               <div>
-                <h3>Fase 3</h3>
+                <h3>Fase 5</h3>
 
+<h4>Instrucciones para la Carta Compromiso</h4>
+
+<ol className="instrucciones">
+  <li>Vinculación te mandará a tu correo la carta.</li>
+  <li>Imprime 3 originales a color, lo firmas TU y el asesor de la unidad.</li>
+  <li><strong>TODAS LAS FIRMAS EN TINTA AZUL.</strong></li>
+  <li>Lleva los 3 originales a la Dirección de Vinculación.</li>
+  <li>El director(a) de Vinculación firmará los 3 ejemplares; 
+    te devolverá 2 (uno para ti y otro para tu unidad) 
+    y se quedará con uno</li>
+  <li>Escanea tu documento original a color en formato PDF.</li>
+  <li>Nombra el archivo como MATRÍCULA_COMPROMISO (ej. 21090001_COMPROMISO) y súbelo aquí.</li>
+</ol>
                 <input type="file" accept=".pdf" />
                 <button onClick={subirCartaCompromiso}>
                   Subir Carta Compromiso
@@ -554,8 +636,9 @@ useEffect(() => {
 
   return (
     <div className="dashboard">
-      <h1>GESTADIAS</h1>
-      <h2>Departamento de Vinculación</h2>
+  <img src={logo} alt="Logo GESTADÍAS" className="logo" />
+  <h1 className="titulo-principal">GESTADIAS</h1>
+<h2 className="subtitulo">Departamento de Vinculación</h2>
 
       <button onClick={() => setPantalla('login')}>
         Iniciar Sesión
