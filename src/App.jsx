@@ -1,7 +1,9 @@
 import './App.css'
 import { useState, useEffect } from 'react'
-import logo from './assets/logo-gestadias.png'
-
+import Inicio from './components/Inicio'
+import Login from './components/Login'
+import Registro from './components/Registro'
+import UnidadEconomica from './components/alumno/UnidadEconomica'
 
 function App() {
   const [pantalla, setPantalla] = useState('inicio')
@@ -183,23 +185,34 @@ const cerrarSesion = () => {
   }
 
   const [unidadesEconomicas] = useState([
-    {
-      nombre: 'Universidad Tecnológica del Poniente',
-      carreras: ['ADM', 'GAS', 'PAL', 'TIC', 'TUR']
-    },
-    {
-      nombre: 'Hotel Hacienda',
-      carreras: ['TUR']
-    },
-    {
-      nombre: 'Bepensa',
-      carreras: ['ADM']
-    },
-    {
-      nombre: 'Empresa de Software',
-      carreras: ['TIC']
-    }
-  ])
+  {
+    id: 1,
+    nombre: 'Universidad Tecnológica del Poniente',
+    carreras: ['ADM', 'TIC',],
+    convenio: true
+  },
+
+  {
+    id: 2,
+    nombre: 'Hotel Hacienda',
+    carreras: ['TUR'],
+    convenio: true
+  },
+
+  {
+    id: 3,
+    nombre: 'Bepensa',
+    carreras: ['ADM'],
+    convenio: true
+  },
+
+  {
+    id: 4,
+    nombre: 'Empresa de Software',
+    carreras: ['TIC'],
+    convenio: true
+  }
+])
 
 
 useEffect(() => {
@@ -242,23 +255,26 @@ useEffect(() => {
 )
 
   const seleccionarUnidadEconomica = (unidad) => {
-    const actualizado = {
-      ...alumnoActual,
-      unidadEconomica: unidad.nombre,
-      fase: 2,
-      estatus: 'Unidad Económica seleccionada'
-    }
 
-    setAlumnoActual(actualizado)
-
-    setEstudiantes(
-      estudiantes.map((estudiante) =>
-        estudiante.matricula === actualizado.matricula
-          ? actualizado
-          : estudiante
-      )
-    )
+  const actualizado = {
+    ...alumnoActual,
+    unidadEconomica: unidad.nombre,
+    datosUnidad: unidad,
+    fase: 2,
+    estatus: 'Unidad Económica seleccionada'
   }
+
+  setAlumnoActual(actualizado)
+
+  setEstudiantes(
+    estudiantes.map((estudiante) =>
+      estudiante.matricula === actualizado.matricula
+        ? actualizado
+        : estudiante
+    )
+  )
+}
+
 
   const aprobarCambio = (matriculaAlumno) => {
     const actualizados = estudiantes.map((estudiante) =>
@@ -421,61 +437,35 @@ useEffect(() => {
     )
   }
 
-  if (pantalla === 'registro') {
-    return (
-      <div>
-        <h1>Crear Cuenta</h1>
-
-        <input
-          placeholder="Matrícula"
-          value={matricula}
-          onChange={(e) => setMatricula(e.target.value)}
-        />
-
-        <input
-          placeholder="Nombre Completo"
-          value={nombre}
-          onChange={(e) => setNombre(e.target.value)}
-        />
-
-        <input
-          placeholder="Correo Institucional"
-          value={correo}
-          onChange={(e) => setCorreo(e.target.value)}
-        />
-
-        <input
-          placeholder="Carrera"
-          value={carrera}
-          onChange={(e) => setCarrera(e.target.value)}
-        />
-
-        <input
-          placeholder="CURP"
-          value={curp}
-          onChange={(e) => setCurp(e.target.value)}
-        />
-
-        <button onClick={guardarEstudiante}>Guardar</button>
-      </div>
-    )
-  }
+ if (pantalla === 'registro') {
+  return (
+    <Registro
+      matricula={matricula}
+      setMatricula={setMatricula}
+      nombre={nombre}
+      setNombre={setNombre}
+      correo={correo}
+      setCorreo={setCorreo}
+      carrera={carrera}
+      setCarrera={setCarrera}
+      curp={curp}
+      setCurp={setCurp}
+      guardarEstudiante={guardarEstudiante}
+      setPantalla={setPantalla}
+    />
+  )
+}
 
   if (pantalla === 'login') {
-    return (
-      <div>
-        <h1>Iniciar Sesión</h1>
-
-        <input
-          placeholder="Matrícula"
-          value={loginMatricula}
-          onChange={(e) => setLoginMatricula(e.target.value)}
-        />
-
-        <button onClick={iniciarSesion}>Entrar</button>
-      </div>
-    )
-  }
+  return (
+    <Login
+      loginMatricula={loginMatricula}
+      setLoginMatricula={setLoginMatricula}
+      iniciarSesion={iniciarSesion}
+      setPantalla={setPantalla}
+    />
+  )
+}
 
  if (alumnoActual) {
     return (
@@ -515,57 +505,68 @@ useEffect(() => {
           </div>
         </div>
 
-        {!alumnoActual.solicitudCambio && (
-          <button onClick={solicitarCambioUnidad}>
-            Solicitar cambio de Unidad Económica
-          </button>
-        )}
 
-        {alumnoActual.solicitudCambio && (
-          <p>⏳ Solicitud enviada a Vinculación</p>
-        )}
-<h3>Fase 2</h3>
-        <h3>Unidades Económicas disponibles</h3>
+<UnidadEconomica
+  alumnoActual={alumnoActual}
+  unidadesFiltradas={unidadesFiltradas}
+  seleccionarUnidadEconomica={seleccionarUnidadEconomica}
+  solicitarCambioUnidad={solicitarCambioUnidad}
+/>
 
-        {unidadesFiltradas.map((unidad, index) => (
-          <button
-            key={index}
-            onClick={() => seleccionarUnidadEconomica(unidad)}
-          >
-            {unidad.nombre}
-          </button>
-        ))}
-<h3>Fase 3</h3>
 
-<h4>Instrucciones para la Carta de Presentación</h4>
+{alumnoActual.fase >= 2 && (
+  <>
+    <h3>Fase 3</h3>
 
-<div className="instrucciones">
-  <p>
-    La Dirección de Vinculación te otorga la carta de presentación de estadía que te acredita como alumno de la universidad en su último cuatrimestre.
-  </p>
+    <h4>Instrucciones para la Carta de Presentación</h4>
 
-  <p>
-    Esta carta deberás entregarla a la empresa donde desees ingresar.
-  </p>
+    <div className="instrucciones">
+      <p>
+        La Dirección de Vinculación te otorga la carta de presentación de estadía que te acredita como alumno de la universidad en su último cuatrimestre.
+      </p>
 
-  <ul>
-    <li><strong>Conserva</strong> la carta original y realiza copias para las empresas que lo requieran.</li>
-    <li><strong>No entregues</strong> el documento original.</li>
-    <li>Escanea la carta en formato PDF a color.</li>
-    <li>Nombra el archivo como: <strong>MATRÍCULA_PRESENTACIÓN</strong></li>
-    <li>Ejemplo: <strong>21090001_PRESENTACIÓN</strong></li>
-  </ul>
-</div>
-        <input type="file" accept=".pdf" />
-        <button onClick={subirCartaPresentacion}>
-          Subir Carta de Presentación
-        </button>
+      <p>
+        Esta carta deberás entregarla a la empresa donde desees ingresar.
+      </p>
 
-        <p>
-          Carta de Presentación:{' '}
-          {alumnoActual.documentos.presentacion ? '✅' : '❌'}
-        </p>
+      <ul>
+        <li>
+          <strong>Conserva</strong> la carta original y realiza copias para las empresas que lo requieran.
+        </li>
 
+        <li>
+          <strong>No entregues</strong> el documento original.
+        </li>
+
+        <li>
+          Escanea la carta en formato PDF a color.
+        </li>
+
+        <li>
+          Nombra el archivo como:
+          <strong> MATRÍCULA_PRESENTACIÓN</strong>
+        </li>
+
+        <li>
+          Ejemplo:
+          <strong> 21090001_PRESENTACIÓN</strong>
+        </li>
+      </ul>
+    </div>
+
+    <input type="file" accept=".pdf" />
+
+    <button onClick={subirCartaPresentacion}>
+      Subir Carta de Presentación
+    </button>
+
+    <p>
+      Carta de Presentación:{' '}
+      {alumnoActual.documentos.presentacion ? '✅' : '❌'}
+    </p>
+
+  </>
+)}
         {alumnoActual.documentos.presentacion && (
           <div>
 <h3>Fase 4</h3>
@@ -633,48 +634,11 @@ useEffect(() => {
       </div>
     )
   }
-
   return (
-    <div className="dashboard">
-  <img src={logo} alt="Logo GESTADÍAS" className="logo" />
-  <h1 className="titulo-principal">GESTADIAS</h1>
-<h2 className="subtitulo">Departamento de Vinculación</h2>
-
-      <button onClick={() => setPantalla('login')}>
-        Iniciar Sesión
-      </button>
-
-      <button onClick={() => setPantalla('registro')}>
-        Crear Cuenta
-      </button>
-
-      <button onClick={() => setPantalla('vinculacion')}>
-        Panel de Vinculación
-      </button>
-
-      <div className="avisos-panel">
-        <h3>Avisos de Vinculación</h3>
-
-        {avisos.map((aviso, index) => (
-          <div key={index} className="aviso-card">
-            {aviso}
-          </div>
-        ))}
-      </div>
-
-      <div className="fases-panel">
-        <h3>Fases de Estadía</h3>
-
-        <div className="fase activa">1. Registro del alumno</div>
-        <div className="fase">2. Selección de Unidad Económica</div>
-        <div className="fase">3. Carta de Presentación</div>
-        <div className="fase">4. Carta de Aceptación</div>
-        <div className="fase">5. Carta Compromiso</div>
-        <div className="fase">6. Estadía Activa</div>
-        <div className="fase">7. Liberación Final</div>
-      </div>
-    </div>
-  );
+  <Inicio
+    setPantalla={setPantalla}
+  />
+)
 }
 
 export default App
