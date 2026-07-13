@@ -4,6 +4,8 @@ import Inicio from './components/Inicio'
 import Login from './components/Login'
 import Registro from './components/Registro'
 import UnidadEconomica from './components/alumno/UnidadEconomica'
+import organizaciones from './Data/padronOrganizaciones'
+
 
 function App() {
   const [pantalla, setPantalla] = useState('inicio')
@@ -184,36 +186,7 @@ const cerrarSesion = () => {
     )
   }
 
-  const [unidadesEconomicas] = useState([
-  {
-    id: 1,
-    nombre: 'Universidad Tecnológica del Poniente',
-    carreras: ['ADM', 'TIC',],
-    convenio: true
-  },
-
-  {
-    id: 2,
-    nombre: 'Hotel Hacienda',
-    carreras: ['TUR'],
-    convenio: true
-  },
-
-  {
-    id: 3,
-    nombre: 'Bepensa',
-    carreras: ['ADM'],
-    convenio: true
-  },
-
-  {
-    id: 4,
-    nombre: 'Empresa de Software',
-    carreras: ['TIC'],
-    convenio: true
-  }
-])
-
+  
 
 useEffect(() => {
   localStorage.setItem(
@@ -239,11 +212,13 @@ useEffect(() => {
 
 
 
-  const unidadesFiltradas = alumnoActual
-    ? unidadesEconomicas.filter((unidad) =>
-        unidad.carreras.includes(alumnoActual.carrera)
+  const organizacionesFiltradas = alumnoActual
+  ? organizaciones.filter((organizacion) =>
+      organizacion.carrerasRelacionadas.includes(
+        alumnoActual.carrera
       )
-    : []
+    )
+  : []
 
   const solicitudesCambio = estudiantes.filter(
     (estudiante) => estudiante.solicitudCambio
@@ -508,7 +483,7 @@ useEffect(() => {
 
 <UnidadEconomica
   alumnoActual={alumnoActual}
-  unidadesFiltradas={unidadesFiltradas}
+  unidadesFiltradas={organizacionesFiltradas}
   seleccionarUnidadEconomica={seleccionarUnidadEconomica}
   solicitarCambioUnidad={solicitarCambioUnidad}
 />

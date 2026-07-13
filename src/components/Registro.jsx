@@ -45,13 +45,13 @@ function Registro({
   <option value="">Selecciona tu carrera</option>
 
   {carreras.map((carrera) => (
-    <option
-      key={carrera.clave}
-      value={carrera.clave}
-    >
-      {carrera.nombre}
-    </option>
-  ))}
+  <option
+    key={carrera.nombre}
+    value={carrera.nombre}
+  >
+    {carrera.nombre}
+  </option>
+))}
 </select>
 
       <input
