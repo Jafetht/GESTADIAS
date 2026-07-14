@@ -1,4 +1,34 @@
 const padronOrganizaciones = [
+  {
+  id: 0,
+
+  nombre:
+    "UNIVERSIDAD TECNOLÓGICA DEL PONIENTE",
+  contacto:
+    "Mtra. Josefina Maribel Quintal Rosado",
+  puesto:
+    "Directora",
+  telefono:
+    "9991396386",
+  correo:
+    "direccion.vinculacion@utponiente.edu.mx",
+  direccion:
+    "Calle 29 sin número, Col. Tres Cruces, Maxcanú, Yucatán",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN GASTRONOMÍA",
+    "Licenciatura en Gastronomía",
+    "TSU EN TECNOLOGÍA DE ALIMENTOS",
+    "Licenciatura en Ingeniería en Alimentos",
+    "TSU EN DESARROLLO DE SOFTWARE MULTIPLATAFORMA",
+    "Licenciatura en Ingeniería en Tecnologías e Innovación Digital",
+    "TSU EN TURISMO",
+    "Licenciatura en Gestión y Desarrollo Turístico"
+  ],
+  convenio: true
+
+},
 
   {
     id: 1,
@@ -990,6 +1020,1346 @@ const padronOrganizaciones = [
 
 },
 
+{
+  id: 40,
+
+  nombre:
+    "KOONOL, Productos de Comercialización",
+  contacto:
+    "Astrid Herrera Figueroa",
+  puesto:
+    "Gerente Administrativo",
+  telefono:
+    "9999561141",
+  correo:
+    "compras2_pc@koonol.mx",
+  direccion:
+    "Tablaje catastral, Calle 20, Supermanzana, Umán",
+  carrerasRelacionadas: [
+    "TSU EN TECNOLOGÍA DE ALIMENTOS",
+    "Licenciatura en Ingeniería en Alimentos"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 41,
+
+  nombre:
+    "Kuntal Che S.A. de C.V.",
+  contacto:
+    "Lic. Annette Gómez Mejilla",
+  puesto:
+    "Directora Comercial",
+  telefono:
+    "",
+  correo:
+    "kuntalche22@gmail.com",
+  direccion:
+    "Calle 27, Chablekal, México, 97302",
+  carrerasRelacionadas: [
+    "TSU EN TECNOLOGÍA DE ALIMENTOS",
+    "Licenciatura en Ingeniería en Alimentos"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 42,
+
+  nombre:
+    "LA ANITA DISTRIBUCIONES, S.A. DE C.V.",
+  contacto:
+    "Yuzmi Martínez Uc",
+  puesto:
+    "RH",
+  telefono:
+    "9931602586",
+  correo:
+    "",
+  direccion:
+    "Calle 19 No. 425, Ciudad Industrial, Chocholá",
+  carrerasRelacionadas: [
+    "TSU EN TECNOLOGÍA DE ALIMENTOS",
+    "Licenciatura en Ingeniería en Alimentos"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 43,
+
+  nombre:
+    "LABORATORIO DE ANÁLISIS AMBIENTAL DEL SURESTE, S. DE R.L. DE C.V.",
+  contacto:
+    "Rosalinda Cuellar Mora",
+  puesto:
+    "",
+  telefono:
+    "9993354239",
+  correo:
+    "gerencia@ambientalsureste.com",
+  direccion:
+    "Calle 11 No. 489 por 54 y 56, Terranova Chuburná, Mérida, Yucatán",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN TECNOLOGÍA DE ALIMENTOS",
+    "Licenciatura en Ingeniería en Alimentos"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 44,
+
+  nombre:
+    "Los Mariscos de CHICHI",
+  contacto:
+    "Lic. Raúl Castro Arjona",
+  puesto:
+    "Responsable Operativo",
+  telefono:
+    "9995147300",
+  correo:
+    "",
+  direccion:
+    "C. 35 No. 207, entre 6 y 10, Colonia Santa María Chí, Chichí Suárez, Mérida, Yucatán",
+  carrerasRelacionadas: [
+    "TSU EN GASTRONOMÍA",
+    "Licenciatura en Gastronomía"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 45,
+
+  nombre:
+    "LOS TROMPOS, TACOS Y ESPECIALIDADES",
+  contacto:
+    "William Francisco González Uicab",
+  puesto:
+    "Gerente",
+  telefono:
+    "9991693387",
+  correo:
+    "contacto@lostrompos.com.mx",
+  direccion:
+    "Plaza Patio, Mérida",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN GASTRONOMÍA",
+    "Licenciatura en Gastronomía"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 46,
+
+  nombre:
+    "NATIVO DIGITAL S.A. DE C.V.",
+  contacto:
+    "Raúl Roca Gutiérrez Zamora",
+  puesto:
+    "Director General",
+  telefono:
+    "9996494580",
+  correo:
+    "hola@nativodigital.com.mx",
+  direccion:
+    "Edificio Luxus Altabrisa, Calle 20 No. 235, Piso 6, Interior 607, Col. Altabrisa, C.P. 97130, Mérida, Yucatán",
+  carrerasRelacionadas: [
+    "TSU EN DESARROLLO DE SOFTWARE MULTIPLATAFORMA",
+    "Licenciatura en Ingeniería en Tecnologías e Innovación Digital"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 47,
+
+  nombre:
+    "Plan Resort S.A. de C.V. Santa Rosa",
+  contacto:
+    "Lic. Lourdes Domínguez",
+  puesto:
+    "",
+  telefono:
+    "9993236856",
+  correo:
+    "lourdes.dominguez@ihg.com",
+  direccion:
+    "Km 182, Carretera Mérida - Uxmal, Colonia Temozón Sur, Yucatán",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN GASTRONOMÍA",
+    "Licenciatura en Gastronomía",
+    "TSU EN TURISMO",
+    "Licenciatura en Gestión y Desarrollo Turístico"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 48,
+
+  nombre:
+    "Procesadora la Habanerísima A.C. (CISPRAC)",
+  contacto:
+    "Abraham Rodríguez Cortés",
+  puesto:
+    "Representante Legal",
+  telefono:
+    "9991919332",
+  correo:
+    "",
+  direccion:
+    "C. 2 No. 98, por 23 y 25, C.P. 97470, Tixkokob, Yucatán",
+  carrerasRelacionadas: [
+    "TSU EN TECNOLOGÍA DE ALIMENTOS",
+    "Licenciatura en Ingeniería en Alimentos"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 49,
+
+  nombre:
+    "Puruxon Cauich",
+  contacto:
+    "Lic. Ingrid Karely Sosa Escalante",
+  puesto:
+    "Gerente de Capital Humano",
+  telefono:
+    "9992803684",
+  correo:
+    "hmrecursoshumanos3@gmail.com",
+  direccion:
+    "C. 1 entre 54 A No. 218 T, Colonia Chuburná de Hidalgo, Mérida, Yucatán",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN GASTRONOMÍA",
+    "Licenciatura en Gastronomía",
+    "TSU EN TECNOLOGÍA DE ALIMENTOS",
+    "Licenciatura en Ingeniería en Alimentos",
+    "TSU EN DESARROLLO DE SOFTWARE MULTIPLATAFORMA",
+    "Licenciatura en Ingeniería en Tecnologías e Innovación Digital",
+    "TSU EN TURISMO",
+    "Licenciatura en Gestión y Desarrollo Turístico"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 50,
+
+  nombre:
+    "Refaccionaria de Autos la Bendición",
+  contacto:
+    "Lic. Isabel Uc Gutiérrez",
+  puesto:
+    "",
+  telefono:
+    "9971130130",
+  correo:
+    "labendicion_1@hotmail.com",
+  direccion:
+    "Calle 15A por 20 S/N, Maxcanú, Yucatán",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 51,
+
+  nombre:
+    "Restaurante Casa Yucatán",
+  contacto:
+    "Lic. Aldri Antonio Cázares Baas",
+  puesto:
+    "Responsable",
+  telefono:
+    "",
+  correo:
+    "casayucatanrestaurante@gmail.com",
+  direccion:
+    "Calle 60 No. 445 por 49 y 52, Centro, Mérida, Yucatán",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN GASTRONOMÍA",
+    "Licenciatura en Gastronomía",
+    "TSU EN TURISMO",
+    "Licenciatura en Gestión y Desarrollo Turístico"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 52,
+
+  nombre:
+    "Restaurante Marina Bartolomé, Mirador Isleño S.A. de C.V.",
+  contacto:
+    "Marco Antonio Pech Rosado",
+  puesto:
+    "Gerente",
+  telefono:
+    "9983392103",
+  correo:
+    "aylinpootrosas@gmail.com",
+  direccion:
+    "Av. Rueda Medina No. 1667, Centro",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN GASTRONOMÍA",
+    "Licenciatura en Gastronomía",
+    "TSU EN TURISMO",
+    "Licenciatura en Gestión y Desarrollo Turístico"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 53,
+
+  nombre:
+    "Restaurante Bacalauh (IMPULMAR ALIMENTOS S.A. DE C.V.)",
+  contacto:
+    "Lic. Carlos Manuel Cach Us",
+  puesto:
+    "",
+  telefono:
+    "9992965119",
+  correo:
+    "manuelcach.rh@gmail.com",
+  direccion:
+    "Calle 54 No. 358 por 45 y 47, Colonia Benito Juárez Norte, Progreso, Yucatán",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN GASTRONOMÍA",
+    "Licenciatura en Gastronomía",
+    "TSU EN TURISMO",
+    "Licenciatura en Gestión y Desarrollo Turístico"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 54,
+
+  nombre:
+    "CASA RURAL",
+  contacto:
+    "Adolfo Rodríguez Canto",
+  puesto:
+    "Director",
+  telefono:
+    "9999062536",
+  correo:
+    "casaruralmaxcanu@gmail.com",
+  direccion:
+    "Maxcanú, Yucatán",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN GASTRONOMÍA",
+    "Licenciatura en Gastronomía",
+    "TSU EN TECNOLOGÍA DE ALIMENTOS",
+    "Licenciatura en Ingeniería en Alimentos",
+    "TSU EN DESARROLLO DE SOFTWARE MULTIPLATAFORMA",
+    "Licenciatura en Ingeniería en Tecnologías e Innovación Digital",
+    "TSU EN TURISMO",
+    "Licenciatura en Gestión y Desarrollo Turístico"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 55,
+
+  nombre:
+    "Restaurante Emplumado",
+  contacto:
+    "C.P. David Israel Dzul Vera",
+  puesto:
+    "Recursos Humanos",
+  telefono:
+    "9991431049",
+  correo:
+    "recursoshumanos@grupomeca.mx",
+  direccion:
+    "Calle 58 No. 490 por 19 y 29, Colonia Centro, Mérida, Yucatán",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN GASTRONOMÍA",
+    "Licenciatura en Gastronomía",
+    "TSU EN TURISMO",
+    "Licenciatura en Gestión y Desarrollo Turístico"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 56,
+
+  nombre:
+    "Restaurante Goss",
+  contacto:
+    "Lic. Gonzalo Cuevas Mena",
+  puesto:
+    "Representante",
+  telefono:
+    "9995537452",
+  correo:
+    "gonzalo.cuevasmena@gmail.com",
+  direccion:
+    "Calle 21 por 10 y 12 de la Colonia Desvío Centro, Halachó, Yucatán",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN GASTRONOMÍA",
+    "Licenciatura en Gastronomía",
+    "TSU EN TURISMO",
+    "Licenciatura en Gestión y Desarrollo Turístico"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 57,
+
+  nombre:
+    "RESTAURANTE HOLOCH",
+  contacto:
+    "Juan Ramón Pech Catzim",
+  puesto:
+    "",
+  telefono:
+    "9996057824 - 9992796363 (para mensajes)",
+  correo:
+    "contacto@holoch.mx",
+  direccion:
+    "Parque Santa Lucía, Mérida, Yucatán",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN GASTRONOMÍA",
+    "Licenciatura en Gastronomía",
+    "TSU EN TURISMO",
+    "Licenciatura en Gestión y Desarrollo Turístico"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 58,
+
+  nombre:
+    "Restaurante la Cazona del Mar",
+  contacto:
+    "Cheff. Roberto Chalé Alcocer",
+  puesto:
+    "Propietario y Cheff",
+  telefono:
+    "",
+  correo:
+    "robertochale@gmail.com",
+  direccion:
+    "Calle 20 número 42 x 27 y 27A, Colonia Centro, Ciudad del Carmen",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN GASTRONOMÍA",
+    "Licenciatura en Gastronomía",
+    "TSU EN TURISMO",
+    "Licenciatura en Gestión y Desarrollo Turístico"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 59,
+
+  nombre:
+    "RESTAURANTE LA CHAYA MAYA",
+  contacto:
+    "L.A. Yamile Solís Castañeda",
+  puesto:
+    "Gerente de Recursos Humanos",
+  telefono:
+    "9999232706",
+  correo:
+    "recursoshumanos@lachayamaya.com",
+  direccion:
+    "Calle 55 por 60 y 62, Centro, Mérida, Yucatán",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN GASTRONOMÍA",
+    "Licenciatura en Gastronomía",
+    "TSU EN TURISMO",
+    "Licenciatura en Gestión y Desarrollo Turístico"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 60,
+
+  nombre:
+    "Restaurante las Rocas",
+  contacto:
+    "Lic. Russel Santiago Tun Canche",
+  puesto:
+    "Encargado y Representante",
+  telefono:
+    "9997661385",
+  correo:
+    "russ.kennedy27@gmail.com",
+  direccion:
+    "Calle 19 por 10 y 12, Colonia Santa Ana, Halachó, Yucatán",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN GASTRONOMÍA",
+    "Licenciatura en Gastronomía",
+    "TSU EN TURISMO",
+    "Licenciatura en Gestión y Desarrollo Turístico"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 61,
+
+  nombre:
+    "Restaurante Turístico Marité y Hotel Fayo's",
+  contacto:
+    "Lic. Jorge Efraín Canto Ojeda",
+  puesto:
+    "Propietario del restaurante",
+  telefono:
+    "9961001719",
+  correo:
+    "restauranteturisticomarite@outlook.com",
+  direccion:
+    "Calle 33 No. 211, Colonia Centro, Becal, Yucatán",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN GASTRONOMÍA",
+    "Licenciatura en Gastronomía",
+    "TSU EN TURISMO",
+    "Licenciatura en Gestión y Desarrollo Turístico"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 62,
+
+  nombre:
+    "Restaurante Ya´axche",
+  contacto:
+    "L.G. Wilson Avelino Alonzo Baez",
+  puesto:
+    "Propietario",
+  telefono:
+    "9971510862",
+  correo:
+    "",
+  direccion:
+    "Calle 18 por 35 y 37, Santa Cruz, Halachó, Yucatán",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN GASTRONOMÍA",
+    "Licenciatura en Gastronomía",
+    "TSU EN TECNOLOGÍA DE ALIMENTOS",
+    "Licenciatura en Ingeniería en Alimentos",
+    "TSU EN DESARROLLO DE SOFTWARE MULTIPLATAFORMA",
+    "Licenciatura en Ingeniería en Tecnologías e Innovación Digital",
+    "TSU EN TURISMO",
+    "Licenciatura en Gestión y Desarrollo Turístico"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 63,
+
+  nombre:
+    "Reyma del Sureste S.A. de C.V.",
+  contacto:
+    "Ing. Abel Datrón Cocón",
+  puesto:
+    "",
+  telefono:
+    "",
+  correo:
+    "dorgnizacional.rsu@reyma.com.mx",
+  direccion:
+    "",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 64,
+
+  nombre:
+    "RUZ, DISTRIBUIDORA Y SUMINISTROS S.A. DE C.V.",
+  contacto:
+    "Ing. Pedro Quijano",
+  puesto:
+    "Encargado de Procesos Impresos",
+  telefono:
+    "9999690570",
+  correo:
+    "Pabloruz7@hotmail.com, impresosruz@hotmail.com",
+  direccion:
+    "Calle 66 No. 622-A por 85 y 87, Centro",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN DESARROLLO DE SOFTWARE MULTIPLATAFORMA",
+    "Licenciatura en Ingeniería en Tecnologías e Innovación Digital",
+    "TSU EN TURISMO",
+    "Licenciatura en Gestión y Desarrollo Turístico"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 65,
+
+  nombre:
+    "LA HABANA MEJORADA DEL GRUPO Salón Cervecero Yucateco",
+  contacto:
+    "Lic. Donny Hernández",
+  puesto:
+    "Gerente",
+  telefono:
+    "9995763124",
+  correo:
+    "donny@soloncervecero.com.mx",
+  direccion:
+    "Calle 56 por 45 y 47, Colonia Centro de Mérida, Yucatán",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN GASTRONOMÍA",
+    "Licenciatura en Gastronomía",
+    "TSU EN TURISMO",
+    "Licenciatura en Gestión y Desarrollo Turístico"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 66,
+
+  nombre:
+    "SANTOS LUGO",
+  contacto:
+    "",
+  puesto:
+    "",
+  telefono:
+    "9995537452",
+  correo:
+    "gmerca@santoslugo.com.mx",
+  direccion:
+    "",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN GASTRONOMÍA",
+    "Licenciatura en Gastronomía"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 67,
+
+  nombre:
+    "Secretaría de Fomento Turístico del Gobierno del Estado de Yucatán (SEFOTUR)",
+  contacto:
+    "L.G.D.T. Yazmín Medina Casanova",
+  puesto:
+    "",
+  telefono:
+    "9999303760",
+  correo:
+    "yasmin.medina@yucatan.travel, diana.parra@yucatan.gob.mx",
+  direccion:
+    "C. 5 letra B, número 293 por 60, Colonia Revolución Ex-Cormedex, Mérida, Yucatán",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN GASTRONOMÍA",
+    "Licenciatura en Gastronomía",
+    "TSU EN DESARROLLO DE SOFTWARE MULTIPLATAFORMA",
+    "Licenciatura en Ingeniería en Tecnologías e Innovación Digital",
+    "TSU EN TURISMO",
+    "Licenciatura en Gestión y Desarrollo Turístico"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 68,
+
+  nombre:
+    "SEDER",
+  contacto:
+    "Lic. Martín Israel Duarte Pech",
+  puesto:
+    "",
+  telefono:
+    "9991220082",
+  correo:
+    "martin.duarte@yucatan.gob.mx",
+  direccion:
+    "Calle 21 No. 444, C.P. 97288, Mérida, Yucatán. Frente a la Plaza Cívica de la Ciudad Industrial",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 69,
+
+  nombre:
+    "SOFERP COMERCIALIZADORA DE APPS Y SISTEMAS S.A. DE C.V.",
+  contacto:
+    "Mtro. Juan Jose Herrera Espadas",
+  puesto:
+    "Gerente",
+  telefono:
+    "9886882383",
+  correo:
+    "soporte@soferp.com",
+  direccion:
+    "Calle 28 #100 Dep. 9, Col. Lienzo Charro, Umán, Yucatán",
+  carrerasRelacionadas: [
+    "TSU EN DESARROLLO DE SOFTWARE MULTIPLATAFORMA",
+    "Licenciatura en Ingeniería en Tecnologías e Innovación Digital"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 70,
+
+  nombre:
+    "Tele Yucatán, S.A. de C.V.",
+  contacto:
+    "L.D. María Jiménez Rivera",
+  puesto:
+    "Jefa de Jurídico",
+  telefono:
+    "9999407600",
+  correo:
+    "juridico.teleyucatan@gmail.com",
+  direccion:
+    "C. 33 Av. Pérez Ponce No. 499 A por 56, Colonia Centro, Mérida, Yucatán",
+  carrerasRelacionadas: [
+    "TSU EN DESARROLLO DE SOFTWARE MULTIPLATAFORMA",
+    "Licenciatura en Ingeniería en Tecnologías e Innovación Digital"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 71,
+
+  nombre:
+    "Tito’s & Wilma’s",
+  contacto:
+    "Cheff. Jesús Baak Pérez",
+  puesto:
+    "Cheff Ejecutivo",
+  telefono:
+    "9971157703",
+  correo:
+    "titosywilmasrh@gmail.com",
+  direccion:
+    "Calle 19 No. 89 entre 18 y 19, Mérida, Yucatán",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN GASTRONOMÍA",
+    "Licenciatura en Gastronomía",
+    "TSU EN DESARROLLO DE SOFTWARE MULTIPLATAFORMA",
+    "Licenciatura en Ingeniería en Tecnologías e Innovación Digital"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 72,
+
+  nombre:
+    "TREN MAYA",
+  contacto:
+    "Juan Bautista Quintal Medina",
+  puesto:
+    "Recursos Humanos",
+  telefono:
+    "9851179188",
+  correo:
+    "capacydesarr.tm@defensa.gob.mx",
+  direccion:
+    "Edificio de la Dir. Mérida",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN GASTRONOMÍA",
+    "Licenciatura en Gastronomía",
+    "TSU EN TECNOLOGÍA DE ALIMENTOS",
+    "Licenciatura en Ingeniería en Alimentos",
+    "TSU EN DESARROLLO DE SOFTWARE MULTIPLATAFORMA",
+    "Licenciatura en Ingeniería en Tecnologías e Innovación Digital",
+    "TSU EN TURISMO",
+    "Licenciatura en Gestión y Desarrollo Turístico"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 73,
+
+  nombre:
+    "UNESCO",
+  contacto:
+    "Lic. Eduardo Seijo",
+  puesto:
+    "Representante",
+  telefono:
+    "9991299670",
+  correo:
+    "eduardo.seijo@gmail.com",
+  direccion:
+    "Calle 7B No. 363 interior 8 entre 20 y 22, Colonia Santa Gertrudis Copó, Mérida, Yucatán",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN DESARROLLO DE SOFTWARE MULTIPLATAFORMA",
+    "Licenciatura en Ingeniería en Tecnologías e Innovación Digital"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 74,
+
+  nombre:
+    "VeraLife REGENERATION, Suplementos VeraLife",
+  contacto:
+    "René Norberto Vera Espinoza",
+  puesto:
+    "Director",
+  telefono:
+    "4621313368",
+  correo:
+    "contacto@suplementosveralife.com.mx",
+  direccion:
+    "Calle 13 #455B, García Ginerés, Mérida, Yucatán",
+  carrerasRelacionadas: [
+    "TSU EN TECNOLOGÍA DE ALIMENTOS",
+    "Licenciatura en Ingeniería en Alimentos"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 75,
+
+  nombre:
+    "Viajes \"XIMBAL BIN\"",
+  contacto:
+    "Lic. Jorge Gongora",
+  puesto:
+    "",
+  telefono:
+    "9961028574",
+  correo:
+    "ventasximbalbin@gmail.com",
+  direccion:
+    "Privada Santa Rosa MZA E LT 7, Murallas FSTSE, Campeche",
+  carrerasRelacionadas: [
+    "TSU EN DESARROLLO DE SOFTWARE MULTIPLATAFORMA",
+    "Licenciatura en Ingeniería en Tecnologías e Innovación Digital",
+    "TSU EN TURISMO",
+    "Licenciatura en Gestión y Desarrollo Turístico"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 76,
+
+  nombre:
+    "La Meridana",
+  contacto:
+    "",
+  puesto:
+    "",
+  telefono:
+    "9999404085",
+  correo:
+    "salsa@la meridadana.com",
+  direccion:
+    "Mérida",
+  carrerasRelacionadas: [
+    "TSU EN TECNOLOGÍA DE ALIMENTOS",
+    "Licenciatura en Ingeniería en Alimentos"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 77,
+
+  nombre:
+    "Servicios ambientales de la Península",
+  contacto:
+    "",
+  puesto:
+    "",
+  telefono:
+    "9992468605",
+  correo:
+    "http://www.serviciosambientalesdelapeninsula.com/",
+  direccion:
+    "Mérida",
+  carrerasRelacionadas: [
+    "TSU EN TECNOLOGÍA DE ALIMENTOS",
+    "Licenciatura en Ingeniería en Alimentos"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 78,
+
+  nombre:
+    "Keken, Planta Umán",
+  contacto:
+    "Gerardo Peniche",
+  puesto:
+    "Gerente de Marketing",
+  telefono:
+    "9993222670",
+  correo:
+    "",
+  direccion:
+    "Umán, Yucatán",
+  carrerasRelacionadas: [
+    "TSU EN TECNOLOGÍA DE ALIMENTOS",
+    "Licenciatura en Ingeniería en Alimentos"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 79,
+
+  nombre:
+    "Proteinas y Oleicos",
+  contacto:
+    "Maria Mariscal",
+  puesto:
+    "Recursos Humanos",
+  telefono:
+    "9999420900",
+  correo:
+    "maria.novelo@proteinol.com.mx",
+  direccion:
+    "Cd. Industrial, Mérida, Yuc.",
+  carrerasRelacionadas: [
+    "TSU EN TECNOLOGÍA DE ALIMENTOS",
+    "Licenciatura en Ingeniería en Alimentos"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 80,
+
+  nombre:
+    "Qualtia Alimentos Operaciones de R.L. de C.V.",
+  contacto:
+    "",
+  puesto:
+    "",
+  telefono:
+    "9999267564",
+  correo:
+    "",
+  direccion:
+    "Mérida, Yucatán",
+  carrerasRelacionadas: [
+    "TSU EN TECNOLOGÍA DE ALIMENTOS",
+    "Licenciatura en Ingeniería en Alimentos"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 81,
+
+  nombre:
+    "Bachoco S.A. de C.V. Planta de Alimentos División Península",
+  contacto:
+    "",
+  puesto:
+    "",
+  telefono:
+    "",
+  correo:
+    "",
+  direccion:
+    "Cd. Industrial, Mérida, Yuc.",
+  carrerasRelacionadas: [
+    "TSU EN TECNOLOGÍA DE ALIMENTOS",
+    "Licenciatura en Ingeniería en Alimentos"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 82,
+
+  nombre:
+    "BIOCHEM DIAGNOSTIC",
+  contacto:
+    "",
+  puesto:
+    "",
+  telefono:
+    "9992250286 WhatsApp, 9994797954 hablar",
+  correo:
+    "",
+  direccion:
+    "Mérida, Yuc.",
+  carrerasRelacionadas: [
+    "TSU EN TECNOLOGÍA DE ALIMENTOS",
+    "Licenciatura en Ingeniería en Alimentos"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 83,
+
+  nombre:
+    "Laboratorios del Sureste CENCONBAQIN",
+  contacto:
+    "",
+  puesto:
+    "",
+  telefono:
+    "",
+  correo:
+    "",
+  direccion:
+    "Mérida, Yuc.",
+  carrerasRelacionadas: [
+    "TSU EN TECNOLOGÍA DE ALIMENTOS",
+    "Licenciatura en Ingeniería en Alimentos"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 84,
+
+  nombre:
+    "Hotel Chable Yucatán",
+  contacto:
+    "Yesenia Mariela Puch Pat",
+  puesto:
+    "",
+  telefono:
+    "9993107616",
+  correo:
+    "lider.formacion@chableyucatan.com",
+  direccion:
+    "Chocholá, Yucatán",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN GASTRONOMÍA",
+    "Licenciatura en Gastronomía",
+    "TSU EN TECNOLOGÍA DE ALIMENTOS",
+    "Licenciatura en Ingeniería en Alimentos",
+    "TSU EN DESARROLLO DE SOFTWARE MULTIPLATAFORMA",
+    "Licenciatura en Ingeniería en Tecnologías e Innovación Digital",
+    "TSU EN TURISMO",
+    "Licenciatura en Gestión y Desarrollo Turístico"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 85,
+
+  nombre:
+    "Óptica la Económica",
+  contacto:
+    "Cristina Esther Chi Can",
+  puesto:
+    "",
+  telefono:
+    "9994207082",
+  correo:
+    "alfa_7_3@hotmail.com",
+  direccion:
+    "Mérida",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN DESARROLLO DE SOFTWARE MULTIPLATAFORMA",
+    "Licenciatura en Ingeniería en Tecnologías e Innovación Digital",
+    "Licenciatura en Gestión y Desarrollo Turístico"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 86,
+
+  nombre:
+    "CAPSA",
+  contacto:
+    "",
+  puesto:
+    "",
+  telefono:
+    "9991630045",
+  correo:
+    "rh@gcapsa.com",
+  direccion:
+    "Mérida",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN GASTRONOMÍA",
+    "Licenciatura en Gastronomía",
+    "TSU EN TECNOLOGÍA DE ALIMENTOS",
+    "Licenciatura en Ingeniería en Alimentos",
+    "TSU EN DESARROLLO DE SOFTWARE MULTIPLATAFORMA",
+    "Licenciatura en Ingeniería en Tecnologías e Innovación Digital",
+    "TSU EN TURISMO",
+    "Licenciatura en Gestión y Desarrollo Turístico"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 87,
+
+  nombre:
+    "Agencias de viaje de Vaca y más",
+  contacto:
+    "Carlos Armando Cervera Hernández",
+  puesto:
+    "",
+  telefono:
+    "9811753614",
+  correo:
+    "carlos.devacaymas@gmail.com",
+  direccion:
+    "Campeche",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN DESARROLLO DE SOFTWARE MULTIPLATAFORMA",
+    "Licenciatura en Ingeniería en Tecnologías e Innovación Digital",
+    "TSU EN TURISMO",
+    "Licenciatura en Gestión y Desarrollo Turístico"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 88,
+
+  nombre:
+    "Capacidades humanas y organizacionales",
+  contacto:
+    "Real Armando Epitacio Santos",
+  puesto:
+    "",
+  telefono:
+    "5579133182",
+  correo:
+    "real.epitaceo@caphumano.com",
+  direccion:
+    "Umán, Yucatán",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN DESARROLLO DE SOFTWARE MULTIPLATAFORMA",
+    "Licenciatura en Ingeniería en Tecnologías e Innovación Digital"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 89,
+
+  nombre:
+    "Secretaría de Ciencia, Humanidades, Tecnología e Innovación (SECIHTI)",
+  contacto:
+    "Lic. Librada Perez",
+  puesto:
+    "",
+  telefono:
+    "9999202613",
+  correo:
+    "Librada.perez@yucatan.gob.mx",
+  direccion:
+    "Mérida, Yucatán",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN DESARROLLO DE SOFTWARE MULTIPLATAFORMA",
+    "Licenciatura en Ingeniería en Tecnologías e Innovación Digital"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 90,
+
+  nombre:
+    "Agroindustrias Honey Kab",
+  contacto:
+    "Santiago Francisco Tucuch Cab",
+  puesto:
+    "",
+  telefono:
+    "9971071937",
+  correo:
+    "etasantiagotucuch@gmail.com",
+  direccion:
+    "Dzitbalché",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN TECNOLOGÍA DE ALIMENTOS",
+    "Licenciatura en Ingeniería en Alimentos",
+    "TSU EN DESARROLLO DE SOFTWARE MULTIPLATAFORMA",
+    "Licenciatura en Ingeniería en Tecnologías e Innovación Digital",
+    "TSU EN TURISMO",
+    "Licenciatura en Gestión y Desarrollo Turístico"
+  ],
+  convenio: true
+
+},
+
+{
+  id: 91,
+
+  nombre:
+    "Sensira Resorts",
+  contacto:
+    "Lic. Blondy Aranda",
+  puesto:
+    "",
+  telefono:
+    "9983041094",
+  correo:
+    "baranda@sensiraresorts.com",
+  direccion:
+    "Cancún, Quintana Roo",
+  carrerasRelacionadas: [
+    "TSU EN EMPRENDIMIENTO, FORMULACIÓN Y EVALUACIÓN DE PROYECTOS",
+    "Licenciatura en Administración",
+    "TSU EN GASTRONOMÍA",
+    "Licenciatura en Gastronomía",
+    "TSU EN TECNOLOGÍA DE ALIMENTOS",
+    "Licenciatura en Ingeniería en Alimentos",
+    "TSU EN DESARROLLO DE SOFTWARE MULTIPLATAFORMA",
+    "Licenciatura en Ingeniería en Tecnologías e Innovación Digital",
+    "TSU EN TURISMO",
+    "Licenciatura en Gestión y Desarrollo Turístico"
+  ],
+  convenio: true
+
+},
 
 ]
 
