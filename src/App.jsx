@@ -3,8 +3,9 @@ import { useState, useEffect } from 'react'
 import Inicio from './components/Inicio'
 import Login from './components/Login'
 import Registro from './components/Registro'
-import UnidadEconomica from './components/alumno/UnidadEconomica'
-import organizaciones from './Data/padronOrganizaciones'
+import carreras from './Data/carreras'
+import Organizaciones from './components/alumno/Organizaciones'
+import padronOrganizaciones from "./Data/padronOrganizaciones";
 
 
 function App() {
@@ -68,7 +69,7 @@ const [busqueda, setBusqueda] = useState('')
       correo,
       carrera,
       curp,
-      unidadEconomica: '',
+      organizacion: '',
       solicitudCambio: false,
       motivoCambio: '',
       fase: 1,
@@ -101,9 +102,9 @@ const iniciarSesion = () => {
 const avisosAlumno = []
 
 if (alumnoActual) {
-  if (!alumnoActual.documentos.presentacion) {
-    avisosAlumno.push('⚠ Debes subir la Carta de Presentación para continuar a la siguiente fase')
-  }
+  if (alumnoActual.fase >= 3 && !alumnoActual.documentos.presentacion) {
+  avisosAlumno.push('⚠ Debes subir la Carta de Presentación para continuar a la siguiente fase')
+}
 
   if (alumnoActual.documentos.presentacion && !alumnoActual.documentos.aceptacion) {
     avisosAlumno.push('📌 Sube la Carta de Aceptación para avanzar a la Fase 5')
@@ -171,8 +172,8 @@ const cerrarSesion = () => {
         ...alumnoActual.documentos,
         compromiso: true
       },
-      fase: 5,
-      estatus: 'Carta Compromiso subida'
+      fase: 6,
+estatus: 'Estadía autorizada'
     }
 
     setAlumnoActual(actualizado)
@@ -211,14 +212,15 @@ useEffect(() => {
 
 
 
-
-  const organizacionesFiltradas = alumnoActual
-  ? organizaciones.filter((organizacion) =>
-      organizacion.carrerasRelacionadas.includes(
-        alumnoActual.carrera
+const organizacionesFiltradas = alumnoActual
+  ? padronOrganizaciones.filter((organizacion) =>
+      organizacion.carrerasRelacionadas.some(
+        (carrera) =>
+          carrera.toLowerCase() === alumnoActual.carrera.toLowerCase()
       )
     )
-  : []
+  : [];
+
 
   const solicitudesCambio = estudiantes.filter(
     (estudiante) => estudiante.solicitudCambio
@@ -229,14 +231,14 @@ useEffect(() => {
   String(estudiante.matricula).includes(busqueda)
 )
 
-  const seleccionarUnidadEconomica = (unidad) => {
+const seleccionarOrganizacion = (organizacion) => {
 
   const actualizado = {
     ...alumnoActual,
-    unidadEconomica: unidad.nombre,
-    datosUnidad: unidad,
-    fase: 2,
-    estatus: 'Unidad Económica seleccionada'
+    organizacion: organizacion.nombre,
+    datosOrganizacion: organizacion,
+    fase: 3,
+    estatus: 'Organización asignada'
   }
 
   setAlumnoActual(actualizado)
@@ -248,6 +250,8 @@ useEffect(() => {
         : estudiante
     )
   )
+
+  alert(`Organización seleccionada: ${organizacion.nombre}`)
 }
 
 
@@ -256,11 +260,11 @@ useEffect(() => {
       estudiante.matricula === matriculaAlumno
         ? {
             ...estudiante,
-            unidadEconomica: '',
+            organizacion: '',
             solicitudCambio: false,
             motivoCambio: '',
             fase: 1,
-            estatus: 'Cambio aprobado, seleccione nueva Unidad Económica'
+            estatus: 'Cambio aprobado, seleccione nueva Organización'
           }
         : estudiante
     )
@@ -282,7 +286,7 @@ useEffect(() => {
     setEstudiantes(actualizados)
   }
 
-  const solicitarCambioUnidad = () => {
+  const solicitarCambioOrganizacion = () => {
     const actualizado = {
       ...alumnoActual,
       solicitudCambio: true,
@@ -442,6 +446,9 @@ useEffect(() => {
   )
 }
 
+console.log("Alumno actual:", alumnoActual);
+console.log("Organizaciones filtradas:", organizacionesFiltradas);
+
  if (alumnoActual) {
     return (
       <div className="alumno">
@@ -474,19 +481,21 @@ useEffect(() => {
           </div>
 
           <div className="kpi-card">
-            <p>{alumnoActual.unidadEconomica || 'Ninguna'}</p>
+            <p>{alumnoActual.organizacion || 'Ninguna'}</p>
 
-            <p className="kpi-label unidad-label">Unidad Económica</p>
+            <p className="kpi-label organizacion-label">Organización</p>
           </div>
         </div>
 
 
-<UnidadEconomica
-  alumnoActual={alumnoActual}
-  unidadesFiltradas={organizacionesFiltradas}
-  seleccionarUnidadEconomica={seleccionarUnidadEconomica}
-  solicitarCambioUnidad={solicitarCambioUnidad}
-/>
+{alumnoActual.fase <= 2 && (
+  <Organizaciones
+    alumnoActual={alumnoActual}
+    organizacionesFiltradas={organizacionesFiltradas}
+    seleccionarOrganizacion={seleccionarOrganizacion}
+    solicitarCambioOrganizacion={solicitarCambioOrganizacion}
+  />
+)}
 
 
 {alumnoActual.fase >= 2 && (
@@ -584,11 +593,11 @@ useEffect(() => {
 
 <ol className="instrucciones">
   <li>Vinculación te mandará a tu correo la carta.</li>
-  <li>Imprime 3 originales a color, lo firmas TU y el asesor de la unidad.</li>
+  <li>Imprime 3 originales a color, lo firmas TU y el asesor de la organización.</li>
   <li><strong>TODAS LAS FIRMAS EN TINTA AZUL.</strong></li>
   <li>Lleva los 3 originales a la Dirección de Vinculación.</li>
   <li>El director(a) de Vinculación firmará los 3 ejemplares; 
-    te devolverá 2 (uno para ti y otro para tu unidad) 
+    te devolverá 2 (uno para ti y otro para tu organización) 
     y se quedará con uno</li>
   <li>Escanea tu documento original a color en formato PDF.</li>
   <li>Nombra el archivo como MATRÍCULA_COMPROMISO (ej. 21090001_COMPROMISO) y súbelo aquí.</li>

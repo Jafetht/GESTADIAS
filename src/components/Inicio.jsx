@@ -78,7 +78,7 @@ function Inicio({ setPantalla }){
         </div>
 
         <div className="fase">
-          2. Selección de Unidad Económica
+          2. Selección de organización
         </div>
 
         <div className="fase">
