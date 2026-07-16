@@ -16,6 +16,11 @@ const [estudiantes, setEstudiantes] = useState(() => {
   return data ? JSON.parse(data) : []
 })
 
+const [solicitudesOrganizaciones, setSolicitudesOrganizaciones] = useState(() => {
+  const data = localStorage.getItem("gestadias_solicitudes_organizaciones");
+  return data ? JSON.parse(data) : [];
+});
+
 const eliminarAlumno = (matricula) => {
   const confirmar = confirm('¿Seguro que deseas eliminar este alumno?')
 
@@ -209,8 +214,28 @@ useEffect(() => {
 }, [alumnoActual])
 
 
+useEffect(() => {
+  localStorage.setItem(
+    "gestadias_solicitudes_organizaciones",
+    JSON.stringify(solicitudesOrganizaciones)
+  );
+}, [solicitudesOrganizaciones]);
 
 
+const registrarSolicitudOrganizacion = (datos) => {
+  setSolicitudesOrganizaciones([
+    ...solicitudesOrganizaciones,
+    {
+      id: Date.now(),
+      ...datos,
+      alumno: alumnoActual.nombre,
+      matricula: alumnoActual.matricula,
+      carrera: alumnoActual.carrera,
+      estatus: "Solicitud recibida",
+      fecha: new Date().toLocaleDateString()
+    }
+  ]);
+};
 
 const organizacionesFiltradas = alumnoActual
   ? padronOrganizaciones.filter((organizacion) =>
@@ -233,13 +258,15 @@ const organizacionesFiltradas = alumnoActual
 
 const seleccionarOrganizacion = (organizacion) => {
 
-  const actualizado = {
-    ...alumnoActual,
-    organizacion: organizacion.nombre,
-    datosOrganizacion: organizacion,
-    fase: 3,
-    estatus: 'Organización asignada'
-  }
+const actualizado = {
+  ...alumnoActual,
+  organizacion: organizacion.nombre,
+  datosOrganizacion: organizacion,
+  fase: 2,
+  estatus: organizacion.enProceso
+    ? "Organización en proceso de registro por Vinculación"
+    : "Organización seleccionada"
+}
 
   setAlumnoActual(actualizado)
 
@@ -477,13 +504,13 @@ console.log("Organizaciones filtradas:", organizacionesFiltradas);
           <div className="kpi-card">
             <p>{alumnoActual.estatus}</p>
 
-            <p className="kpi-label">Estatus</p>
+            <p>Estatus</p>
           </div>
 
           <div className="kpi-card">
             <p>{alumnoActual.organizacion || 'Ninguna'}</p>
 
-            <p className="kpi-label organizacion-label">Organización</p>
+            <p>Organización</p>
           </div>
         </div>
 
@@ -494,6 +521,7 @@ console.log("Organizaciones filtradas:", organizacionesFiltradas);
     organizacionesFiltradas={organizacionesFiltradas}
     seleccionarOrganizacion={seleccionarOrganizacion}
     solicitarCambioOrganizacion={solicitarCambioOrganizacion}
+    registrarSolicitudOrganizacion={registrarSolicitudOrganizacion}
   />
 )}
 
@@ -510,12 +538,12 @@ console.log("Organizaciones filtradas:", organizacionesFiltradas);
       </p>
 
       <p>
-        Esta carta deberás entregarla a la empresa donde desees ingresar.
+        Esta carta deberás entregarla a la organización donde desees ingresar.
       </p>
 
       <ul>
         <li>
-          <strong>Conserva</strong> la carta original y realiza copias para las empresas que lo requieran.
+          <strong>Conserva</strong> la carta original y realiza copias para las organizaciones que lo requieran.
         </li>
 
         <li>
