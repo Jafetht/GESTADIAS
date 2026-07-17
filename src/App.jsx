@@ -6,7 +6,7 @@ import Registro from './components/Registro'
 import carreras from './Data/carreras'
 import Organizaciones from './components/alumno/Organizaciones'
 import padronOrganizaciones from "./Data/padronOrganizaciones";
-
+import DocumentoPresentacion from "./components/alumno/DocumentoPresentacion";
 
 function App() {
   const [pantalla, setPantalla] = useState('inicio')
@@ -126,7 +126,7 @@ const cerrarSesion = () => {
   setPantalla('inicio')
 }
 
-  const subirCartaPresentacion = () => {
+const subirCartaPresentacion = (archivo) => {
     const actualizado = {
       ...alumnoActual,
       documentos: {
@@ -527,58 +527,12 @@ console.log("Organizaciones filtradas:", organizacionesFiltradas);
 
 
 {alumnoActual.fase >= 2 && (
-  <>
-    <h3>Fase 3</h3>
-
-    <h4>Instrucciones para la Carta de Presentación</h4>
-
-    <div className="instrucciones">
-      <p>
-        La Dirección de Vinculación te otorga la carta de presentación de estadía que te acredita como alumno de la universidad en su último cuatrimestre.
-      </p>
-
-      <p>
-        Esta carta deberás entregarla a la organización donde desees ingresar.
-      </p>
-
-      <ul>
-        <li>
-          <strong>Conserva</strong> la carta original y realiza copias para las organizaciones que lo requieran.
-        </li>
-
-        <li>
-          <strong>No entregues</strong> el documento original.
-        </li>
-
-        <li>
-          Escanea la carta en formato PDF a color.
-        </li>
-
-        <li>
-          Nombra el archivo como:
-          <strong> MATRÍCULA_PRESENTACIÓN</strong>
-        </li>
-
-        <li>
-          Ejemplo:
-          <strong> 21090001_PRESENTACIÓN</strong>
-        </li>
-      </ul>
-    </div>
-
-    <input type="file" accept=".pdf" />
-
-    <button onClick={subirCartaPresentacion}>
-      Subir Carta de Presentación
-    </button>
-
-    <p>
-      Carta de Presentación:{' '}
-      {alumnoActual.documentos.presentacion ? '✅' : '❌'}
-    </p>
-
-  </>
+  <DocumentoPresentacion
+    alumnoActual={alumnoActual}
+    subirCartaPresentacion={subirCartaPresentacion}
+  />
 )}
+
         {alumnoActual.documentos.presentacion && (
           <div>
 <h3>Fase 4</h3>

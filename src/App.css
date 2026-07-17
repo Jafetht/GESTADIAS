@@ -486,3 +486,10 @@ select option{
 .correo-link:hover{
     text-decoration:underline;
 }
+
+button:disabled {
+  background: #777;
+  color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
