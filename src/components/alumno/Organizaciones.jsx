@@ -128,11 +128,16 @@ personalizada generada automáticamente con tus datos.
 
 <p>
   <strong>Correo:</strong>{" "}
-  <a
-    className="correo-link"
-    href={`mailto:${organizacionSeleccionada.correo}?subject=${encodeURIComponent(
-      `Solicitud de Estadía Profesional - ${alumnoActual.nombre}`
-    )}&body=${encodeURIComponent(
+  <button
+  className="btn-gmail"
+  onClick={() => {
+    const url =
+      `https://mail.google.com/mail/?view=cm&fs=1` +
+      `&to=${encodeURIComponent(organizacionSeleccionada.correo)}` +
+      `&su=${encodeURIComponent(
+        `Solicitud de Estadía Profesional - ${alumnoActual.nombre}`
+      )}` +
+      `&body=${encodeURIComponent(
 `Buen día
 
 Mi nombre es ${alumnoActual.nombre}, estudiante de la Universidad Tecnológica del Poniente, de la carrera de ${alumnoActual.carrera}.
@@ -148,10 +153,17 @@ Atentamente,
 ${alumnoActual.nombre}
 Matrícula: ${alumnoActual.matricula}
 Universidad Tecnológica del Poniente`
-    )}`}
-  >
-    {organizacionSeleccionada.correo}
-  </a>
+      )}`;
+
+    window.open(url, "_blank");
+  }}
+>
+  📧 Enviar solicitud por Gmail
+</button>
+<p className="nota-gmail">
+⚠ Utilizan tu correo institucional de la Universidad Tecnológica del Poniente
+para poder enviar esta solicitud.
+</p>
 </p>
 
 

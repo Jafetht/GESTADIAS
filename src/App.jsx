@@ -7,6 +7,10 @@ import carreras from './Data/carreras'
 import Organizaciones from './components/alumno/Organizaciones'
 import padronOrganizaciones from "./Data/padronOrganizaciones";
 import DocumentoPresentacion from "./components/alumno/DocumentoPresentacion";
+import DocumentoAceptacion from "./components/alumno/DocumentoAceptacion";
+import DocumentoCompromiso from './components/alumno/DocumentoCompromiso';
+import TransicionFase from "./components/alumno/TransicionFase";
+import MenuAlumno from "./components/MenuAlumno";
 
 function App() {
   const [pantalla, setPantalla] = useState('inicio')
@@ -62,11 +66,13 @@ const [alumnoEditando, setAlumnoEditando] = useState(null)
   const [curp, setCurp] = useState('')
  const [alumnoActual, setAlumnoActual] = useState(() => {
   const data = localStorage.getItem('gestadias_alumno_actual')
-  return data ? JSON.parse(data) : null
-})
-
+  return data ? JSON.parse(data) : null})
+const [mostrarTransicion, setMostrarTransicion] = useState(false);
+const [datosTransicion, setDatosTransicion] = useState({
+  titulo: "",
+  mensaje: ""
+});
 const [busqueda, setBusqueda] = useState('')
-
   const guardarEstudiante = () => {
     const nuevoEstudiante = {
       matricula,
@@ -127,6 +133,13 @@ const cerrarSesion = () => {
 }
 
 const subirCartaPresentacion = (archivo) => {
+  setDatosTransicion({
+  titulo: "Validando Carta de Presentación...",
+  mensaje: "Actualizando tu expediente y preparando la siguiente fase."
+});
+
+setMostrarTransicion(true);
+  setTimeout(() => {
     const actualizado = {
       ...alumnoActual,
       documentos: {
@@ -146,9 +159,19 @@ const subirCartaPresentacion = (archivo) => {
           : estudiante
       )
     )
-  }
 
-  const subirCartaAceptacion = () => {
+    setMostrarTransicion(false);
+  }, 2500);
+}
+
+const subirCartaAceptacion = () => {
+  setDatosTransicion({
+  titulo: "Validando Carta de Aceptación...",
+  mensaje: "Verificando el documento y habilitando la siguiente fase."
+});
+
+setMostrarTransicion(true);
+setTimeout(() => {
     const actualizado = {
       ...alumnoActual,
       documentos: {
@@ -168,9 +191,19 @@ const subirCartaPresentacion = (archivo) => {
           : estudiante
       )
     )
-  }
+  
+    setMostrarTransicion(false);
+  }, 2500);
+}
 
-  const subirCartaCompromiso = () => {
+const subirCartaCompromiso = () => {
+  setDatosTransicion({
+  titulo: "🎉 Activando tu Estadía Profesional...",
+  mensaje: "Toda tu documentación ha sido validada correctamente. Preparando tu expediente..."
+});
+
+setMostrarTransicion(true);
+setTimeout(() => {
     const actualizado = {
       ...alumnoActual,
       documentos: {
@@ -190,7 +223,9 @@ estatus: 'Estadía autorizada'
           : estudiante
       )
     )
-  }
+    setMostrarTransicion(false);
+  }, 2500);
+}
 
   
 
@@ -237,6 +272,7 @@ const registrarSolicitudOrganizacion = (datos) => {
   ]);
 };
 
+
 const organizacionesFiltradas = alumnoActual
   ? padronOrganizaciones.filter((organizacion) =>
       organizacion.carrerasRelacionadas.some(
@@ -257,7 +293,13 @@ const organizacionesFiltradas = alumnoActual
 )
 
 const seleccionarOrganizacion = (organizacion) => {
+setDatosTransicion({
+  titulo: "Registrando organización...",
+  mensaje: "Preparando la Fase 2 de tu proceso de estadía."
+});
 
+setMostrarTransicion(true);
+setTimeout(() => {
 const actualizado = {
   ...alumnoActual,
   organizacion: organizacion.nombre,
@@ -279,6 +321,10 @@ const actualizado = {
   )
 
   alert(`Organización seleccionada: ${organizacion.nombre}`)
+  
+  setMostrarTransicion(false);
+
+}, 2500);
 }
 
 
@@ -443,6 +489,104 @@ const actualizado = {
     )
   }
 
+if (pantalla === 'perfil') {
+  return (
+    <div className="alumno">
+
+      <MenuAlumno 
+        alumnoActual={alumnoActual}
+        cerrarSesion={cerrarSesion}
+        setPantalla={setPantalla}
+      />
+
+      <div className="documento-card">
+
+        <h3>👤 Mi Perfil</h3>
+
+        <p><strong>Nombre:</strong> {alumnoActual.nombre}</p>
+
+        <p><strong>Matrícula:</strong> {alumnoActual.matricula}</p>
+
+        <p><strong>Correo:</strong> {alumnoActual.correo}</p>
+
+        <p><strong>Carrera:</strong> {alumnoActual.carrera}</p>
+
+      </div>
+
+    </div>
+  )
+}
+
+if (pantalla === 'documentos') {
+  return (
+    <div className="alumno">
+
+      <MenuAlumno 
+        alumnoActual={alumnoActual}
+        cerrarSesion={cerrarSesion}
+        setPantalla={setPantalla}
+      />
+
+      <div className="documento-card">
+
+        <h3>📄 Mis Documentos</h3>
+
+        <p>
+          Carta de Presentación:
+          {alumnoActual.documentos.presentacion ? " ✅" : " ❌"}
+        </p>
+
+        <p>
+          Carta de Aceptación:
+          {alumnoActual.documentos.aceptacion ? " ✅" : " ❌"}
+        </p>
+
+        <p>
+          Carta Compromiso:
+          {alumnoActual.documentos.compromiso ? " ✅" : " ❌"}
+        </p>
+
+      </div>
+
+    </div>
+  )
+}
+
+if (pantalla === 'estadia') {
+  return (
+    <div className="alumno">
+
+      <MenuAlumno 
+        alumnoActual={alumnoActual}
+        cerrarSesion={cerrarSesion}
+        setPantalla={setPantalla}
+      />
+
+      <div className="fase-final">
+
+        <h3>📌 Mi Estadía</h3>
+
+        <p>
+          Organización:
+          {alumnoActual.organizacion || "Sin asignar"}
+        </p>
+
+        <p>
+          Fase actual:
+          {alumnoActual.fase}
+        </p>
+
+        <p>
+          Estatus:
+          {alumnoActual.estatus}
+        </p>
+
+      </div>
+
+    </div>
+  )
+}
+
  if (pantalla === 'registro') {
   return (
     <Registro
@@ -476,25 +620,39 @@ const actualizado = {
 console.log("Alumno actual:", alumnoActual);
 console.log("Organizaciones filtradas:", organizacionesFiltradas);
 
- if (alumnoActual) {
-    return (
-      <div className="alumno">
-        <h1>Bienvenido {alumnoActual.nombre}</h1>
-<button onClick={cerrarSesion}>
-  Cerrar sesión
-</button>
-        <h3>Tu avance en GESTADIAS</h3>
-{avisosAlumno.length > 0 && (
-  <div className="avisos-alumno">
-    <h3>📢 Avisos importantes</h3>
+if (mostrarTransicion) {
+  return (
+    <TransicionFase
+  titulo={datosTransicion.titulo}
+  mensaje={datosTransicion.mensaje}
+/>
+  );
+}
 
-    {avisosAlumno.map((aviso, index) => (
-      <p key={index} className="aviso-item">
-        {aviso}
-      </p>
-    ))}
-  </div>
-)}
+ if (alumnoActual) {
+
+    return (
+
+      <div className="alumno">
+<MenuAlumno 
+  alumnoActual={alumnoActual}
+  cerrarSesion={cerrarSesion}
+  setPantalla={setPantalla}
+/>
+        <h1>HOLA {alumnoActual.nombre}</h1>
+
+        <h3>Tu avance en GESTADIAS</h3>
+        {avisosAlumno.length > 0 && (
+          <div className="avisos-alumno">
+            <h3>📢 Avisos importantes</h3>
+
+            {avisosAlumno.map((aviso, index) => (
+              <p key={index} className="aviso-item">
+                {aviso}
+              </p>
+            ))}
+          </div>
+        )}
         <div className="kpi-grid">
           <div className="kpi-card">
             <h2>{alumnoActual.fase}</h2>
@@ -514,97 +672,85 @@ console.log("Organizaciones filtradas:", organizacionesFiltradas);
           </div>
         </div>
 
+        {alumnoActual.fase <= 2 && (
+          <Organizaciones
+            alumnoActual={alumnoActual}
+            organizacionesFiltradas={organizacionesFiltradas}
+            seleccionarOrganizacion={seleccionarOrganizacion}
+            solicitarCambioOrganizacion={solicitarCambioOrganizacion}
+            registrarSolicitudOrganizacion={registrarSolicitudOrganizacion}
+          />
+        )}
 
-{alumnoActual.fase <= 2 && (
-  <Organizaciones
+        {alumnoActual.fase === 2 && (
+          <DocumentoPresentacion
+            alumnoActual={alumnoActual}
+            subirCartaPresentacion={subirCartaPresentacion}
+          />
+        )}
+        {alumnoActual.documentos.presentacion &&
+ !alumnoActual.documentos.aceptacion && (
+  <DocumentoAceptacion
     alumnoActual={alumnoActual}
-    organizacionesFiltradas={organizacionesFiltradas}
-    seleccionarOrganizacion={seleccionarOrganizacion}
-    solicitarCambioOrganizacion={solicitarCambioOrganizacion}
-    registrarSolicitudOrganizacion={registrarSolicitudOrganizacion}
+    subirCartaAceptacion={subirCartaAceptacion}
+  />
+)}
+        {alumnoActual.documentos.aceptacion &&
+ !alumnoActual.documentos.compromiso && (
+  <DocumentoCompromiso
+    alumnoActual={alumnoActual}
+    subirCartacompromiso={subirCartaCompromiso}
   />
 )}
 
+{alumnoActual.fase === 6 && (
+  <div className="fase-final">
 
-{alumnoActual.fase >= 2 && (
-  <DocumentoPresentacion
-    alumnoActual={alumnoActual}
-    subirCartaPresentacion={subirCartaPresentacion}
-  />
-)}
+    <h3>🎉 Fase 6 - Estadía Activa</h3>
 
-        {alumnoActual.documentos.presentacion && (
-          <div>
-<h3>Fase 4</h3>
+    <h4>¡Felicidades continúa con éxito tu Estadía Profesional!</h4>
 
-<h4>Instrucciones para la Carta de Aceptación</h4>
+    <p className="frase-motivacional">
+      "Todo lo que te viniere a la mano para hacer, hazlo según tus fuerzas."
+      <br />
+      <strong>— Eclesiastés 9:10</strong>
+    </p>
 
-<div className="instrucciones">
-  <p>
-    Esta carta es emitida por la empresa donde realizarás tu estadía una vez que haya aceptado tu ingreso.
-  </p>
+    <p>
+Tu estadía profesional ha sido activada correctamente.
+A partir de este momento podrás desarrollar tus actividades dentro de la organización asignada.
+Recuerda mantener comunicación con tu asesor académico y con tu asesor empresarial durante todo el proceso.
+</p>
 
-  <p>
-    Debes utilizar el formato editable y llenarlo con los datos de la empresa correspondiente.
-  </p>
-
-  <ul>
-    <li>Asegúrate de que tu asesor empresarial la firme con pluma azul.</li>
-    <li>Este documento será considerado como original.</li>
-    <li>Escanéala en formato PDF a color.</li>
-    <li>Nombra el archivo como: <strong>MATRÍCULA_ACEPTACIÓN</strong></li>
-    <li>Ejemplo: <strong>21090001_ACEPTACIÓN</strong></li>
-  </ul>
+<div className="aviso-estadia">
+📌 Próximamente aquí podrás subir tu Carta de Terminación de Estadía y concluir tu proceso en GESTADIAS.
 </div>
 
-            <input type="file" accept=".pdf" />
-            <button onClick={subirCartaAceptacion}>
-              Subir Carta de Aceptación
-            </button>
+    <div className="resumen-fases">
 
-            <p>
-              Carta de Aceptación:{' '}
-              {alumnoActual.documentos.aceptacion ? '✅' : '❌'}
-            </p>
+      <h4>Resumen de fases concluidas</h4>
 
-            {alumnoActual.documentos.aceptacion && (
-              <div>
-                <h3>Fase 5</h3>
+      <ul>
+        <li>✅ Registro de estudiante completado</li>
+        <li>✅ Selección de organización realizada</li>
+        <li>✅ Carta de Presentación entregada</li>
+        <li>✅ Carta de Aceptación entregada</li>
+        <li>✅ Carta Compromiso entregada</li>
+      </ul>
 
-<h4>Instrucciones para la Carta Compromiso</h4>
+    </div>
 
-<ol className="instrucciones">
-  <li>Vinculación te mandará a tu correo la carta.</li>
-  <li>Imprime 3 originales a color, lo firmas TU y el asesor de la organización.</li>
-  <li><strong>TODAS LAS FIRMAS EN TINTA AZUL.</strong></li>
-  <li>Lleva los 3 originales a la Dirección de Vinculación.</li>
-  <li>El director(a) de Vinculación firmará los 3 ejemplares; 
-    te devolverá 2 (uno para ti y otro para tu organización) 
-    y se quedará con uno</li>
-  <li>Escanea tu documento original a color en formato PDF.</li>
-  <li>Nombra el archivo como MATRÍCULA_COMPROMISO (ej. 21090001_COMPROMISO) y súbelo aquí.</li>
-</ol>
-                <input type="file" accept=".pdf" />
-                <button onClick={subirCartaCompromiso}>
-                  Subir Carta Compromiso
-                </button>
-
-                <p>
-                  Carta Compromiso:{' '}
-                  {alumnoActual.documentos.compromiso ? '✅' : '❌'}
-                </p>
-              </div>
-            )}
-          </div>
-        )}
+  </div>
+)}
       </div>
     )
   }
+
   return (
-  <Inicio
-    setPantalla={setPantalla}
-  />
-)
+    <Inicio
+      setPantalla={setPantalla}
+    />
+  )
 }
 
 export default App

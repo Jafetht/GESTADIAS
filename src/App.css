@@ -30,7 +30,6 @@ button {
   transition: 0.3s ease;
   box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
 }
-
 button:hover {
   transform: scale(1.05);
   box-shadow: 0 0 18px rgba(56, 189, 248, 0.6);
@@ -48,7 +47,6 @@ input {
   color: white;
   outline: none;
 }
-
 input:focus {
   border: 1px solid #38bdf8;
   box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
@@ -80,19 +78,42 @@ input:focus {
 
 /* FASES */
 .fase {
-  background: rgba(255,255,255,0.05);
-  margin-top: 10px;
-  padding: 12px;
-  border-left: 4px solid #334155;
-  border-radius: 8px;
-  transition: 0.3s;
+  background:
+  linear-gradient(
+    90deg,
+    rgba(255,255,255,.06),
+    rgba(255,255,255,.02)
+  );
+  margin-top:12px;
+  padding:16px 20px;
+  border-radius:14px;
+  border-left:
+  5px solid #334155;
+  color:#e5e7eb;
+  transition:.35s ease;
+  box-shadow:
+  0 0 15px rgba(0,0,0,.25);
 }
-
 .fase.activa {
-  background: rgba(56, 189, 248, 0.15);
-  border-left: 4px solid #38bdf8;
-  box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
-  font-weight: bold;
+  background:
+  linear-gradient(
+    90deg,
+    rgba(56,189,248,.22),
+    rgba(30,58,138,.15)
+  );
+  border-left:
+  5px solid #38bdf8;
+  box-shadow:
+  0 0 25px rgba(56,189,248,.35),
+  inset 0 0 15px rgba(56,189,248,.08);
+  font-weight:bold;
+  color:#ffffff;
+  transform:scale(1.02);
+}
+.fase:hover {
+  transform:translateX(8px);
+  background:
+  rgba(255,255,255,.10);
 }
 
 /* DASHBOARD VINCULACIÓN */
@@ -110,7 +131,6 @@ input:focus {
   padding: 20px;
   border-right: 1px solid rgba(255,255,255,0.1);
 }
-
 .sidebar button {
   display: block;
   width: 100%;
@@ -130,7 +150,6 @@ input:focus {
   margin-bottom: 20px;
   flex-wrap: wrap;
 }
-
 .kpi-card {
   width: 220px;
   padding: 18px;
@@ -142,23 +161,19 @@ input:focus {
   transition: 0.3s;
   text-align: center;
 }
-
 .kpi-card:hover {
   transform: translateY(-5px);
   background: rgba(255, 255, 255, 0.1);
 }
-
 .kpi-card h2 {
   font-size: 2rem;
   color: #00ffcc;
   margin-bottom: 5px;
 }
-
 .kpi-card p {
   font-size: 0.9rem;
   color: #ccc;
 }
-
 .kpi-label {
   color: #8b8b8b;
   font-size: 0.85rem;
@@ -178,13 +193,11 @@ input:focus {
   padding: 40px;
   background: radial-gradient(circle at top, #1a1a1a, #000);
 }
-
 .alumno h1,
 .alumno h3,
 .alumno p {
   margin: 10px 0;
 }
-
 .alumno button {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -196,17 +209,14 @@ input:focus {
   transition: 0.3s;
   backdrop-filter: blur(10px);
 }
-
 .alumno button:hover {
   transform: scale(1.05);
   background: rgba(255, 255, 255, 0.18);
 }
-
 .alumno input[type="file"] {
   margin: 10px;
   color: white;
 }
-
 .kpi-grid {
   display: flex;
   gap: 15px;
@@ -214,47 +224,36 @@ input:focus {
   justify-content: center;
   margin: 20px 0;
 }
-
 .kpi-card:nth-child(1) .kpi-label {
   color: #00ffcc;
 }
-
 .kpi-card:nth-child(2) .kpi-label {
   color: #a78bfa;
 }
-
 .kpi-card:nth-child(3) .kpi-label {
   color: #60a5fa;
 }
-
 .kpi-card:nth-child(1) h2 {
   color: #00ffcc; /* fase */
 }
-
 .kpi-card:nth-child(2) p:first-child {
   color: #a78bfa; /* estatus */
 }
-
 .kpi-card:nth-child(3) p:first-child {
   color: #60a5fa; /* organizacion */
 }
-
-
 .logo {
   width: 120px;
   height: auto;
   display: block;
   margin: 10px auto;
 }
-
 .titulo-principal {
   color: #4FC3F7; /* azul celeste */
 }
-
 .subtitulo {
   color: #1565C0; /* azul fuerte */
 }
-
 .avisos-alumno {
   background: #1e1e2f;
   border-left: 5px solid #4fc3f7;
@@ -262,13 +261,11 @@ input:focus {
   margin: 12px 0;
   border-radius: 10px;
 }
-
 .aviso-item {
   margin: 6px 0;
   color: #d6e4ff;
   font-weight: 400;
 }
-
 .instrucciones {
   text-align: justify;
   line-height: 1.6;
@@ -278,14 +275,12 @@ input:focus {
   border-left: 6px solid #b8860b; /* dorado */
   color: #ffffff;
 }
-
 .instrucciones li {
   margin-bottom: 8px;
   color: #f5f5f5;
 }
 
 /* SELECT */
-
 select{
   display:block;
   width:260px;
@@ -301,7 +296,6 @@ select{
   appearance:none;
   -webkit-appearance:none;
   -moz-appearance:none;
-
   background-image:
     linear-gradient(45deg, transparent 50%, #38bdf8 50%),
     linear-gradient(135deg, #38bdf8 50%, transparent 50%);
@@ -311,185 +305,914 @@ select{
   background-size:6px 6px;
   background-repeat:no-repeat;
 }
-
 select:focus{
   border-color:#38bdf8;
   box-shadow:0 0 12px rgba(56,189,248,.45);
 }
-
 select option{
   background:#111827;
   color:white;
 }
 
 /*================ TABLA =================*/
-
 .tabla-organizaciones{
     width:100%;
     border-collapse:collapse;
     margin-top:20px;
     overflow:hidden;
-
     background:rgba(255,255,255,.08);
     backdrop-filter:blur(12px);
-
     border:1px solid rgba(255,255,255,.20);
     border-radius:15px;
 }
-
 .tabla-organizaciones th{
-
     background:rgba(255,255,255,.15);
-
     color:#fff;
-
     padding:15px;
-
     text-align:center;
-
     border-bottom:1px solid rgba(255,255,255,.25);
 }
-
 .tabla-organizaciones td{
-
     padding:14px;
-
     text-align:center;
-
     color:white;
-
     border-bottom:1px solid rgba(255,255,255,.10);
 }
-
 .tabla-organizaciones tr:hover{
-
     background:rgba(255,255,255,.10);
-
     transition:.3s;
 }
-
 .btn-info,
 .btn-seleccionar{
-
     padding:8px 18px;
-
     border:none;
-
     border-radius:10px;
-
     cursor:pointer;
-
     color:white;
-
     font-weight:bold;
-
     transition:.3s;
 }
-
 .btn-info{
-
     background:#0ea5e9;
 }
-
 .btn-info:hover{
-
     background:#0284c7;
 }
-
 .btn-seleccionar{
-
     background:#16a34a;
 }
-
 .btn-seleccionar:hover{
-
     background:#15803d;
 }
-
 .modal-fondo{
-
     position:fixed;
-
     inset:0;
-
     background:rgba(0,0,0,.6);
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     z-index:9999;
 }
-
 .modal{
-
     width:650px;
-
     max-width:90%;
-
     background:#1f2937;
-
     color:white;
-
     border-radius:15px;
-
     padding:30px;
-
     border:1px solid rgba(255,255,255,.15);
-
     box-shadow:0 0 30px rgba(0,0,0,.5);
-
     animation:aparecer .25s;
 }
-
 @keyframes aparecer{
-
     from{
-
         opacity:0;
         transform:scale(.9);
     }
-
     to{
-
         opacity:1;
         transform:scale(1);
     }
-
 }
-
 .modal button{
-
     margin-top:20px;
-
     padding:10px 25px;
-
     background:#dc2626;
-
     color:white;
-
     border:none;
-
     border-radius:10px;
-
     cursor:pointer;
 }
-
 .correo-link{
     color:#38bdf8;
     font-weight:bold;
     text-decoration:none;
 }
-
 .correo-link:hover{
     text-decoration:underline;
 }
-
 button:disabled {
   background: #777;
   color: #ccc;
   cursor: not-allowed;
   opacity: 0.6;
+}
+.btn-descargar {
+  display: inline-block;
+  padding: 12px 20px;
+  margin: 15px 0;
+  background: linear-gradient(135deg, #38bdf8, #1e3a8a);
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 15px;
+  transition: 0.3s ease;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+}
+.btn-descargar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 18px rgba(56, 189, 248, 0.9);
+  color: white;
+}
+.transicion-fase{
+    position:fixed;
+    inset:0;
+    background:rgba(10,10,10,.95);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    animation:fade .4s ease;
+    z-index:9999;
+}
+.transicion-card{
+    width:420px;
+    padding:35px;
+    border-radius:18px;
+    background:#1b1b1b;
+    text-align:center;
+    color:white;
+    box-shadow:0 0 30px rgba(0,0,0,.5);
+}
+.spinner{
+    width:70px;
+    height:70px;
+    margin:auto;
+    border:7px solid #2f2f2f;
+    border-top:7px solid #2ea8ff;
+    border-radius:50%;
+    animation:girar 1s linear infinite;
+}
+
+.barra-progreso{
+    margin-top:25px;
+    height:10px;
+    background:#333;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.barra{
+    height:100%;
+    background:#2ea8ff;
+    animation:cargar 2.5s linear forwards;
+}
+
+@keyframes girar{
+    to{transform:rotate(360deg);}
+}
+
+@keyframes cargar{
+    from{width:0;}
+    to{width:100%;}
+}
+
+@keyframes fade{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+/* ============================= */
+/* FASE 6 - ESTADÍA ACTIVA */
+/* ============================= */
+
+.fase-final {
+
+  max-width: 850px;
+  margin: 40px auto;
+
+  padding: 35px;
+
+  background:
+  linear-gradient(
+    145deg,
+    rgba(56,189,248,0.12),
+    rgba(30,58,138,0.18)
+  );
+
+  border-radius: 25px;
+
+  border: 1px solid rgba(56,189,248,0.35);
+
+  box-shadow:
+  0 0 30px rgba(56,189,248,0.15),
+  inset 0 0 20px rgba(255,255,255,0.03);
+
+  text-align: center;
+
+  animation: aparecerFase 0.8s ease;
+
+}
+
+
+/* Animación Fade */
+
+@keyframes aparecerFase {
+
+  from {
+
+    opacity:0;
+    transform:translateY(25px);
+
+  }
+
+  to {
+
+    opacity:1;
+    transform:translateY(0);
+
+  }
+
+}
+
+
+/* Título principal */
+
+.fase-final h3 {
+
+  font-size: 32px;
+
+  color:#38bdf8;
+
+  margin-bottom:15px;
+
+  text-shadow:
+  0 0 10px rgba(56,189,248,0.8);
+
+}
+
+
+/* Subtítulo */
+
+.fase-final h4 {
+
+  color:#e5e7eb;
+
+  font-size:22px;
+
+  margin:15px 0;
+
+}
+
+
+
+/* Frase bíblica */
+
+.frase-motivacional {
+
+  margin:30px auto;
+
+  padding:20px;
+
+  max-width:650px;
+
+  background:
+  rgba(255,255,255,0.05);
+
+  border-left:4px solid #38bdf8;
+
+  border-radius:15px;
+
+  color:#dbeafe;
+
+  font-size:18px;
+
+  font-style:italic;
+
+}
+
+
+.frase-motivacional strong {
+
+  display:block;
+
+  margin-top:10px;
+
+  color:#38bdf8;
+
+  font-style:normal;
+
+}
+
+
+
+/* Texto principal */
+
+.fase-final > p:not(.frase-motivacional) {
+
+  color:#d1d5db;
+
+  line-height:1.8;
+
+  font-size:16px;
+
+  margin:25px auto;
+
+}
+
+
+
+/* Aviso Carta Terminación */
+
+.aviso-estadia {
+
+  margin:30px 0;
+
+  padding:20px;
+
+  border-radius:18px;
+
+
+  background:
+  linear-gradient(
+  135deg,
+  rgba(56,189,248,0.15),
+  rgba(30,58,138,0.25)
+  );
+
+
+  border:1px solid rgba(56,189,248,0.3);
+
+
+  color:#f1f5f9;
+
+  font-size:16px;
+
+
+  box-shadow:
+  0 0 20px rgba(56,189,248,0.15);
+
+
+  transition:.3s;
+
+}
+
+
+.aviso-estadia:hover {
+
+  transform:scale(1.02);
+
+  box-shadow:
+  0 0 35px rgba(56,189,248,0.35);
+
+}
+
+
+
+/* Resumen de fases */
+
+.resumen-fases {
+
+  margin-top:35px;
+
+  padding:25px;
+
+  background:
+
+  rgba(0,0,0,0.25);
+
+
+  border-radius:20px;
+
+  text-align:left;
+
+}
+
+
+
+/* Título resumen */
+
+.resumen-fases h4 {
+
+  color:#38bdf8;
+
+  text-align:center;
+
+  margin-bottom:20px;
+
+}
+
+
+
+/* Lista */
+
+.resumen-fases ul {
+
+  list-style:none;
+
+  padding:0;
+
+}
+
+
+
+/* Cada fase */
+
+.resumen-fases li {
+
+  margin:12px 0;
+
+  padding:14px 18px;
+
+
+  background:
+  rgba(56,189,248,0.08);
+
+
+  border-radius:12px;
+
+
+  color:#e5e7eb;
+
+
+  border-left:4px solid #38bdf8;
+
+
+  transition:.3s;
+
+}
+
+
+
+/* Animación al pasar mouse */
+
+.resumen-fases li:hover {
+
+  transform:translateX(8px);
+
+
+  background:
+  rgba(56,189,248,0.18);
+
+
+  box-shadow:
+  0 0 15px rgba(56,189,248,0.25);
+
+}
+
+/* ========================= */
+/* LOGIN GESTADIAS */
+/* ========================= */
+.login-container {
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:
+  radial-gradient(
+    circle at top,
+    #172554,
+    #020617
+  );
+  padding:30px;
+}
+.login-card {
+  width:380px;
+  padding:35px;
+  background:
+  rgba(255,255,255,0.06);
+  backdrop-filter:blur(15px);
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,0.15);
+  box-shadow:
+  0 0 30px rgba(0,0,0,.5);
+  text-align:center;
+  animation: aparecer .5s ease;
+}
+.login-card h1 {
+  color:#38bdf8;
+  text-shadow:
+  0 0 10px rgba(56,189,248,.7);
+  margin-bottom:15px;
+}
+.login-descripcion {
+  color:#cbd5e1;
+  font-size:15px;
+  line-height:1.5;
+  margin-bottom:25px;
+}
+.login-card input {
+  width:90%;
+}
+.login-card button {
+  width:90%;
+  margin-top:15px;
+}
+.btn-regresar {
+  background:
+  rgba(255,255,255,.1);
+  border:
+  1px solid rgba(255,255,255,.2);
+}
+.btn-regresar:hover {
+  background:
+  rgba(255,255,255,.2);
+}
+
+/* ========================= */
+/* REGISTRO ALUMNO */
+/* ========================= */
+.registro-container {
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:40px;
+  background:
+  radial-gradient(
+    circle at top,
+    #111827,
+    #020617
+  );
+}
+.registro-card {
+  width:450px;
+  padding:40px;
+  background:
+  rgba(255,255,255,0.04);
+  backdrop-filter:blur(15px);
+  border-radius:22px;
+  border:
+  1px solid rgba(255,255,255,.12);
+  box-shadow:
+  0 0 35px rgba(0,0,0,.6);
+  animation:aparecer .5s ease;
+}
+.registro-card h1 {
+  text-align:center;
+  color:#e5e7eb;
+  text-shadow:
+  0 0 10px rgba(56,189,248,.5);
+}
+.registro-descripcion {
+  text-align:center;
+  color:#94a3b8;
+  font-size:15px;
+  margin-bottom:25px;
+}
+.seccion-registro {
+  margin-bottom:25px;
+  padding:20px;
+  background:
+  rgba(255,255,255,.03);
+  border-radius:15px;
+  border-left:
+  3px solid #38bdf8;
+}
+.seccion-registro h3 {
+  color:#38bdf8;
+  font-size:18px;
+  margin-bottom:15px;
+}
+.registro-card input,
+.registro-card select {
+  width:90%;
+  margin:10px auto;
+}
+.registro-card button {
+  width:90%;
+  margin-top:12px;
+}
+.registro-card .btn-regresar {
+  background:
+  rgba(255,255,255,.08);
+  border:
+  1px solid rgba(255,255,255,.15);
+}
+
+/* ========================= */
+/* DASHBOARD ALUMNO */
+/* ========================= */
+.alumno {
+  min-height:100vh;
+  padding:35px;
+  background:
+  radial-gradient(
+    circle at top,
+    #111827,
+    #020617
+  );
+  color:white;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.btn-cerrar-sesion {
+  position:absolute;
+  top:25px;
+  right:35px;
+}
+.documento-card,
+.fase-final,
+.instrucciones {
+  width:90%;
+  max-width:850px;
+  margin:30px auto;
+}
+
+/* Encabezado */
+.alumno h1 {
+  color:#e5e7eb;
+  font-size:32px;
+  text-align:center;
+  margin-bottom:10px;
+  text-shadow:
+  0 0 15px rgba(56,189,248,.5);
+}
+
+/* subtitulo */
+.alumno > h3 {
+  text-align:center;
+  color:#94a3b8;
+  margin-bottom:35px;
+}
+.kpi-grid {
+  display:flex;
+  justify-content:center;
+  gap:25px;
+  flex-wrap:wrap;
+  margin-bottom:35px;
+}
+
+.kpi-card {
+  min-width:220px;
+  padding:25px;
+  background:
+  linear-gradient(
+    145deg,
+    rgba(255,255,255,.08),
+    rgba(255,255,255,.03)
+  );
+  backdrop-filter:blur(15px);
+  border:
+  1px solid rgba(56,189,248,.18);
+  border-radius:20px;
+  box-shadow:
+  0 0 20px rgba(0,0,0,.5),
+  inset 0 0 15px rgba(56,189,248,.05);
+  transition:.35s ease;
+}
+
+.kpi-card:hover {
+  transform:
+  translateY(-8px)
+  scale(1.03);
+  border-color:
+  rgba(56,189,248,.5);
+  box-shadow:
+  0 0 30px rgba(56,189,248,.35);
+}
+
+/* ========================= */
+/* AVISOS DEL ALUMNO */
+/* ========================= */
+.avisos-alumno {
+  width:90%;
+  max-width:900px;
+  margin:30px auto;
+  padding:30px;
+  background:
+  linear-gradient(
+    145deg,
+    rgba(255,255,255,.07),
+    rgba(255,255,255,.03)
+  );
+  backdrop-filter:blur(15px);
+  border-radius:22px;
+  border:
+  1px solid rgba(56,189,248,.18);
+  box-shadow:
+  0 0 30px rgba(0,0,0,.55),
+  inset 0 0 20px rgba(56,189,248,.05);
+  animation:
+  aparecer .6s ease;
+}
+.avisos-alumno h3 {
+  color:#38bdf8;
+  text-align:center;
+  margin-bottom:20px;
+  text-shadow:
+  0 0 10px rgba(56,189,248,.5);
+}
+.aviso-item {
+  background:
+  linear-gradient(
+    90deg,
+    rgba(56,189,248,.12),
+    rgba(255,255,255,.04)
+  );
+  padding:18px;
+  margin:14px 0;
+  border-radius:14px;
+  border-left:
+  5px solid #38bdf8;
+  color:#e5e7eb;
+  transition:.35s;
+  box-shadow:
+  0 0 12px rgba(56,189,248,.08);
+}
+.aviso-item:hover {
+  transform:
+  translateX(10px);
+  background:
+  rgba(56,189,248,.18);
+  box-shadow:
+  0 0 20px rgba(56,189,248,.25);
+}
+
+/* =============================== */
+/* DOCUMENTO PRESENTACION */
+/* =============================== */
+.documento-card {
+  width:90%;
+  max-width:850px;
+  margin:40px auto;
+  padding:35px;
+  background:
+  linear-gradient(
+    145deg,
+    rgba(255,255,255,.08),
+    rgba(255,255,255,.03)
+  );
+  backdrop-filter:blur(15px);
+  border-radius:25px;
+  border:
+  1px solid rgba(56,189,248,.18);
+  box-shadow:
+  0 0 35px rgba(0,0,0,.55),
+  inset 0 0 20px rgba(56,189,248,.05);
+  text-align:center;
+  animation:
+  aparecer .6s ease;
+}
+
+/* Títulos */
+.documento-card h3 {
+  color:#38bdf8;
+  font-size:32px;
+  letter-spacing:1px;
+  text-shadow:
+  0 0 12px rgba(56,189,248,.7);
+}
+.documento-card h4 {
+  color:#e5e7eb;
+}
+.documento-card button {
+  margin-top:25px;
+  padding:13px 30px;
+  border-radius:14px;
+  background:
+  linear-gradient(
+    135deg,
+    #38bdf8,
+    #1e3a8a
+  );
+  box-shadow:
+  0 0 15px rgba(56,189,248,.35);
+}
+
+/* Caja de instrucciones */
+.documento-card .instrucciones {
+  text-align:left;
+  margin:25px auto;
+}
+
+/* Input archivo */
+.documento-card input[type="file"] {
+  margin:20px auto;
+  padding:12px;
+  display:block;
+}
+
+/* Botón subir */
+.documento-card button {
+  margin-top:20px;
+  padding:12px 25px;
+}
+
+/* Estado archivo */
+.archivo-correcto {
+  color:#22c55e;
+  font-weight:bold;
+}
+.error-documento {
+  color:#ef4444;
+  font-weight:bold;
+}
+
+/* ========================= */
+/* MENU SUPERIOR ALUMNO */
+/* ========================= */
+.menu-alumno {
+  width:90%;
+  max-width:1200px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 25px;
+  margin-bottom:25px;
+  background:
+  rgba(255,255,255,.05);
+  backdrop-filter:blur(15px);
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:
+  0 0 25px rgba(0,0,0,.5);
+}
+
+/* Datos del alumno */
+.menu-info {
+  text-align:left;
+}
+.menu-info h2 {
+  margin:0;
+  color:#38bdf8;
+  text-shadow:
+  0 0 12px rgba(56,189,248,.7);
+}
+.menu-info p {
+  margin:5px 0;
+  color:#e5e7eb;
+  font-weight:bold;
+}
+.menu-info span {
+  color:#94a3b8;
+  font-size:14px;
+}
+
+/* Botones */
+.menu-alumno nav {
+  display:flex;
+  gap:10px;
+}
+.menu-alumno button {
+  background:
+  rgba(255,255,255,.08);
+  border:
+  1px solid rgba(255,255,255,.15);
+  padding:10px 15px;
+}
+.menu-alumno button:hover {
+  background:
+  rgba(56,189,248,.20);
+  box-shadow:
+  0 0 15px rgba(56,189,248,.5);
+}
+
+/* Salir */
+.menu-alumno .btn-salir {
+  background:
+  rgba(220,38,38,.20);
+  border:
+  1px solid rgba(220,38,38,.5);
+}
+.menu-alumno .btn-salir:hover {
+  background:
+  rgba(220,38,38,.35);
+  box-shadow:
+  0 0 15px rgba(220,38,38,.5);
+}
+
+.btn-gmail{
+    margin-top:15px;
+    padding:12px 22px;
+    border:none;
+    border-radius:10px;
+    background:#1a73e8;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.btn-gmail:hover{
+    background:#1558b0;
+    transform:scale(1.03);
+}
+
+.nota-gmail{
+    margin-top:10px;
+    font-size:.9rem;
+    color:#d0ff00;
+    font-style:italic;
 }

@@ -5,22 +5,42 @@ function Login({
   setPantalla
 }) {
   return (
-    <div>
-      <h1>Iniciar Sesión</h1>
+    <div className="login-container">
 
-      <input
-        placeholder="Matrícula"
-        value={loginMatricula}
-        onChange={(e) => setLoginMatricula(e.target.value)}
-      />
+      <div className="login-card">
 
-      <button onClick={iniciarSesion}>
-        Entrar
-      </button>
+        <h1>
+          Iniciar Sesión
+        </h1>
 
-      <button onClick={() => setPantalla('inicio')}>
-        Volver al inicio
-      </button>
+
+        <p className="login-descripcion">
+          Ingresa tu matrícula institucional para acceder a tu proceso de Estadía Profesional.
+        </p>
+
+
+        <input
+          placeholder="Matrícula"
+          value={loginMatricula}
+          onChange={(e) => setLoginMatricula(e.target.value)}
+        />
+
+
+        <button onClick={iniciarSesion}>
+          Entrar
+        </button>
+
+
+        <button 
+          onClick={() => setPantalla('inicio')}
+          className="btn-regresar"
+        >
+          Volver al inicio
+        </button>
+
+
+      </div>
+
     </div>
   )
 }

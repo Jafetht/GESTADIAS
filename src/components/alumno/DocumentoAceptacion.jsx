@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-function DocumentoPresentacion({
+function DocumentoAceptacion({
   alumnoActual,
-  subirCartaPresentacion
+  subirCartaAceptacion
 }) {
 
 
@@ -10,37 +10,58 @@ function DocumentoPresentacion({
 const [archivo, setArchivo] = useState(null);
 const [error, setError] = useState("");
 
-  return (
+  return (<div className="documento-card">
     <>
-      <h3>Fase 3</h3>
+<a
+  href="/documentos/FORMATO CARTA DE ACEPTACIÓN EDITABLE MAYO-AGOSTO 2026.docx"
+  download
+  className="btn-descargar"
+>
+  📥 Descargar formato de Carta de Aceptación
+</a>
+      <h3>Fase 4</h3>
 
-      <h4>Instrucciones para la Carta de Presentación</h4>
+      <h4>Instrucciones para la Carta de aceptación</h4>
 
-      <div className="instrucciones">
-        <p>
-          La Dirección de Vinculación te otorga la carta de presentación de
-          estadía que te acredita como alumno de la universidad en su último
-          cuatrimestre.
-        </p>
+<div className="instrucciones">
 
-        <p>
-          Esta carta deberás entregarla a la organización donde realizarás tu
-          estadía.
-        </p>
+  <p>
+    La Carta de Aceptación será entregada por la organización donde realizarás 
+    tu estadía, una vez que haya sido aceptado tu ingreso.
+  </p>
 
-        <ul>
-          <li>Conserva el documento original.</li>
-          <li>No entregues el original.</li>
-          <li>Entregar solamente COPIA DE LA CARTA.</li>
-          <li>Escanéalo en PDF a COLOR.</li>
-          <li>Nombra el archivo como:</li>
+<ul>
+  <li>Descarga el formato editable proporcionado.</li>
 
-          <strong>
-            {alumnoActual.matricula}_PRESENTACION.pdf
-          </strong>
-        </ul>
-      </div>
+  <li>
+    Completa los datos correspondientes de la organización.
+  </li>
 
+  <li>
+    Solicita a tu asesor responsable que firme la carta con 
+    <strong> TINTA AZUL</strong>, ya que este documento será la versión original.
+  </li>
+
+  <li>
+    Al recibir la Carta de Aceptación firmada, escanéala correctamente en formato 
+    <strong> PDF A COLOR</strong>.
+  </li>
+
+   <li>
+      Nombralo de esta manera: <strong>MATRICULA_ACEPTACIÓN</strong>
+    </li>
+
+</ul>
+
+  <ul>
+    <li>
+      <strong>{alumnoActual.matricula}_ACEPTACIÓN.pdf</strong>
+    </li>
+   
+  </ul>
+
+</div>
+      
       <input
   type="file"
   accept=".pdf,application/pdf"
@@ -59,19 +80,28 @@ const [error, setError] = useState("");
       setError("❌ El archivo no debe superar los 5 MB.");
       setArchivo(null);
       return;
+
+    if (file.size === 0) {
+  setError("❌ El archivo está vacío.");
+  setArchivo(null);
+  return;
+}
     }
 
-const nombre = file.name
-  .normalize("NFD")
-  .replace(/[\u0300-\u036f]/g, "")
-  .toUpperCase();
+const nombreOriginal = file.name.toUpperCase();
 
-const nombreEsperado =
-  `${alumnoActual.matricula}_PRESENTACION.PDF`;
+const nombreEsperado1 =
+`${alumnoActual.matricula}_ACEPTACIÓN.PDF`;
 
-if (nombre !== nombreEsperado) {
+const nombreEsperado2 =
+`${alumnoActual.matricula}_ACEPTACION.PDF`;
+
+if (
+  nombreOriginal !== nombreEsperado1 &&
+  nombreOriginal.normalize("NFD").replace(/[\u0300-\u036f]/g, "") !== nombreEsperado2
+) {
   setError(
-    `❌ El archivo debe llamarse: ${alumnoActual.matricula}_PRESENTACIÓN.pdf`
+`❌ El archivo debe llamarse: ${alumnoActual.matricula}_ACEPTACIÓN.pdf`
   );
   setArchivo(null);
   return;
@@ -91,17 +121,17 @@ if (nombre !== nombreEsperado) {
 
       <button
   disabled={!archivo || error !== ""}
-  onClick={() => subirCartaPresentacion(archivo)}
+  onClick={() => subirCartaAceptacion(archivo)}
 >
-  Subir Carta de Presentación
+  Subir Carta de Aceptación
 </button>
 
       <p>
-        Carta de Presentación:
-        {alumnoActual.documentos.presentacion ? " ✅" : " ❌"}
+        Carta de Aceptación:
+        {alumnoActual.documentos.aceptacion ? " ✅" : " ❌"}
       </p>
-    </>
+    </></div>
   );
 }
 
-export default DocumentoPresentacion;
+export default DocumentoAceptacion;

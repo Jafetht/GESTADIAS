@@ -10,8 +10,11 @@ function DocumentoPresentacion({
 const [archivo, setArchivo] = useState(null);
 const [error, setError] = useState("");
 
-  return (
-    <>
+return (
+<div className="documento-card">
+  
+<h3>Fase 3</h3>
+    
       <h3>Fase 3</h3>
 
       <h4>Instrucciones para la Carta de Presentación</h4>
@@ -100,7 +103,7 @@ if (nombre !== nombreEsperado) {
         Carta de Presentación:
         {alumnoActual.documentos.presentacion ? " ✅" : " ❌"}
       </p>
-    </>
+    </div>
   );
 }
 
