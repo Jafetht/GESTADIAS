@@ -15,7 +15,7 @@ return (
   
 <h3>Fase 3</h3>
     
-      <h3>Fase 3</h3>
+     
 
       <h4>Instrucciones para la Carta de Presentación</h4>
 

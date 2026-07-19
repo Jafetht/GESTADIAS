@@ -11,68 +11,55 @@ import DocumentoAceptacion from "./components/alumno/DocumentoAceptacion";
 import DocumentoCompromiso from './components/alumno/DocumentoCompromiso';
 import TransicionFase from "./components/alumno/TransicionFase";
 import MenuAlumno from "./components/MenuAlumno";
+import DashboardVinculacion from "./components/VINCULACION/DashboardVinculacion";
+
 
 function App() {
   const [pantalla, setPantalla] = useState('inicio')
-
-const [estudiantes, setEstudiantes] = useState(() => {
-  const data = localStorage.getItem('gestadias_estudiantes')
-  return data ? JSON.parse(data) : []
-})
-
-const [solicitudesOrganizaciones, setSolicitudesOrganizaciones] = useState(() => {
-  const data = localStorage.getItem("gestadias_solicitudes_organizaciones");
-  return data ? JSON.parse(data) : [];
-});
-
-const eliminarAlumno = (matricula) => {
-  const confirmar = confirm('¿Seguro que deseas eliminar este alumno?')
-
-  if (!confirmar) return
-
-  setEstudiantes(
-    estudiantes.filter((e) => e.matricula !== matricula)
-  )
-}
-
-const editarAlumno = (alumno) => {
-  setAlumnoEditando(alumno)
-}
-
-const guardarEdicion = () => {
-  const actualizados = estudiantes.map((estudiante) =>
-    estudiante.matricula === alumnoEditando.matricula
-      ? alumnoEditando
-      : estudiante
-  )
-
-  setEstudiantes(actualizados)
-  setAlumnoEditando(null)
-}
-
-const [alumnoEditando, setAlumnoEditando] = useState(null)
-
+  const [estudiantes, setEstudiantes] = useState(() => {
+    const data = localStorage.getItem('gestadias_estudiantes')
+    return data ? JSON.parse(data) : []
+  })
+  const [solicitudesOrganizaciones, setSolicitudesOrganizaciones] = useState(() => {
+    const data = localStorage.getItem("gestadias_solicitudes_organizaciones");
+    return data ? JSON.parse(data) : [];
+  });
+  const eliminarAlumno = (matricula) => {
+    const confirmar = confirm('¿Seguro que deseas eliminar este alumno?')
+    if (!confirmar) return
+    setEstudiantes(estudiantes.filter((e) => e.matricula !== matricula))
+  }
+  const editarAlumno = (alumno) => {
+    setAlumnoEditando(alumno)
+  }
+  const guardarEdicion = () => {
+    const actualizados = estudiantes.map((estudiante) =>
+      estudiante.matricula === alumnoEditando.matricula ? alumnoEditando : estudiante)
+    setEstudiantes(actualizados)
+    setAlumnoEditando(null)
+  }
+  const [alumnoEditando, setAlumnoEditando] = useState(null)
   const [avisos, setAvisos] = useState([
     '📢 Bienvenido a GESTADIAS',
     '⚠ Los estudiantes deben subir primero su Carta de Presentación',
-    '📄 El sistema controla el avance por fases'
-  ])
-
+    '📄 El sistema controla el avance por fases'])
   const [loginMatricula, setLoginMatricula] = useState('')
   const [matricula, setMatricula] = useState('')
   const [nombre, setNombre] = useState('')
   const [correo, setCorreo] = useState('')
   const [carrera, setCarrera] = useState('')
   const [curp, setCurp] = useState('')
- const [alumnoActual, setAlumnoActual] = useState(() => {
-  const data = localStorage.getItem('gestadias_alumno_actual')
-  return data ? JSON.parse(data) : null})
-const [mostrarTransicion, setMostrarTransicion] = useState(false);
-const [datosTransicion, setDatosTransicion] = useState({
-  titulo: "",
-  mensaje: ""
-});
-const [busqueda, setBusqueda] = useState('')
+  const [alumnoActual, setAlumnoActual] = useState(() => {
+    const data = localStorage.getItem('gestadias_alumno_actual')
+    return data ? JSON.parse(data) : null
+  })
+  const [mostrarTransicion, setMostrarTransicion] = useState(false);
+  const [datosTransicion, setDatosTransicion] = useState({
+    titulo: "",
+    mensaje: ""
+  });
+  const [busqueda, setBusqueda] = useState('')
+
   const guardarEstudiante = () => {
     const nuevoEstudiante = {
       matricula,
@@ -85,260 +72,248 @@ const [busqueda, setBusqueda] = useState('')
       motivoCambio: '',
       fase: 1,
       estatus: 'Registro completado',
-      documentos: {
-        presentacion: false,
-        aceptacion: false,
-        compromiso: false
-      }
-    }
+documentos: {
+  presentacion: {
+    archivo: null,
+    estado: "pendiente",
+    motivo: ""
+  },
 
+  aceptacion: {
+    archivo: null,
+    estado: "pendiente",
+    motivo: ""
+  },
+
+  compromiso: {
+    archivo: null,
+    estado: "pendiente",
+    motivo: ""
+  }
+}
+    };
     setEstudiantes([...estudiantes, nuevoEstudiante])
     alert('Cuenta creada correctamente')
     setPantalla('inicio')
   }
-
-const iniciarSesion = () => {
-  const alumnoEncontrado = estudiantes.find(
-    (estudiante) => estudiante.matricula === loginMatricula
-  )
-
-  if (alumnoEncontrado) {
-    setAlumnoActual(alumnoEncontrado)
-    setPantalla('alumno') // 👈 ESTE ES EL ARREGLO
-  } else {
-    alert('Matrícula no encontrada')
-  }
-}
-
-const avisosAlumno = []
-
-if (alumnoActual) {
-  if (alumnoActual.fase >= 3 && !alumnoActual.documentos.presentacion) {
-  avisosAlumno.push('⚠ Debes subir la Carta de Presentación para continuar a la siguiente fase')
-}
-
-  if (alumnoActual.documentos.presentacion && !alumnoActual.documentos.aceptacion) {
-    avisosAlumno.push('📌 Sube la Carta de Aceptación para avanzar a la Fase 5')
-  }
-
-  if (alumnoActual.documentos.aceptacion && !alumnoActual.documentos.compromiso) {
-    avisosAlumno.push('📄 Sube la Carta Compromiso para avanzar a la Fase 6')
-  }
-}
-
-const cerrarSesion = () => {
-  setAlumnoActual(null)
-  localStorage.removeItem('gestadias_alumno_actual')
-  setPantalla('inicio')
-}
-
-const subirCartaPresentacion = (archivo) => {
-  setDatosTransicion({
-  titulo: "Validando Carta de Presentación...",
-  mensaje: "Actualizando tu expediente y preparando la siguiente fase."
-});
-
-setMostrarTransicion(true);
-  setTimeout(() => {
-    const actualizado = {
-      ...alumnoActual,
-      documentos: {
-        ...alumnoActual.documentos,
-        presentacion: true
-      },
-      fase: 3,
-      estatus: 'Carta de Presentación subida'
+  const iniciarSesion = () => {
+    const alumnoEncontrado = estudiantes.find((estudiante) => estudiante.matricula === loginMatricula)
+    if (alumnoEncontrado) {
+      setAlumnoActual(alumnoEncontrado)
+      setPantalla('alumno') // 👈 ESTE ES EL ARREGLO
+    } else {
+      alert('Matrícula no encontrada')
     }
-
-    setAlumnoActual(actualizado)
-
-    setEstudiantes(
-      estudiantes.map((estudiante) =>
-        estudiante.matricula === actualizado.matricula
-          ? actualizado
-          : estudiante
-      )
-    )
-
-    setMostrarTransicion(false);
-  }, 2500);
-}
-
-const subirCartaAceptacion = () => {
-  setDatosTransicion({
-  titulo: "Validando Carta de Aceptación...",
-  mensaje: "Verificando el documento y habilitando la siguiente fase."
-});
-
-setMostrarTransicion(true);
-setTimeout(() => {
-    const actualizado = {
-      ...alumnoActual,
-      documentos: {
-        ...alumnoActual.documentos,
-        aceptacion: true
-      },
-      fase: 4,
-      estatus: 'Carta de Aceptación subida'
+  }
+  const avisosAlumno = []
+  if (alumnoActual) {
+    if (alumnoActual.fase >= 3 && !alumnoActual.documentos.presentacion) {
+      avisosAlumno.push('⚠ Debes subir la Carta de Presentación para continuar a la siguiente fase')
     }
-
-    setAlumnoActual(actualizado)
-
-    setEstudiantes(
-      estudiantes.map((estudiante) =>
-        estudiante.matricula === actualizado.matricula
-          ? actualizado
-          : estudiante
-      )
-    )
-  
-    setMostrarTransicion(false);
-  }, 2500);
-}
-
-const subirCartaCompromiso = () => {
-  setDatosTransicion({
-  titulo: "🎉 Activando tu Estadía Profesional...",
-  mensaje: "Toda tu documentación ha sido validada correctamente. Preparando tu expediente..."
-});
-
-setMostrarTransicion(true);
-setTimeout(() => {
-    const actualizado = {
-      ...alumnoActual,
-      documentos: {
-        ...alumnoActual.documentos,
-        compromiso: true
-      },
-      fase: 6,
-estatus: 'Estadía autorizada'
+    if (alumnoActual.documentos.presentacion && !alumnoActual.documentos.aceptacion) {
+      avisosAlumno.push('📌 Sube la Carta de Aceptación para avanzar a la Fase 5')
     }
-
-    setAlumnoActual(actualizado)
-
-    setEstudiantes(
-      estudiantes.map((estudiante) =>
-        estudiante.matricula === actualizado.matricula
-          ? actualizado
-          : estudiante
-      )
-    )
-    setMostrarTransicion(false);
-  }, 2500);
-}
-
-  
-
-useEffect(() => {
-  localStorage.setItem(
-    'gestadias_estudiantes',
-    JSON.stringify(estudiantes)
-  )
-}, [estudiantes])
-
-
-useEffect(() => {
-  if (pantalla === 'alumno' && alumnoActual) {
-    localStorage.setItem(
-      'gestadias_alumno_actual',
-      JSON.stringify(alumnoActual)
-    )
-  } else {
+    if (alumnoActual.documentos.aceptacion && !alumnoActual.documentos.compromiso) {
+      avisosAlumno.push('📄 Sube la Carta Compromiso para avanzar a la Fase 6')
+    }
+  }
+  const cerrarSesion = () => {
+    setAlumnoActual(null)
     localStorage.removeItem('gestadias_alumno_actual')
+    setPantalla('inicio')
   }
-}, [alumnoActual])
+  const subirCartaPresentacion = (archivo) => {
+    setDatosTransicion({
+      titulo: "Validando Carta de Presentación...",
+      mensaje: "Actualizando tu expediente y preparando la siguiente fase."
+    });
+    setMostrarTransicion(true);
+    setTimeout(() => {
+      const actualizado = {
+        ...alumnoActual,
+        documentos: {
+          ...alumnoActual.documentos,
+          presentacion: true
+        },
+        fase: 3,
+        estatus: 'Carta de Presentación subida'
+      }
+      setAlumnoActual(actualizado)
+      setEstudiantes(
+        estudiantes.map((estudiante) =>
+          estudiante.matricula === actualizado.matricula
+            ? actualizado
+            : estudiante
+        ))
+      setMostrarTransicion(false);
+    }, 2500);
+  }
+  const subirCartaAceptacion = () => {
+    setDatosTransicion({
+      titulo: "Validando Carta de Aceptación...",
+      mensaje: "Verificando el documento y habilitando la siguiente fase."
+    });
+    setMostrarTransicion(true);
+    setTimeout(() => {
+      const actualizado =
+      {
+        ...alumnoActual,
+        documentos: {
+          ...alumnoActual.documentos,
+          aceptacion: true
+        },
+        fase: 4,
+        estatus: 'Carta de Aceptación subida'
+      }
+      setAlumnoActual(actualizado)
+      setEstudiantes(
+        estudiantes.map((estudiante) =>
+          estudiante.matricula === actualizado.matricula
+            ? actualizado
+            : estudiante
+        )
+      )
+      setMostrarTransicion(false);
+    }, 2500);
+  }
+  const subirCartaCompromiso = () => {
+    setDatosTransicion({
+      titulo: "🎉 Activando tu Estadía Profesional...",
+      mensaje: "Toda tu documentación ha sido validada correctamente. Preparando tu expediente..."
+    });
+    setMostrarTransicion(true);
+    setTimeout(() => {
+      const actualizado = {
+        ...alumnoActual,
+        documentos: {
+          ...alumnoActual.documentos,
+          compromiso: true
+        },
+        fase: 6,
+        estatus: 'Estadía autorizada'
+      }
+
+      setAlumnoActual(actualizado)
+
+      setEstudiantes(
+        estudiantes.map((estudiante) =>
+          estudiante.matricula === actualizado.matricula
+            ? actualizado
+            : estudiante
+        )
+      )
+      setMostrarTransicion(false);
+    }, 2500);
+  }
+const [vistaVinculacion, setVistaVinculacion] = useState("alumnos");
 
 
-useEffect(() => {
-  localStorage.setItem(
-    "gestadias_solicitudes_organizaciones",
-    JSON.stringify(solicitudesOrganizaciones)
-  );
-}, [solicitudesOrganizaciones]);
+  useEffect(() => {
+    localStorage.setItem(
+      'gestadias_estudiantes',
+      JSON.stringify(estudiantes)
+    )
+  }, [estudiantes])
 
 
-const registrarSolicitudOrganizacion = (datos) => {
-  setSolicitudesOrganizaciones([
-    ...solicitudesOrganizaciones,
-    {
-      id: Date.now(),
-      ...datos,
-      alumno: alumnoActual.nombre,
-      matricula: alumnoActual.matricula,
-      carrera: alumnoActual.carrera,
-      estatus: "Solicitud recibida",
-      fecha: new Date().toLocaleDateString()
+  useEffect(() => {
+    if (pantalla === 'alumno' && alumnoActual) {
+      localStorage.setItem(
+        'gestadias_alumno_actual',
+        JSON.stringify(alumnoActual)
+      )
+    } else {
+      localStorage.removeItem('gestadias_alumno_actual')
     }
-  ]);
-};
+  }, [alumnoActual])
 
 
-const organizacionesFiltradas = alumnoActual
-  ? padronOrganizaciones.filter((organizacion) =>
+  useEffect(() => {
+    localStorage.setItem(
+      "gestadias_solicitudes_organizaciones",
+      JSON.stringify(solicitudesOrganizaciones)
+    );
+  }, [solicitudesOrganizaciones]);
+  const registrarSolicitudOrganizacion = (datos) => {
+    setSolicitudesOrganizaciones([
+      ...solicitudesOrganizaciones,
+      {
+        id: Date.now(),
+        ...datos,
+        alumno: alumnoActual.nombre,
+        matricula: alumnoActual.matricula,
+        carrera: alumnoActual.carrera,
+        estatus: "Solicitud recibida",
+        fecha: new Date().toLocaleDateString()
+      }
+    ]);
+  };
+
+  const organizacionesFiltradas = alumnoActual
+    ? padronOrganizaciones.filter((organizacion) =>
       organizacion.carrerasRelacionadas.some(
         (carrera) =>
           carrera.toLowerCase() === alumnoActual.carrera.toLowerCase()
       )
-    )
-  : [];
-
+    ):
+     [];
 
   const solicitudesCambio = estudiantes.filter(
     (estudiante) => estudiante.solicitudCambio
-  )
+  );
 
   const estudiantesFiltrados = estudiantes.filter((estudiante) =>
-  estudiante.nombre.toLowerCase().includes(busqueda.toLowerCase()) ||
-  String(estudiante.matricula).includes(busqueda)
-)
+    estudiante.nombre.toLowerCase().includes(busqueda.toLowerCase()) ||
+    String(estudiante.matricula).includes(busqueda)
+  );
 
-const seleccionarOrganizacion = (organizacion) => {
-setDatosTransicion({
-  titulo: "Registrando organización...",
-  mensaje: "Preparando la Fase 2 de tu proceso de estadía."
-});
+  const seleccionarOrganizacion = (organizacion) => {
+    setDatosTransicion({
+      titulo: "Registrando organización...",
+      mensaje: "Preparando la Fase 2 de tu proceso de estadía."
+    });
 
-setMostrarTransicion(true);
-setTimeout(() => {
-const actualizado = {
-  ...alumnoActual,
-  organizacion: organizacion.nombre,
-  datosOrganizacion: organizacion,
-  fase: 2,
-  estatus: organizacion.enProceso
-    ? "Organización en proceso de registro por Vinculación"
-    : "Organización seleccionada"
-}
+    setMostrarTransicion(true);
+    setTimeout(() => {
+      const actualizado = {
+        ...alumnoActual,
+        organizacion: organizacion.nombre,
+        datosOrganizacion: organizacion,
+        fase: 2,
+        estatus: organizacion.enProceso
+          ? "Organización en proceso de registro por Vinculación"
+          : "Organización seleccionada"
+      }
 
-  setAlumnoActual(actualizado)
+      setAlumnoActual(actualizado)
 
-  setEstudiantes(
-    estudiantes.map((estudiante) =>
-      estudiante.matricula === actualizado.matricula
-        ? actualizado
-        : estudiante
-    )
-  )
+      setEstudiantes(
+        estudiantes.map((estudiante) =>
+          estudiante.matricula === actualizado.matricula
+            ? actualizado
+            : estudiante
+        )
+      )
 
-  alert(`Organización seleccionada: ${organizacion.nombre}`)
-  
-  setMostrarTransicion(false);
+      alert(`Organización seleccionada: ${organizacion.nombre}`)
 
-}, 2500);
-}
+      setMostrarTransicion(false);
+
+    }, 2500);
+  }
 
 
   const aprobarCambio = (matriculaAlumno) => {
     const actualizados = estudiantes.map((estudiante) =>
       estudiante.matricula === matriculaAlumno
         ? {
-            ...estudiante,
-            organizacion: '',
-            solicitudCambio: false,
-            motivoCambio: '',
-            fase: 1,
-            estatus: 'Cambio aprobado, seleccione nueva Organización'
-          }
+          ...estudiante,
+          organizacion: '',
+          solicitudCambio: false,
+          motivoCambio: '',
+          fase: 1,
+          estatus: 'Cambio aprobado, seleccione nueva Organización'
+        }
         : estudiante
     )
 
@@ -349,10 +324,10 @@ const actualizado = {
     const actualizados = estudiantes.map((estudiante) =>
       estudiante.matricula === matriculaAlumno
         ? {
-            ...estudiante,
-            solicitudCambio: false,
-            motivoCambio: 'Solicitud rechazada por Vinculación'
-          }
+          ...estudiante,
+          solicitudCambio: false,
+          motivoCambio: 'Solicitud rechazada por Vinculación'
+        }
         : estudiante
     )
 
@@ -376,124 +351,31 @@ const actualizado = {
       )
     )
   }
-
-
-  if (pantalla === 'vinculacion') {
+  if (pantalla === "vinculacion") {
     return (
-      <div className="dashboard-vinculacion">
-        <div className="sidebar">
-          <h2>Vinculación</h2>
-          <button onClick={() => setPantalla('inicio')}>Inicio</button>
-        </div>
-
-        <div className="content">
-          <h1>Panel de Vinculación</h1>
-<input
-  placeholder="Buscar por nombre o matrícula"
-  value={busqueda}
-  onChange={(e) => setBusqueda(e.target.value)}
-/>
-          <div className="kpi-container">
-            <div className="kpi-card">
-              <h3>{estudiantes.length}</h3>
-              <p>Total alumnos</p>
-            </div>
-
-            <div className="kpi-card">
-              <h3>{solicitudesCambio.length}</h3>
-              <p>Solicitudes</p>
-            </div>
-
-            <div className="kpi-card">
-              <h3>
-                {estudiantes.filter((e) => e.fase >= 3).length}
-              </h3>
-              <p>En fase avanzada</p>
-            </div>
-          </div>
-
-          <h2>📋 Solicitudes de Cambio</h2>
-
-          {solicitudesCambio.length === 0 ? (
-            <p>No hay solicitudes pendientes</p>
-          ) : (
-            solicitudesCambio.map((alumno, index) => (
-              <div key={index}>
-                <p><strong>Alumno:</strong> {alumno.nombre}</p>
-                <p><strong>Matrícula:</strong> {alumno.matricula}</p>
-
-                <button onClick={() => aprobarCambio(alumno.matricula)}>
-                  Aprobar
-                </button>
-
-                <button onClick={() => rechazarCambio(alumno.matricula)}>
-                  Rechazar
-                </button>
-
-                <hr />
-              </div>
-            ))
-          )}
-
-          <h2>👨‍🎓 Expedientes</h2>
-
-         {estudiantesFiltrados.map((alumno, index) => (
-            <div key={index} className="alumno-card">
-              <p><strong>{alumno.nombre}</strong></p>
-              <p>{alumno.carrera}</p>
-              <p>Fase: {alumno.fase}</p>
-              <p>{alumno.estatus}</p>
-              <hr />
-        <button onClick={() => eliminarAlumno(alumno.matricula)}>
-         Eliminar
-        </button>
-        <button onClick={() => editarAlumno(alumno)}>
-         Editar
-        </button>
-            </div>
-          ))}
-        </div>
-        {alumnoEditando && (
-  <div className="alumno-card">
-    <h3>Editar Alumno</h3>
-
-    <input
-      value={alumnoEditando.nombre}
-      onChange={(e) =>
-        setAlumnoEditando({ ...alumnoEditando, nombre: e.target.value })
-      }
-      placeholder="Nombre"
-    />
-
-    <input
-      value={alumnoEditando.carrera}
-      onChange={(e) =>
-        setAlumnoEditando({ ...alumnoEditando, carrera: e.target.value })
-      }
-      placeholder="Carrera"
-    />
-
-    <input
-      value={alumnoEditando.fase}
-      onChange={(e) =>
-        setAlumnoEditando({ ...alumnoEditando, fase: e.target.value })
-      }
-      placeholder="Fase"
-    />
-
-    <button onClick={guardarEdicion}>Guardar cambios</button>
-    <button onClick={() => setAlumnoEditando(null)}>Cancelar</button>
-  </div>
-)}
-      </div>
-    )
+      <DashboardVinculacion
+        estudiantes={estudiantes}
+        setEstudiantes={setEstudiantes}
+        solicitudesCambio={solicitudesCambio}
+        eliminarAlumno={eliminarAlumno}
+        editarAlumno={editarAlumno}
+        guardarEdicion={guardarEdicion}
+        alumnoEditando={alumnoEditando}
+        setAlumnoEditando={setAlumnoEditando}
+        busqueda={busqueda}
+        setBusqueda={setBusqueda}
+        setPantalla={setPantalla}
+        vistaVinculacion={vistaVinculacion}
+        setVistaVinculacion={setVistaVinculacion}
+      />
+    );
   }
 
 if (pantalla === 'perfil') {
   return (
     <div className="alumno">
 
-      <MenuAlumno 
+      <MenuAlumno
         alumnoActual={alumnoActual}
         cerrarSesion={cerrarSesion}
         setPantalla={setPantalla}
@@ -521,7 +403,7 @@ if (pantalla === 'documentos') {
   return (
     <div className="alumno">
 
-      <MenuAlumno 
+      <MenuAlumno
         alumnoActual={alumnoActual}
         cerrarSesion={cerrarSesion}
         setPantalla={setPantalla}
@@ -556,7 +438,7 @@ if (pantalla === 'estadia') {
   return (
     <div className="alumno">
 
-      <MenuAlumno 
+      <MenuAlumno
         alumnoActual={alumnoActual}
         cerrarSesion={cerrarSesion}
         setPantalla={setPantalla}
@@ -587,7 +469,7 @@ if (pantalla === 'estadia') {
   )
 }
 
- if (pantalla === 'registro') {
+if (pantalla === 'registro') {
   return (
     <Registro
       matricula={matricula}
@@ -606,7 +488,7 @@ if (pantalla === 'estadia') {
   )
 }
 
-  if (pantalla === 'login') {
+if (pantalla === 'login') {
   return (
     <Login
       loginMatricula={loginMatricula}
@@ -623,134 +505,132 @@ console.log("Organizaciones filtradas:", organizacionesFiltradas);
 if (mostrarTransicion) {
   return (
     <TransicionFase
-  titulo={datosTransicion.titulo}
-  mensaje={datosTransicion.mensaje}
-/>
+      titulo={datosTransicion.titulo}
+      mensaje={datosTransicion.mensaje}
+    />
   );
 }
 
- if (alumnoActual) {
-
-    return (
-
-      <div className="alumno">
-<MenuAlumno 
-  alumnoActual={alumnoActual}
-  cerrarSesion={cerrarSesion}
-  setPantalla={setPantalla}
-/>
-        <h1>HOLA {alumnoActual.nombre}</h1>
-
-        <h3>Tu avance en GESTADIAS</h3>
-        {avisosAlumno.length > 0 && (
-          <div className="avisos-alumno">
-            <h3>📢 Avisos importantes</h3>
-
-            {avisosAlumno.map((aviso, index) => (
-              <p key={index} className="aviso-item">
-                {aviso}
-              </p>
-            ))}
-          </div>
-        )}
-        <div className="kpi-grid">
-          <div className="kpi-card">
-            <h2>{alumnoActual.fase}</h2>
-            <p>Fase actual</p>
-          </div>
-
-          <div className="kpi-card">
-            <p>{alumnoActual.estatus}</p>
-
-            <p>Estatus</p>
-          </div>
-
-          <div className="kpi-card">
-            <p>{alumnoActual.organizacion || 'Ninguna'}</p>
-
-            <p>Organización</p>
-          </div>
-        </div>
-
-        {alumnoActual.fase <= 2 && (
-          <Organizaciones
-            alumnoActual={alumnoActual}
-            organizacionesFiltradas={organizacionesFiltradas}
-            seleccionarOrganizacion={seleccionarOrganizacion}
-            solicitarCambioOrganizacion={solicitarCambioOrganizacion}
-            registrarSolicitudOrganizacion={registrarSolicitudOrganizacion}
-          />
-        )}
-
-        {alumnoActual.fase === 2 && (
-          <DocumentoPresentacion
-            alumnoActual={alumnoActual}
-            subirCartaPresentacion={subirCartaPresentacion}
-          />
-        )}
-        {alumnoActual.documentos.presentacion &&
- !alumnoActual.documentos.aceptacion && (
-  <DocumentoAceptacion
-    alumnoActual={alumnoActual}
-    subirCartaAceptacion={subirCartaAceptacion}
-  />
-)}
-        {alumnoActual.documentos.aceptacion &&
- !alumnoActual.documentos.compromiso && (
-  <DocumentoCompromiso
-    alumnoActual={alumnoActual}
-    subirCartacompromiso={subirCartaCompromiso}
-  />
-)}
-
-{alumnoActual.fase === 6 && (
-  <div className="fase-final">
-
-    <h3>🎉 Fase 6 - Estadía Activa</h3>
-
-    <h4>¡Felicidades continúa con éxito tu Estadía Profesional!</h4>
-
-    <p className="frase-motivacional">
-      "Todo lo que te viniere a la mano para hacer, hazlo según tus fuerzas."
-      <br />
-      <strong>— Eclesiastés 9:10</strong>
-    </p>
-
-    <p>
-Tu estadía profesional ha sido activada correctamente.
-A partir de este momento podrás desarrollar tus actividades dentro de la organización asignada.
-Recuerda mantener comunicación con tu asesor académico y con tu asesor empresarial durante todo el proceso.
-</p>
-
-<div className="aviso-estadia">
-📌 Próximamente aquí podrás subir tu Carta de Terminación de Estadía y concluir tu proceso en GESTADIAS.
-</div>
-
-    <div className="resumen-fases">
-
-      <h4>Resumen de fases concluidas</h4>
-
-      <ul>
-        <li>✅ Registro de estudiante completado</li>
-        <li>✅ Selección de organización realizada</li>
-        <li>✅ Carta de Presentación entregada</li>
-        <li>✅ Carta de Aceptación entregada</li>
-        <li>✅ Carta Compromiso entregada</li>
-      </ul>
-
-    </div>
-
-  </div>
-)}
-      </div>
-    )
-  }
+if (alumnoActual) {
 
   return (
-    <Inicio
-      setPantalla={setPantalla}
-    />
-  )
+
+    <div className="alumno">
+      <MenuAlumno
+        alumnoActual={alumnoActual}
+        cerrarSesion={cerrarSesion}
+        setPantalla={setPantalla}
+      />
+      <h1>HOLA {alumnoActual.nombre}</h1>
+
+      <h3>Tu avance en GESTADIAS</h3>
+      {avisosAlumno.length > 0 && (
+        <div className="avisos-alumno">
+          <h3>📢 Avisos importantes</h3>
+
+          {avisosAlumno.map((aviso, index) => (
+            <p key={index} className="aviso-item">
+              {aviso}
+            </p>
+          ))}
+        </div>
+      )}
+      <div className="kpi-grid">
+        <div className="kpi-card">
+          <h2>{alumnoActual.fase}</h2>
+          <p>Fase actual</p>
+        </div>
+
+        <div className="kpi-card">
+          <p>{alumnoActual.estatus}</p>
+
+          <p>Estatus</p>
+        </div>
+
+        <div className="kpi-card">
+          <p>{alumnoActual.organizacion || 'Ninguna'}</p>
+
+          <p>Organización</p>
+        </div>
+      </div>
+
+      {alumnoActual.fase <= 2 && (
+        <Organizaciones
+          alumnoActual={alumnoActual}
+          organizacionesFiltradas={organizacionesFiltradas}
+          seleccionarOrganizacion={seleccionarOrganizacion}
+          solicitarCambioOrganizacion={solicitarCambioOrganizacion}
+          registrarSolicitudOrganizacion={registrarSolicitudOrganizacion}
+        />
+      )}
+
+      {alumnoActual.fase === 2 && (
+        <DocumentoPresentacion
+          alumnoActual={alumnoActual}
+          subirCartaPresentacion={subirCartaPresentacion}
+        />
+      )}
+      {alumnoActual.documentos.presentacion &&
+        !alumnoActual.documentos.aceptacion && (
+          <DocumentoAceptacion
+            alumnoActual={alumnoActual}
+            subirCartaAceptacion={subirCartaAceptacion}
+          />
+        )}
+      {alumnoActual.documentos.aceptacion &&
+        !alumnoActual.documentos.compromiso && (
+          <DocumentoCompromiso
+            alumnoActual={alumnoActual}
+            subirCartaCompromiso={subirCartaCompromiso}
+          />
+        )}
+
+      {alumnoActual.fase === 6 && (
+        <div className="fase-final">
+
+          <h3>🎉 Fase 6 - Estadía Activa</h3>
+
+          <h4>¡Felicidades continúa con éxito tu Estadía Profesional!</h4>
+
+          <p className="frase-motivacional">
+            "Todo lo que te viniere a la mano para hacer, hazlo según tus fuerzas."
+            <br />
+            <strong>— Eclesiastés 9:10</strong>
+          </p>
+
+          <p>
+            Tu estadía profesional ha sido activada correctamente.
+            A partir de este momento podrás desarrollar tus actividades dentro de la organización asignada.
+            Recuerda mantener comunicación con tu asesor académico y con tu asesor empresarial durante todo el proceso.
+          </p>
+
+          <div className="aviso-estadia">
+            📌 Próximamente aquí podrás subir tu Carta de Terminación de Estadía y concluir tu proceso en GESTADIAS.
+          </div>
+
+          <div className="resumen-fases">
+
+            <h4>Resumen de fases concluidas</h4>
+
+            <ul>
+              <li>✅ Registro de estudiante completado</li>
+              <li>✅ Selección de organización realizada</li>
+              <li>✅ Carta de Presentación entregada</li>
+              <li>✅ Carta de Aceptación entregada</li>
+              <li>✅ Carta Compromiso entregada</li>
+            </ul>
+
+          </div>
+
+        </div>
+      )}
+    </div>
+  );
 }
 
-export default App
+return (
+  <Inicio setPantalla={setPantalla} />
+);
+}
+
+export default App;
