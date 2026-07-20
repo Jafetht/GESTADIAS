@@ -1,7 +1,8 @@
 function DocumentosAlumno({
   alumno,
   actualizarDocumento,
-  subirDocumento
+  subirDocumento,
+  enviarCartaCompromiso
 }) {
 
 
@@ -209,7 +210,29 @@ function DocumentosAlumno({
               >
                 ❌ Rechazar
               </button>
+{
+  doc.id === "aceptacion" && (
 
+    alumno.cartaCompromiso?.enviada ? (
+
+      <button disabled>
+        ✅ Carta Compromiso enviada
+      </button>
+
+    ) : (
+
+      <button
+        onClick={() =>
+          enviarCartaCompromiso(alumno)
+        }
+      >
+        📧 Enviar Carta Compromiso
+      </button>
+
+    )
+
+  )
+}
 
             </div>
 

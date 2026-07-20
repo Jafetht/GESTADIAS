@@ -5,7 +5,9 @@ import DocumentosAlumno from "./DocumentosAlumno";
 function ExpedienteAlumno({
   alumno,
   cerrar,
-  actualizarDocumento
+  actualizarDocumento,
+  subirDocumento,
+  enviarCartaCompromiso
 }) {
 
 
@@ -181,19 +183,51 @@ function ExpedienteAlumno({
               </div>
 
 
+<div className="dato-card">
 
-              <div className="dato-card">
+  <span>
+    Correo
+  </span>
 
-                <span>
-                  Correo
-                </span>
+  <a
+    href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(alumno.correo)}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="correo-link"
+  >
+    {alumno.correo}
+  </a>
 
-                <strong>
-                  {alumno.correo}
-                </strong>
+  <br /><br />
 
-              </div>
+  {
+    alumno.cartaCompromiso?.enviada ? (
 
+      <>
+        <strong style={{ color: "green" }}>
+          ✅ Carta Compromiso enviada
+        </strong>
+
+        <br />
+
+        <small>
+          {alumno.cartaCompromiso.fechaEnvio}
+        </small>
+      </>
+
+    ) : (
+
+      <button
+        className="btn-enviar-correo"
+        onClick={() => enviarCartaCompromiso(alumno)}
+      >
+        📧 Enviar Carta Compromiso
+      </button>
+
+    )
+  }
+
+</div>
 
 
               <div className="dato-card">
@@ -258,15 +292,12 @@ function ExpedienteAlumno({
       {
         pestana === "documentos" && (
 
-          <DocumentosAlumno
-
-            alumno={alumno}
-
-            actualizarDocumento={
-              actualizarDocumento
-            }
-
-          />
+<DocumentosAlumno
+  alumno={alumno}
+  actualizarDocumento={actualizarDocumento}
+  subirDocumento={subirDocumento}
+  enviarCartaCompromiso={enviarCartaCompromiso}
+/>
 
         )
       }

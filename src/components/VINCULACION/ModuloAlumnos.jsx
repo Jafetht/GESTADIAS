@@ -265,17 +265,29 @@ Ver alumnos →
 
     <div className="documentos-estado">
 
-      <span>
-        Presentación {alumno.documentos.presentacion ? "✔" : "✖"}
-      </span>
+Presentación {
+  alumno.documentos?.presentacion?.estado === "aprobado"
+    ? "🟢"
+    : alumno.documentos?.presentacion?.estado === "rechazado"
+    ? "🔴"
+    : "🟡"
+}
 
-      <span>
-        Aceptación {alumno.documentos.aceptacion ? "✔" : "✖"}
-      </span>
+Aceptación {
+  alumno.documentos?.aceptacion?.estado === "aprobado"
+    ? "🟢"
+    : alumno.documentos?.aceptacion?.estado === "rechazado"
+    ? "🔴"
+    : "🟡"
+}
 
-      <span>
-        Compromiso {alumno.documentos.compromiso ? "✔" : "✖"}
-      </span>
+Compromiso {
+  alumno.documentos?.compromiso?.estado === "aprobado"
+    ? "🟢"
+    : alumno.documentos?.compromiso?.estado === "rechazado"
+    ? "🔴"
+    : "🟡"
+}
 
     </div>
 

@@ -100,6 +100,80 @@ function DashboardVinculacion({
 
 
 
+
+
+
+
+  // ENVIAR CARTA COMPROMISO
+
+const enviarCartaCompromiso = (alumno) => {
+
+  const asunto = "CARTA COMPROMISO - Dirección de Vinculación";
+
+  const mensaje = `Estimado(a) estudiante:
+
+Por este medio se comparte su Carta Compromiso correspondiente al proceso de Estadía Profesional.
+
+IMPORTANTE:
+Este trámite se realiza de manera presencial.
+
+Le solicitamos recabar las siguientes firmas utilizando TINTA AZUL:
+
+• Tu firma.
+• La firma de tu asesor(a) de la organización.
+
+Posteriormente deberás acudir al Departamento de Vinculación para obtener la firma del Director(a) de Vinculación.
+
+Atentamente.
+
+Dirección de Vinculación
+Universidad Tecnológica del Poniente`;
+
+  window.open(
+    `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(alumno.correo)}&su=${encodeURIComponent(asunto)}&body=${encodeURIComponent(mensaje)}`,
+    "_blank"
+  );
+
+  const actualizados = estudiantes.map((e) => {
+
+    if (e.matricula === alumno.matricula) {
+
+      return {
+
+        ...e,
+
+        cartaCompromiso: {
+
+          enviada: true,
+
+          fechaEnvio: new Date().toLocaleString()
+
+        }
+
+      };
+
+    }
+
+    return e;
+
+  });
+
+  setEstudiantes(actualizados);
+
+  setAlumnoSeleccionado(
+
+    actualizados.find(
+      e => e.matricula === alumno.matricula
+    )
+
+  );
+
+};
+
+
+
+
+
   // ACTUALIZAR ESTADO DEL DOCUMENTO
 
   const actualizarDocumento = (
@@ -211,23 +285,13 @@ function DashboardVinculacion({
           alumnoSeleccionado ? (
 
 
-            <ExpedienteAlumno
-
-              alumno={alumnoSeleccionado}
-
-              cerrar={() =>
-                setAlumnoSeleccionado(null)
-              }
-
-              actualizarDocumento={
-                actualizarDocumento
-              }
-
-              subirDocumento={
-                subirDocumento
-              }
-
-            />
+<ExpedienteAlumno
+  alumno={alumnoSeleccionado}
+  cerrar={() => setAlumnoSeleccionado(null)}
+  actualizarDocumento={actualizarDocumento}
+  subirDocumento={subirDocumento}
+  enviarCartaCompromiso={enviarCartaCompromiso}
+/>
 
 
           ) : (

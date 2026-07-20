@@ -72,6 +72,7 @@ function App() {
       motivoCambio: '',
       fase: 1,
       estatus: 'Registro completado',
+
 documentos: {
   presentacion: {
     archivo: null,
@@ -90,8 +91,13 @@ documentos: {
     estado: "pendiente",
     motivo: ""
   }
+},
+
+cartaCompromiso: {
+    enviada: false,
+    fechaEnvio: null
 }
-    };
+};
     setEstudiantes([...estudiantes, nuevoEstudiante])
     alert('Cuenta creada correctamente')
     setPantalla('inicio')
@@ -107,13 +113,22 @@ documentos: {
   }
   const avisosAlumno = []
   if (alumnoActual) {
-    if (alumnoActual.fase >= 3 && !alumnoActual.documentos.presentacion) {
+    if (
+  alumnoActual.fase >= 3 &&
+  alumnoActual.documentos.presentacion.estado !== "aprobado"
+) {
       avisosAlumno.push('⚠ Debes subir la Carta de Presentación para continuar a la siguiente fase')
     }
-    if (alumnoActual.documentos.presentacion && !alumnoActual.documentos.aceptacion) {
+    if (
+    alumnoActual.documentos.presentacion.estado === "aprobado" &&
+    alumnoActual.documentos.aceptacion.estado !== "aprobado"
+){
       avisosAlumno.push('📌 Sube la Carta de Aceptación para avanzar a la Fase 5')
     }
-    if (alumnoActual.documentos.aceptacion && !alumnoActual.documentos.compromiso) {
+    if (
+    alumnoActual.documentos.aceptacion.estado === "aprobado" &&
+    alumnoActual.documentos.compromiso.estado !== "aprobado"
+) {
       avisosAlumno.push('📄 Sube la Carta Compromiso para avanzar a la Fase 6')
     }
   }
@@ -133,7 +148,12 @@ documentos: {
         ...alumnoActual,
         documentos: {
           ...alumnoActual.documentos,
-          presentacion: true
+          presentacion: {
+    ...alumnoActual.documentos.presentacion,
+    archivo,
+    estado: "aprobado",
+    motivo: ""
+}
         },
         fase: 3,
         estatus: 'Carta de Presentación subida'
@@ -160,7 +180,11 @@ documentos: {
         ...alumnoActual,
         documentos: {
           ...alumnoActual.documentos,
-          aceptacion: true
+          aceptacion: {
+    ...alumnoActual.documentos.aceptacion,
+    estado: "aprobado",
+    motivo: ""
+}
         },
         fase: 4,
         estatus: 'Carta de Aceptación subida'
@@ -187,7 +211,11 @@ documentos: {
         ...alumnoActual,
         documentos: {
           ...alumnoActual.documentos,
-          compromiso: true
+          compromiso: {
+    ...alumnoActual.documentos.compromiso,
+    estado: "aprobado",
+    motivo: ""
+}
         },
         fase: 6,
         estatus: 'Estadía autorizada'
@@ -415,17 +443,23 @@ if (pantalla === 'documentos') {
 
         <p>
           Carta de Presentación:
-          {alumnoActual.documentos.presentacion ? " ✅" : " ❌"}
+{alumnoActual.documentos.presentacion.estado === "aprobado"
+    ? " ✅"
+    : " ❌"}
         </p>
 
         <p>
-          Carta de Aceptación:
-          {alumnoActual.documentos.aceptacion ? " ✅" : " ❌"}
+        Carta de Aceptación:
+{alumnoActual.documentos.aceptacion.estado === "aprobado"
+    ? " ✅"
+    : " ❌"}
         </p>
 
         <p>
-          Carta Compromiso:
-          {alumnoActual.documentos.compromiso ? " ✅" : " ❌"}
+         Carta Compromiso:
+{alumnoActual.documentos.compromiso.estado === "aprobado"
+    ? " ✅"
+    : " ❌"}
         </p>
 
       </div>
@@ -570,15 +604,15 @@ if (alumnoActual) {
           subirCartaPresentacion={subirCartaPresentacion}
         />
       )}
-      {alumnoActual.documentos.presentacion &&
-        !alumnoActual.documentos.aceptacion && (
+{alumnoActual.documentos.presentacion.estado === "aprobado" &&
+ alumnoActual.documentos.aceptacion.estado !== "aprobado" && (
           <DocumentoAceptacion
             alumnoActual={alumnoActual}
             subirCartaAceptacion={subirCartaAceptacion}
           />
         )}
-      {alumnoActual.documentos.aceptacion &&
-        !alumnoActual.documentos.compromiso && (
+{alumnoActual.documentos.aceptacion.estado === "aprobado" &&
+ alumnoActual.documentos.compromiso.estado !== "aprobado" && (
           <DocumentoCompromiso
             alumnoActual={alumnoActual}
             subirCartaCompromiso={subirCartaCompromiso}
