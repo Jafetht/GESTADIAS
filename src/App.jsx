@@ -139,8 +139,8 @@ cartaCompromiso: {
   }
   const subirCartaPresentacion = (archivo) => {
     setDatosTransicion({
-      titulo: "Validando Carta de Presentación...",
-      mensaje: "Actualizando tu expediente y preparando la siguiente fase."
+titulo: "Documento enviado a Vinculación",
+mensaje: "Tu Carta de Presentación está pendiente de revisión."
     });
     setMostrarTransicion(true);
     setTimeout(() => {
@@ -148,15 +148,15 @@ cartaCompromiso: {
         ...alumnoActual,
         documentos: {
           ...alumnoActual.documentos,
-          presentacion: {
+presentacion: {
     ...alumnoActual.documentos.presentacion,
     archivo,
-    estado: "aprobado",
+    estado: "pendiente",
     motivo: ""
 }
         },
-        fase: 3,
-        estatus: 'Carta de Presentación subida'
+fase: 2,
+estatus: 'Carta de Presentación enviada a revisión'
       }
       setAlumnoActual(actualizado)
       setEstudiantes(
