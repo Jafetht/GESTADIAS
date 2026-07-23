@@ -65,11 +65,16 @@ function DocumentoCompromiso({
 
 const nombreOriginal = file.name.toUpperCase();
 
-const nombreEsperado1 =
-`${alumnoActual.matricula}_COMPROMISO.PDF`;
+const nombreEsperado =
+  `${alumnoActual.matricula}_COMPROMISO.PDF`;
 
-const nombreEsperado2 =
-`${alumnoActual.matricula}_COMPROMISO.PDF`;
+if (nombreOriginal !== nombreEsperado) {
+  setError(
+    `❌ El archivo debe llamarse: ${alumnoActual.matricula}_COMPROMISO.pdf`
+  );
+  setArchivo(null);
+  return;
+}
 if (
   nombreOriginal !== nombreEsperado1 &&
   nombreOriginal.normalize("NFD").replace(/[\u0300-\u036f]/g, "") !== nombreEsperado2

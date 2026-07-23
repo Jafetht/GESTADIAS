@@ -1648,3 +1648,25 @@ button:disabled {
     cursor:pointer;
 
 }
+
+/* VISORES DE DOCUMENTO */
+
+.visor-documento {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 15px;
+  background: #111827;
+}
+
+.visor-pdf {
+  width: 100%;
+  height: 650px;
+  border: none;
+  border-radius: 12px;
+  background: white;
+  margin-bottom: 15px;
+}
+
+.estado-documento {
+  margin-bottom: 30px;
+}

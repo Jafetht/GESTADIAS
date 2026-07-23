@@ -1,3 +1,4 @@
+
 import './App.css'
 import { useState, useEffect } from 'react'
 import Inicio from './components/Inicio'
@@ -74,23 +75,28 @@ function App() {
       estatus: 'Registro completado',
 
 documentos: {
+
   presentacion: {
     archivo: null,
-    estado: "pendiente",
+    nombreArchivo: null,
+    estado: "no_entregado",
     motivo: ""
   },
 
   aceptacion: {
     archivo: null,
-    estado: "pendiente",
+    nombreArchivo: null,
+    estado: "no_entregado",
     motivo: ""
   },
 
   compromiso: {
     archivo: null,
-    estado: "pendiente",
+    nombreArchivo: null,
+    estado: "no_entregado",
     motivo: ""
   }
+
 },
 
 cartaCompromiso: {
@@ -98,10 +104,12 @@ cartaCompromiso: {
     fechaEnvio: null
 }
 };
+
     setEstudiantes([...estudiantes, nuevoEstudiante])
     alert('Cuenta creada correctamente')
     setPantalla('inicio')
   }
+
   const iniciarSesion = () => {
     const alumnoEncontrado = estudiantes.find((estudiante) => estudiante.matricula === loginMatricula)
     if (alumnoEncontrado) {
@@ -111,117 +119,202 @@ cartaCompromiso: {
       alert('Matrícula no encontrada')
     }
   }
-  const avisosAlumno = []
-  if (alumnoActual) {
-    if (
-  alumnoActual.fase >= 3 &&
-  alumnoActual.documentos.presentacion.estado !== "aprobado"
-) {
-      avisosAlumno.push('⚠ Debes subir la Carta de Presentación para continuar a la siguiente fase')
-    }
-    if (
-    alumnoActual.documentos.presentacion.estado === "aprobado" &&
-    alumnoActual.documentos.aceptacion.estado !== "aprobado"
-){
-      avisosAlumno.push('📌 Sube la Carta de Aceptación para avanzar a la Fase 5')
-    }
-    if (
-    alumnoActual.documentos.aceptacion.estado === "aprobado" &&
-    alumnoActual.documentos.compromiso.estado !== "aprobado"
-) {
-      avisosAlumno.push('📄 Sube la Carta Compromiso para avanzar a la Fase 6')
-    }
+  
+const avisosAlumno = []
+
+if (alumnoActual) {
+
+  if (
+    alumnoActual.documentos.presentacion.estado === "pendiente"
+  ) {
+    avisosAlumno.push(
+      "🟡 Tu Carta de Presentación está pendiente de revisión por Vinculación"
+    )
   }
+
+  if (
+    alumnoActual.documentos.presentacion.estado === "rechazado"
+  ) {
+    avisosAlumno.push(
+      `🔴 Tu Carta de Presentación fue rechazada: ${
+        alumnoActual.documentos.presentacion.motivo
+      }`
+    )
+  }
+
+  if (
+    alumnoActual.documentos.presentacion.estado === "aprobado" &&
+    alumnoActual.documentos.aceptacion.estado === "no_entregado"
+  ) {
+    avisosAlumno.push(
+      "📌 Ya puedes entregar tu Carta de Aceptación"
+    )
+  }
+
+  if (
+    alumnoActual.documentos.aceptacion.estado === "pendiente"
+  ) {
+    avisosAlumno.push(
+      "🟡 Tu Carta de Aceptación está pendiente de revisión por Vinculación"
+    )
+  }
+
+  if (
+    alumnoActual.documentos.compromiso.estado === "pendiente"
+  ) {
+    avisosAlumno.push(
+      "🟡 Tu Carta Compromiso está pendiente de revisión por Vinculación"
+    )
+  }
+
+}
+
   const cerrarSesion = () => {
     setAlumnoActual(null)
     localStorage.removeItem('gestadias_alumno_actual')
     setPantalla('inicio')
   }
-  const subirCartaPresentacion = (archivo) => {
-    setDatosTransicion({
-titulo: "Documento enviado a Vinculación",
-mensaje: "Tu Carta de Presentación está pendiente de revisión."
-    });
-    setMostrarTransicion(true);
-    setTimeout(() => {
-      const actualizado = {
-        ...alumnoActual,
-        documentos: {
-          ...alumnoActual.documentos,
-presentacion: {
-    ...alumnoActual.documentos.presentacion,
-    archivo,
-    estado: "pendiente",
-    motivo: ""
-}
-        },
-fase: 2,
-estatus: 'Carta de Presentación enviada a revisión'
+const subirCartaPresentacion = async (archivo) => {
+
+  if (!archivo) return;
+
+  const formulario = new FormData();
+
+  formulario.append("documento", archivo);
+
+  try {
+
+    const respuesta = await fetch(
+      "http://localhost:5000/api/documentos/subir",
+      {
+        method: "POST",
+        body: formulario
       }
-      setAlumnoActual(actualizado)
+    );
+
+    const datos = await respuesta.json();
+
+    if (!respuesta.ok) {
+      alert(datos.mensaje);
+      return;
+    }
+
+    setDatosTransicion({
+      titulo: "Documento enviado a Vinculación",
+      mensaje: "Tu Carta de Presentación está pendiente de revisión."
+    });
+
+    setMostrarTransicion(true);
+
+    setTimeout(() => {
+
+      const actualizado = {
+
+        ...alumnoActual,
+
+        documentos: {
+
+          ...alumnoActual.documentos,
+
+presentacion: {
+
+  estado: "pendiente",
+
+  motivo: "",
+
+  archivo: datos.archivo
+
+}
+
+        },
+
+        fase: 2,
+
+        estatus: "Carta de Presentación enviada a revisión"
+
+      };
+
+      setAlumnoActual(actualizado);
+
       setEstudiantes(
+
         estudiantes.map((estudiante) =>
+
           estudiante.matricula === actualizado.matricula
+
             ? actualizado
+
             : estudiante
-        ))
+
+        )
+
+      );
+
       setMostrarTransicion(false);
+
     }, 2500);
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert("No se pudo conectar con el servidor.");
+
   }
-  const subirCartaAceptacion = () => {
+
+};
+const subirCartaAceptacion = async (archivo) => {
+
+  if (!archivo) return;
+
+  const formulario = new FormData();
+
+  formulario.append("documento", archivo);
+
+  try {
+
+    const respuesta = await fetch(
+      "http://localhost:5000/api/documentos/subir",
+      {
+        method: "POST",
+        body: formulario
+      }
+    );
+
+    const datos = await respuesta.json();
+
+    if (!respuesta.ok) {
+      alert(datos.mensaje);
+      return;
+    }
+
     setDatosTransicion({
       titulo: "Validando Carta de Aceptación...",
       mensaje: "Verificando el documento y habilitando la siguiente fase."
     });
+
     setMostrarTransicion(true);
+
     setTimeout(() => {
-      const actualizado =
-      {
-        ...alumnoActual,
-        documentos: {
-          ...alumnoActual.documentos,
-          aceptacion: {
-    ...alumnoActual.documentos.aceptacion,
-    estado: "aprobado",
-    motivo: ""
-}
-        },
-        fase: 4,
-        estatus: 'Carta de Aceptación subida'
-      }
-      setAlumnoActual(actualizado)
-      setEstudiantes(
-        estudiantes.map((estudiante) =>
-          estudiante.matricula === actualizado.matricula
-            ? actualizado
-            : estudiante
-        )
-      )
-      setMostrarTransicion(false);
-    }, 2500);
-  }
-  const subirCartaCompromiso = () => {
-    setDatosTransicion({
-      titulo: "🎉 Activando tu Estadía Profesional...",
-      mensaje: "Toda tu documentación ha sido validada correctamente. Preparando tu expediente..."
-    });
-    setMostrarTransicion(true);
-    setTimeout(() => {
+
       const actualizado = {
         ...alumnoActual,
+
         documentos: {
           ...alumnoActual.documentos,
-          compromiso: {
-    ...alumnoActual.documentos.compromiso,
-    estado: "aprobado",
-    motivo: ""
-}
-        },
-        fase: 6,
-        estatus: 'Estadía autorizada'
-      }
 
-      setAlumnoActual(actualizado)
+          aceptacion: {
+            estado: "aprobado",
+            motivo: "",
+            archivo: datos.archivo
+          }
+        },
+
+        fase: 4,
+        estatus: "Carta de Aceptación subida"
+      };
+
+      setAlumnoActual(actualizado);
 
       setEstudiantes(
         estudiantes.map((estudiante) =>
@@ -229,10 +322,99 @@ estatus: 'Carta de Presentación enviada a revisión'
             ? actualizado
             : estudiante
         )
-      )
+      );
+
       setMostrarTransicion(false);
+
     }, 2500);
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert("No se pudo conectar con el servidor.");
+
   }
+
+};
+const subirCartaCompromiso = async (archivo) => {
+
+  if (!archivo) return;
+
+  const formulario = new FormData();
+
+  formulario.append("documento", archivo);
+
+  try {
+
+    const respuesta = await fetch(
+      "http://localhost:5000/api/documentos/subir",
+      {
+        method: "POST",
+        body: formulario
+      }
+    );
+
+    const datos = await respuesta.json();
+
+    if (!respuesta.ok) {
+      alert(datos.mensaje);
+      return;
+    }
+
+    setDatosTransicion({
+      titulo: "🎉 Activando tu Estadía Profesional...",
+      mensaje:
+        "Toda tu documentación ha sido validada correctamente. Preparando tu expediente..."
+    });
+
+    setMostrarTransicion(true);
+
+    setTimeout(() => {
+
+      const actualizado = {
+
+        ...alumnoActual,
+
+        documentos: {
+          ...alumnoActual.documentos,
+
+          compromiso: {
+            estado: "aprobado",
+            motivo: "",
+            archivo: datos.archivo
+          }
+        },
+
+        fase: 6,
+
+        estatus: "Estadía autorizada"
+
+      };
+
+      setAlumnoActual(actualizado);
+
+      setEstudiantes(
+        estudiantes.map((estudiante) =>
+          estudiante.matricula === actualizado.matricula
+            ? actualizado
+            : estudiante
+        )
+      );
+
+      setMostrarTransicion(false);
+
+    }, 2500);
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert("No se pudo conectar con el servidor.");
+
+  }
+
+};
 const [vistaVinculacion, setVistaVinculacion] = useState("alumnos");
 
 
@@ -437,33 +619,116 @@ if (pantalla === 'documentos') {
         setPantalla={setPantalla}
       />
 
-      <div className="documento-card">
+<div className="documento-card">
 
-        <h3>📄 Mis Documentos</h3>
+  <h3>📄 Mis Documentos</h3>
 
-        <p>
-          Carta de Presentación:
-{alumnoActual.documentos.presentacion.estado === "aprobado"
-    ? " ✅"
-    : " ❌"}
-        </p>
+  <div className="estado-documento">
+    <p>
+      <strong>Carta de Presentación:</strong>{" "}
+      {alumnoActual.documentos.presentacion.estado === "aprobado"
+        ? "🟢 Aprobada"
+        : alumnoActual.documentos.presentacion.estado === "pendiente"
+        ? "🟡 Pendiente de revisión"
+        : "🔴 No entregada"}
+    </p>
 
-        <p>
-        Carta de Aceptación:
-{alumnoActual.documentos.aceptacion.estado === "aprobado"
-    ? " ✅"
-    : " ❌"}
-        </p>
+    {alumnoActual.documentos.presentacion.archivo && (
+      <div className="visor-documento">
 
-        <p>
-         Carta Compromiso:
-{alumnoActual.documentos.compromiso.estado === "aprobado"
-    ? " ✅"
-    : " ❌"}
-        </p>
+        <h4>📄 Vista previa de la Carta de Presentación</h4>
+
+        <iframe
+          src={`http://localhost:5000${alumnoActual.documentos.presentacion.archivo}`}
+          title="Carta de Presentación"
+          className="visor-pdf"
+        />
+
+        <a
+          href={`http://localhost:5000${alumnoActual.documentos.presentacion.archivo}`}
+          download
+          className="btn-descargar"
+        >
+          ⬇️ Descargar Carta de Presentación
+        </a>
 
       </div>
+    )}
+  </div>
 
+
+  <div className="estado-documento">
+
+    <p>
+      <strong>Carta de Aceptación:</strong>{" "}
+      {alumnoActual.documentos.aceptacion.estado === "aprobado"
+        ? "🟢 Aprobada"
+        : alumnoActual.documentos.aceptacion.estado === "pendiente"
+        ? "🟡 Pendiente de revisión"
+        : "🔴 No entregada"}
+    </p>
+
+    {alumnoActual.documentos.aceptacion.archivo && (
+      <div className="visor-documento">
+
+        <h4>📄 Vista previa de la Carta de Aceptación</h4>
+
+        <iframe
+          src={`http://localhost:5000${alumnoActual.documentos.aceptacion.archivo}`}
+          title="Carta de Aceptación"
+          className="visor-pdf"
+        />
+
+        <a
+          href={`http://localhost:5000${alumnoActual.documentos.aceptacion.archivo}`}
+          download
+          className="btn-descargar"
+        >
+          ⬇️ Descargar Carta de Aceptación
+        </a>
+
+      </div>
+    )}
+
+  </div>
+
+
+  <div className="estado-documento">
+
+    <p>
+      <strong>Carta Compromiso:</strong>{" "}
+      {alumnoActual.documentos.compromiso.estado === "aprobado"
+        ? "🟢 Aprobada"
+        : alumnoActual.documentos.compromiso.estado === "pendiente"
+        ? "🟡 Pendiente de revisión"
+        : "🔴 No entregada"}
+    </p>
+
+    {alumnoActual.documentos.compromiso.archivo && (
+      <div className="visor-documento">
+
+        <h4>📄 Vista previa de la Carta Compromiso</h4>
+
+        <iframe
+          src={`http://localhost:5000${alumnoActual.documentos.compromiso.archivo}`}
+          title="Carta Compromiso"
+          className="visor-pdf"
+        />
+
+        <a
+          href={`http://localhost:5000${alumnoActual.documentos.compromiso.archivo}`}
+          download
+          className="btn-descargar"
+        >
+          ⬇️ Descargar Carta Compromiso
+        </a>
+
+      </div>
+    )}
+
+  </div>
+
+</div>
     </div>
   )
 }

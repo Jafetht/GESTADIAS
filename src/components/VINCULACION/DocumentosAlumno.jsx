@@ -1,9 +1,14 @@
+
+import { useState } from "react";
+
 function DocumentosAlumno({
   alumno,
   actualizarDocumento,
   subirDocumento,
   enviarCartaCompromiso
 }) {
+
+    const [documentoVer, setDocumentoVer] = useState(null);
 
 
   const documentos = [
@@ -116,7 +121,27 @@ function DocumentosAlumno({
 
   };
 
+  if (documentoVer) {
+    return (
+      <div className="documentos-panel">
 
+        <button onClick={() => setDocumentoVer(null)}>
+          ← Regresar
+        </button>
+
+        <iframe
+          src={documentoVer}
+          title="Documento PDF"
+          style={{
+            width: "100%",
+            height: "80vh",
+            border: "none"
+          }}
+        />
+
+      </div>
+    );
+  }
 
   return (
 
@@ -135,9 +160,13 @@ function DocumentosAlumno({
       {documentos.map((doc)=>{
 
 
-        const informacion =
-          obtenerDocumento(doc.id);
+const informacion = obtenerDocumento(doc.id);
+const archivo = alumno.documentos?.[doc.id]?.archivo;
 
+console.log("ARCHIVO:", archivo);
+
+const nombreArchivo =
+  alumno.documentos?.[doc.id]?.nombreArchivo || `${doc.nombre}.pdf`;
 
 
         return (
@@ -184,15 +213,20 @@ function DocumentosAlumno({
             <div className="acciones-documento">
 
 
-              <button>
-                👁 Ver
-              </button>
+{archivo && (
+  <>
+    <button onClick={() => setDocumentoVer(archivo)}>
+      👁 Ver
+    </button>
 
-
-              <button>
-                ⬇ Descargar
-              </button>
-
+    <a
+      href={archivo}
+      download={nombreArchivo}
+    >
+      <button>⬇ Descargar</button>
+    </a>
+  </>
+)}
 
               <button
                 onClick={()=>

@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import ModuloAlumnos from "./ModuloAlumnos";
 import ExpedienteAlumno from "./ExpedienteAlumno";

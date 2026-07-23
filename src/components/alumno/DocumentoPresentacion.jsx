@@ -13,7 +13,7 @@ const [error, setError] = useState("");
 return (
 <div className="documento-card">
   
-<h3>Fase 3</h3>
+<h3>Fase 2 - Entrega de Carta de Presentación</h3>
     
      
 
@@ -100,9 +100,18 @@ if (nombre !== nombreEsperado) {
 </button>
 
       <p>
-        Carta de Presentación:
-        {alumnoActual.documentos.presentacion ? " ✅" : " ❌"}
-      </p>
+  Carta de Presentación:
+
+  {alumnoActual.documentos.presentacion?.estado === "pendiente"
+    ? " 🟡 Pendiente de revisión"
+    : alumnoActual.documentos.presentacion?.estado === "aprobado"
+    ? " 🟢 Aprobada"
+    : alumnoActual.documentos.presentacion?.estado === "rechazado"
+    ? " 🔴 Rechazada"
+    : " ❌ No entregada"
+  }
+
+</p>
     </div>
   );
 }

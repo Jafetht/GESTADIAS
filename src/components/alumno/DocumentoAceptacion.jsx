@@ -75,18 +75,18 @@ const [error, setError] = useState("");
       setArchivo(null);
       return;
     }
+if (file.size > 5 * 1024 * 1024) {
+  setError("❌ El archivo no debe superar los 5 MB.");
+  setArchivo(null);
+  return;
+}
 
-    if (file.size > 5 * 1024 * 1024) {
-      setError("❌ El archivo no debe superar los 5 MB.");
-      setArchivo(null);
-      return;
-
-    if (file.size === 0) {
+if (file.size === 0) {
   setError("❌ El archivo está vacío.");
   setArchivo(null);
   return;
 }
-    }
+    
 
 const nombreOriginal = file.name.toUpperCase();
 
