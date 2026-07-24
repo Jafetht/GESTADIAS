@@ -12,9 +12,21 @@ function Registro({
   setCarrera,
   curp,
   setCurp,
+  periodo,
+  setPeriodo,
+  anio,
+  setAnio,
   guardarEstudiante,
   setPantalla
 }) {
+
+const anioActual = new Date().getFullYear();
+
+const años = Array.from(
+  { length: 2100 - anioActual + 1 },
+  (_, i) => anioActual + i
+);
+
   return (
 
     <div className="registro-container">
@@ -24,12 +36,12 @@ function Registro({
 
 
         <h1>
-          Crear Cuenta
+          Crear Cuenta del Estudiante
         </h1>
 
 
         <p className="registro-descripcion">
-          Registra tus datos institucionales para iniciar tu proceso de Estadía Profesional.
+          Registra datos institucionales para que el estudiante inicie el proceso de Estadía Profesional.
         </p>
 
 
@@ -38,7 +50,7 @@ function Registro({
         <div className="seccion-registro">
 
           <h3>
-            👤 Datos personales
+            👤 Datos personales del estudiante
           </h3>
 
 
@@ -91,7 +103,7 @@ function Registro({
           >
 
             <option value="">
-              Selecciona tu carrera
+              Seleccion de carrera
             </option>
 
 
@@ -111,6 +123,79 @@ function Registro({
 
           </select>
 
+          <select
+  value={periodo}
+  onChange={(e) => setPeriodo(e.target.value)}
+>
+  <option value="">
+    Seleccionar periodo
+  </option>
+
+  <option value="Enero - Abril">
+    Enero - Abril
+  </option>
+
+  <option value="Mayo - Agosto">
+    Mayo - Agosto
+  </option>
+</select>
+
+
+<select
+  value={anio}
+  onChange={(e) => setAnio(e.target.value)}
+>
+  <option value="">
+    Seleccionar año
+  </option>
+
+{años.map((año) => (
+  <option
+    key={año}
+    value={año}
+  >
+    {año}
+  </option>
+))}
+
+</select>
+
+{periodo && (
+  <div className="generacion-preview">
+
+    <p>
+      🎓 Nivel académico:
+    </p>
+
+    <strong>
+      {periodo === "Enero - Abril"
+        ? "Licenciatura"
+        : "Técnico Superior Universitario (TSU)"
+      }
+    </strong>
+
+  </div>
+)}
+
+
+{periodo && anio && (
+  <div className="generacion-preview">
+
+    <p>
+      📅 Generación:
+    </p>
+
+    <strong>
+      {periodo} {anio} - {
+        periodo === "Enero - Abril"
+          ? "Licenciatura"
+          : "TSU"
+      }
+    </strong>
+
+  </div>
+)}
+
 
         </div>
 
@@ -118,7 +203,7 @@ function Registro({
 
 
         <button onClick={guardarEstudiante}>
-          Crear cuenta
+          Crear cuenta del estudiante
         </button>
 
 

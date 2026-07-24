@@ -24,6 +24,13 @@ function App() {
     const data = localStorage.getItem("gestadias_solicitudes_organizaciones");
     return data ? JSON.parse(data) : [];
   });
+  const [organizaciones, setOrganizaciones] = useState(() => {
+  const data = localStorage.getItem("gestadias_organizaciones");
+
+  return data
+    ? JSON.parse(data)
+    : padronOrganizaciones;
+});
   const eliminarAlumno = (matricula) => {
     const confirmar = confirm('¿Seguro que deseas eliminar este alumno?')
     if (!confirmar) return
@@ -43,6 +50,9 @@ function App() {
     '📢 Bienvenido a GESTADIAS',
     '⚠ Los estudiantes deben subir primero su Carta de Presentación',
     '📄 El sistema controla el avance por fases'])
+
+  const [periodo, setPeriodo] = useState('')
+  const [anio, setAnio] = useState('')  
   const [loginMatricula, setLoginMatricula] = useState('')
   const [matricula, setMatricula] = useState('')
   const [nombre, setNombre] = useState('')
@@ -60,42 +70,87 @@ function App() {
   });
   const [busqueda, setBusqueda] = useState('')
 
-  const guardarEstudiante = () => {
-    const nuevoEstudiante = {
-      matricula,
-      nombre,
-      correo,
-      carrera,
-      curp,
-      organizacion: '',
-      solicitudCambio: false,
-      motivoCambio: '',
-      fase: 1,
-      estatus: 'Registro completado',
-documentos: {
-  presentacion: {
-    archivo: null,
-    estado: "pendiente",
-    motivo: ""
-  },
+const guardarEstudiante = (alFinalizar) => {
 
-  aceptacion: {
-    archivo: null,
-    estado: "pendiente",
-    motivo: ""
-  },
+  if (
+    !matricula.trim() ||
+    !nombre.trim() ||
+    !correo.trim() ||
+    !carrera ||
+    !curp.trim() ||
+    !periodo ||
+    !anio
+  ) {
+    alert('⚠ Por favor, completa todos los campos del registro');
+    return;
+  }
 
-  compromiso: {
-    archivo: null,
-    estado: "pendiente",
-    motivo: ""
+  const nuevoEstudiante = {
+    matricula,
+    nombre,
+    correo,
+    carrera,
+    curp,
+    periodo,
+    anio,
+
+    nivelAcademico:
+      periodo === "Enero - Abril"
+        ? "Licenciatura"
+        : "TSU",
+
+    generacion:
+      `${periodo} ${anio} - ${
+        periodo === "Enero - Abril"
+          ? "Licenciatura"
+          : "TSU"
+      }`,
+
+    organizacion: '',
+    solicitudCambio: false,
+    motivoCambio: '',
+    fase: 1,
+    estatus: 'Registro completado',
+
+    documentos: {
+      presentacion: {
+        archivo: null,
+        estado: "pendiente",
+        motivo: ""
+      },
+
+      aceptacion: {
+        archivo: null,
+        estado: "pendiente",
+        motivo: ""
+      },
+
+      compromiso: {
+        archivo: null,
+        estado: "pendiente",
+        motivo: ""
+      }
+    }
+  };
+
+  setEstudiantes([...estudiantes, nuevoEstudiante]);
+
+  setMatricula('');
+  setNombre('');
+  setCorreo('');
+  setCarrera('');
+  setCurp('');
+  setPeriodo('');
+  setAnio('');
+
+  alert('Cuenta creada correctamente');
+
+  if (alFinalizar) {
+    alFinalizar();
+  } else {
+    setPantalla('inicio');
   }
-}
-    };
-    setEstudiantes([...estudiantes, nuevoEstudiante])
-    alert('Cuenta creada correctamente')
-    setPantalla('inicio')
-  }
+};
   const iniciarSesion = () => {
     const alumnoEncontrado = estudiantes.find((estudiante) => estudiante.matricula === loginMatricula)
     if (alumnoEncontrado) {
@@ -234,6 +289,14 @@ const [vistaVinculacion, setVistaVinculacion] = useState("alumnos");
       JSON.stringify(solicitudesOrganizaciones)
     );
   }, [solicitudesOrganizaciones]);
+
+useEffect(() => {
+  localStorage.setItem(
+    "gestadias_organizaciones",
+    JSON.stringify(organizaciones)
+  );
+}, [organizaciones]);
+
   const registrarSolicitudOrganizacion = (datos) => {
     setSolicitudesOrganizaciones([
       ...solicitudesOrganizaciones,
@@ -249,8 +312,8 @@ const [vistaVinculacion, setVistaVinculacion] = useState("alumnos");
     ]);
   };
 
-  const organizacionesFiltradas = alumnoActual
-    ? padronOrganizaciones.filter((organizacion) =>
+const organizacionesFiltradas = alumnoActual
+  ? organizaciones.filter((organizacion) =>
       organizacion.carrerasRelacionadas.some(
         (carrera) =>
           carrera.toLowerCase() === alumnoActual.carrera.toLowerCase()
@@ -354,22 +417,55 @@ const [vistaVinculacion, setVistaVinculacion] = useState("alumnos");
   if (pantalla === "vinculacion") {
     return (
       <DashboardVinculacion
-        estudiantes={estudiantes}
-        setEstudiantes={setEstudiantes}
-        solicitudesCambio={solicitudesCambio}
-        eliminarAlumno={eliminarAlumno}
-        editarAlumno={editarAlumno}
-        guardarEdicion={guardarEdicion}
-        alumnoEditando={alumnoEditando}
-        setAlumnoEditando={setAlumnoEditando}
-        busqueda={busqueda}
-        setBusqueda={setBusqueda}
-        setPantalla={setPantalla}
-        vistaVinculacion={vistaVinculacion}
-        setVistaVinculacion={setVistaVinculacion}
-      />
-    );
-  }
+estudiantes={estudiantes}
+setEstudiantes={setEstudiantes}
+
+busqueda={busqueda}
+setBusqueda={setBusqueda}
+
+matricula={matricula}
+setMatricula={setMatricula}
+
+nombre={nombre}
+setNombre={setNombre}
+
+correo={correo}
+setCorreo={setCorreo}
+
+carrera={carrera}
+setCarrera={setCarrera}
+
+curp={curp}
+setCurp={setCurp}
+
+  periodo={periodo}
+  setPeriodo={setPeriodo}
+
+  anio={anio}
+  setAnio={setAnio}
+
+guardarEstudiante={guardarEstudiante}
+eliminarAlumno={eliminarAlumno}
+
+setPantalla={setPantalla}
+
+solicitudesCambio={solicitudesCambio}
+editarAlumno={editarAlumno}
+
+guardarEdicion={guardarEdicion}
+
+alumnoEditando={alumnoEditando}
+setAlumnoEditando={setAlumnoEditando}
+
+
+vistaVinculacion={vistaVinculacion}
+setVistaVinculacion={setVistaVinculacion}
+
+organizaciones={organizaciones}
+setOrganizaciones={setOrganizaciones}
+/>
+);
+}
 
 if (pantalla === 'perfil') {
   return (

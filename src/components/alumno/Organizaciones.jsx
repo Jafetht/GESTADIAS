@@ -74,6 +74,7 @@ personalizada generada automáticamente con tus datos.
         <tr>
             <th>No.</th>
             <th>Organizaciones disponibles</th>
+            <th>Espacios disponibles</th>
             <th>Información</th>
             <th>Seleccionar</th>
         </tr>
@@ -85,6 +86,7 @@ personalizada generada automáticamente con tus datos.
                 <td>{index + 1}</td>
 
                 <td>{organizacion.nombre}</td>
+                <td>{organizacion.espaciosDisponibles || 0}</td>
 
                 <td>
                     <button

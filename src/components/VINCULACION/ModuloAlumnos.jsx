@@ -4,6 +4,7 @@ import { useState } from "react";
 function ModuloAlumnos({
   estudiantes,
   abrirAlumno,
+  eliminarAlumno,
   rutaAlumnos,
   guardarRuta
 }) {
@@ -278,6 +279,17 @@ Ver alumnos →
       </span>
 
     </div>
+
+
+    <button
+  className="btn-eliminar-alumno"
+  onClick={(e) => {
+    e.stopPropagation();
+    eliminarAlumno(alumno.matricula);
+  }}
+>
+  🗑 Borrar estudiante
+</button>
 
 
   </div>

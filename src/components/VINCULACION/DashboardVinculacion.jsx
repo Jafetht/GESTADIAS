@@ -1,16 +1,38 @@
 import { useState } from "react";
 import ModuloAlumnos from "./ModuloAlumnos";
 import ExpedienteAlumno from "./ExpedienteAlumno";
+import Registro from "../Registro";
+import Organizaciones from "./Organizaciones";
 
 function DashboardVinculacion({
   estudiantes,
   setEstudiantes,
   busqueda,
   setBusqueda,
-  setPantalla
+  setPantalla,
+  matricula,
+  setMatricula,
+  nombre,
+  setNombre,
+  correo,
+  setCorreo,
+  carrera,
+  setCarrera,
+  curp,
+  setCurp,
+  guardarEstudiante,
+  eliminarAlumno,
+  periodo,
+  setPeriodo,
+  anio,
+  setAnio,
+  organizaciones,
+  setOrganizaciones,
+  // demás props...
 }) {
 
   const [alumnoSeleccionado, setAlumnoSeleccionado] = useState(null);
+  const [vista, setVista] = useState("alumnos");
 
 
   const [rutaAlumnos, setRutaAlumnos] = useState({
@@ -179,9 +201,18 @@ function DashboardVinculacion({
 
 
         <button
-          onClick={() => setPantalla("inicio")}
-        >
+          onClick={() => setPantalla("inicio")}>
           Inicio
+        </button>
+
+        <button 
+          onClick={() => setVista("registro")}>
+          Registrar estudiante
+        </button>
+
+        <button 
+          onClick={() => setVista("organizaciones")}>
+          Organizaciones
         </button>
 
 
@@ -195,80 +226,62 @@ function DashboardVinculacion({
 
 
 
-        <input
+{vista === "alumnos" && (
+  <input
+    placeholder="Buscar alumno..."
+    value={busqueda}
+    onChange={(e) => setBusqueda(e.target.value)}
+  />
+)}
 
-          placeholder="Buscar alumno..."
+{
+  vista === "organizaciones" ? (
 
-          value={busqueda}
+    <Organizaciones
+      organizaciones={organizaciones}
+      setOrganizaciones={setOrganizaciones}
+    />
 
-          onChange={(e)=>
-            setBusqueda(e.target.value)
-          }
+  ) : vista === "registro" ? (
 
-        />
+    <Registro
+      matricula={matricula}
+      setMatricula={setMatricula}
+      nombre={nombre}
+      setNombre={setNombre}
+      correo={correo}
+      setCorreo={setCorreo}
+      carrera={carrera}
+      setCarrera={setCarrera}
+      curp={curp}
+      setCurp={setCurp}
+      guardarEstudiante={() =>
+        guardarEstudiante(() => setVista("alumnos"))
+      }
+      setPantalla={() => setVista("alumnos")}
+    />
 
-        {
-          alumnoSeleccionado ? (
+  ) : alumnoSeleccionado ? (
 
+    <ExpedienteAlumno
+      alumno={alumnoSeleccionado}
+      cerrar={() => setAlumnoSeleccionado(null)}
+      actualizarDocumento={actualizarDocumento}
+      subirDocumento={subirDocumento}
+    />
 
-            <ExpedienteAlumno
+  ) : (
 
-              alumno={alumnoSeleccionado}
+    <ModuloAlumnos
+      estudiantes={estudiantes}
+      abrirAlumno={(alumno) => setAlumnoSeleccionado(alumno)}
+      eliminarAlumno={eliminarAlumno}
+      rutaAlumnos={rutaAlumnos}
+      guardarRuta={(ruta) => setRutaAlumnos(ruta)}
+    />
 
-              cerrar={() =>
-                setAlumnoSeleccionado(null)
-              }
-
-              actualizarDocumento={
-                actualizarDocumento
-              }
-
-              subirDocumento={
-                subirDocumento
-              }
-
-            />
-
-
-          ) : (
-
-
-
-            <ModuloAlumnos
-
-
-              estudiantes={estudiantes}
-
-
-
-              abrirAlumno={(alumno)=>{
-
-                setAlumnoSeleccionado(alumno);
-
-              }}
-
-
-
-              rutaAlumnos={
-                rutaAlumnos
-              }
-
-
-
-              guardarRuta={(ruta)=>{
-
-                setRutaAlumnos(ruta);
-
-              }}
-
-
-            />
-
-
-
-          )
-
-        }
+  )
+}
 
 
 

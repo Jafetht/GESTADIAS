@@ -22,7 +22,7 @@ function Inicio({ setPantalla }){
       </h2>
 
       <h3>
-        Si eres alumno, inicia sesión o crea una cuenta para continuar
+        Si eres alumno, inicia sesión con tu matrícula para continuar
       </h3>
 
 
@@ -31,9 +31,7 @@ function Inicio({ setPantalla }){
       </button>
 
 
-      <button onClick={() => setPantalla('registro')}>
-        Crear Cuenta
-      </button>
+
 
 
       <button onClick={() => setPantalla('vinculacion')}>
