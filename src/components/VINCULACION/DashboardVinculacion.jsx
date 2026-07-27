@@ -247,14 +247,25 @@ function DashboardVinculacion({
     <Registro
       matricula={matricula}
       setMatricula={setMatricula}
+
       nombre={nombre}
       setNombre={setNombre}
+
       correo={correo}
       setCorreo={setCorreo}
+
       carrera={carrera}
       setCarrera={setCarrera}
+
       curp={curp}
       setCurp={setCurp}
+      
+      periodo={periodo}
+      setPeriodo={setPeriodo}
+
+      anio={anio}
+      setAnio={setAnio}
+
       guardarEstudiante={() =>
         guardarEstudiante(() => setVista("alumnos"))
       }

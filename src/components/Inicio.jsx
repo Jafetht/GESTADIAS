@@ -64,40 +64,34 @@ function Inicio({ setPantalla }){
 
 
 
-      <div className="fases-panel">
+<div className="fases-panel">
 
-        <h3>
-          Fases de Estadía
-        </h3>
+<h3>Fases de Estadía</h3>
 
 
-        <div className="fase activa">
-          1. Registro del alumno
-        </div>
+<div className="fase activa">
+  1. Organizaciones
+</div>
 
-        <div className="fase">
-          2. Selección de organización
-        </div>
+<div className="fase">
+  2. Carta de Presentación
+</div>
 
-        <div className="fase">
-          3. Carta de Presentación
-        </div>
+<div className="fase">
+  3. Carta de Aceptación
+</div>
 
-        <div className="fase">
-          4. Carta de Aceptación
-        </div>
+<div className="fase">
+  4. Carta Compromiso
+</div>
 
-        <div className="fase">
-          5. Carta Compromiso
-        </div>
+<div className="fase">
+  5. Estadía Activa
+</div>
 
-        <div className="fase">
-          6. Estadía Activa
-        </div>
-
-        <div className="fase">
-          7. Liberación Final
-        </div>
+<div className="fase">
+  6. Liberación Final
+</div>
 
       </div>
 

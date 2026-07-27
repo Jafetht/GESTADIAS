@@ -106,7 +106,6 @@ function ExpedienteAlumno({
         </button>
 
 
-
         <button
           className={
             pestana === "documentos"
@@ -121,29 +120,7 @@ function ExpedienteAlumno({
         </button>
 
 
-
-        <button
-          className={
-            pestana === "observaciones"
-            ? "tab-activa"
-            : "tab"
-          }
-          onClick={() =>
-            setPestana("observaciones")
-          }
-        >
-          Observaciones
-        </button>
-
-
-
       </div>
-
-
-
-
-
-
 
       {
         pestana === "datos" && (
@@ -167,7 +144,6 @@ function ExpedienteAlumno({
               </div>
 
 
-
               <div className="dato-card">
 
                 <span>
@@ -179,7 +155,6 @@ function ExpedienteAlumno({
                 </strong>
 
               </div>
-
 
 
               <div className="dato-card">
@@ -195,7 +170,6 @@ function ExpedienteAlumno({
               </div>
 
 
-
               <div className="dato-card">
 
                 <span>
@@ -207,7 +181,6 @@ function ExpedienteAlumno({
                 </strong>
 
               </div>
-
 
 
               <div className="dato-card">
@@ -224,7 +197,6 @@ function ExpedienteAlumno({
                 </strong>
 
               </div>
-
 
 
               <div className="dato-card">
@@ -248,13 +220,6 @@ function ExpedienteAlumno({
         )
       }
 
-
-
-
-
-
-
-
       {
         pestana === "documentos" && (
 
@@ -271,65 +236,10 @@ function ExpedienteAlumno({
         )
       }
 
-
-
-
-
-
-
-
-      {
-        pestana === "observaciones" && (
-
-          <div className="panel-expediente">
-
-
-            <h3>
-              📝 Observaciones del alumno
-            </h3>
-
-
-
-            <textarea
-
-              className="campo-observaciones"
-
-              rows="8"
-
-              placeholder="
-              Escriba observaciones sobre el alumno,
-              seguimiento de estadía o comentarios importantes...
-              "
-
-            />
-
-
-
-            <br />
-
-
-
-            <button
-              className="btn-guardar-observacion"
-            >
-              💾 Guardar observación
-            </button>
-
-
-
-          </div>
-
-        )
-      }
-
-
-
-
     </div>
 
   );
 
 }
-
 
 export default ExpedienteAlumno;

@@ -10,7 +10,7 @@ function DocumentoCompromiso({
 
  return (
   <div className="documento-card">
-<h3>Fase 5</h3>
+<h3>Fase 4</h3>
 
  <h4>Instrucciones para la Carta de Compromiso</h4>
 <div className="instrucciones">

@@ -188,10 +188,6 @@ function DocumentosAlumno({
               </button>
 
 
-              <button>
-                ⬇ Descargar
-              </button>
-
 
               <button
                 onClick={()=>

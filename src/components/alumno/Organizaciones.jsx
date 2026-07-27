@@ -53,7 +53,7 @@ const enviarSolicitud = () => {
     <>
             {!alumnoActual.organizacion && (
                 <>
-          <h3>Fase 2</h3>
+          <h3>Fase 1</h3>
 
           <h3>"Una vez que una organización te haya aceptado, selecciónala aquí."</h3>
 

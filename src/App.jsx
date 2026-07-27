@@ -109,8 +109,8 @@ const guardarEstudiante = (alFinalizar) => {
     organizacion: '',
     solicitudCambio: false,
     motivoCambio: '',
-    fase: 1,
-    estatus: 'Registro completado',
+    fase: 0,
+    estatus: 'Pendiente de selección de organización',
 
     documentos: {
       presentacion: {
@@ -162,14 +162,14 @@ const guardarEstudiante = (alFinalizar) => {
   }
   const avisosAlumno = []
   if (alumnoActual) {
-    if (alumnoActual.fase >= 3 && !alumnoActual.documentos.presentacion) {
+    if (alumnoActual.fase >= 2 && !alumnoActual.documentos.presentacion) {
       avisosAlumno.push('⚠ Debes subir la Carta de Presentación para continuar a la siguiente fase')
     }
     if (alumnoActual.documentos.presentacion && !alumnoActual.documentos.aceptacion) {
-      avisosAlumno.push('📌 Sube la Carta de Aceptación para avanzar a la Fase 5')
+      avisosAlumno.push('📌 Sube la Carta de Aceptación para avanzar a la Fase 4')
     }
     if (alumnoActual.documentos.aceptacion && !alumnoActual.documentos.compromiso) {
-      avisosAlumno.push('📄 Sube la Carta Compromiso para avanzar a la Fase 6')
+      avisosAlumno.push('📄 Sube la Carta Compromiso para avanzar a la Fase 5')
     }
   }
   const cerrarSesion = () => {
@@ -244,7 +244,7 @@ const guardarEstudiante = (alFinalizar) => {
           ...alumnoActual.documentos,
           compromiso: true
         },
-        fase: 6,
+        fase: 5,
         estatus: 'Estadía autorizada'
       }
 
@@ -333,7 +333,7 @@ const organizacionesFiltradas = alumnoActual
   const seleccionarOrganizacion = (organizacion) => {
     setDatosTransicion({
       titulo: "Registrando organización...",
-      mensaje: "Preparando la Fase 2 de tu proceso de estadía."
+      mensaje: "Preparando la Fase 1 de tu proceso de estadía."
     });
 
     setMostrarTransicion(true);
@@ -580,6 +580,10 @@ if (pantalla === 'registro') {
       setCurp={setCurp}
       guardarEstudiante={guardarEstudiante}
       setPantalla={setPantalla}
+      periodo={periodo}
+      setPeriodo={setPeriodo}
+      anio={anio}
+      setAnio={setAnio}
     />
   )
 }
@@ -650,7 +654,7 @@ if (alumnoActual) {
         </div>
       </div>
 
-      {alumnoActual.fase <= 2 && (
+      {alumnoActual.fase <= 1 && (
         <Organizaciones
           alumnoActual={alumnoActual}
           organizacionesFiltradas={organizacionesFiltradas}
@@ -681,10 +685,10 @@ if (alumnoActual) {
           />
         )}
 
-      {alumnoActual.fase === 6 && (
+      {alumnoActual.fase === 5 && (
         <div className="fase-final">
 
-          <h3>🎉 Fase 6 - Estadía Activa</h3>
+          <h3>🎉 Fase 5 - Estadía Activa</h3>
 
           <h4>¡Felicidades continúa con éxito tu Estadía Profesional!</h4>
 
@@ -709,11 +713,11 @@ if (alumnoActual) {
             <h4>Resumen de fases concluidas</h4>
 
             <ul>
-              <li>✅ Registro de estudiante completado</li>
-              <li>✅ Selección de organización realizada</li>
+              <li>✅ Organización seleccionada</li>
               <li>✅ Carta de Presentación entregada</li>
               <li>✅ Carta de Aceptación entregada</li>
               <li>✅ Carta Compromiso entregada</li>
+              <li>✅ Estadía Profesional activa</li>
             </ul>
 
           </div>

@@ -13,7 +13,7 @@ const [error, setError] = useState("");
 return (
 <div className="documento-card">
   
-<h3>Fase 3</h3>
+<h3>Fase 2</h3>
     
      
 
