@@ -177,32 +177,44 @@ const guardarEstudiante = (alFinalizar) => {
     localStorage.removeItem('gestadias_alumno_actual')
     setPantalla('inicio')
   }
-  const subirCartaPresentacion = (archivo) => {
-    setDatosTransicion({
-      titulo: "Validando Carta de Presentación...",
-      mensaje: "Actualizando tu expediente y preparando la siguiente fase."
-    });
-    setMostrarTransicion(true);
-    setTimeout(() => {
-      const actualizado = {
-        ...alumnoActual,
-        documentos: {
-          ...alumnoActual.documentos,
-          presentacion: true
-        },
-        fase: 3,
-        estatus: 'Carta de Presentación subida'
+const subirCartaPresentacion = async (archivo) => {
+
+  const formData = new FormData();
+
+  formData.append("archivo", archivo);
+  formData.append("matricula", alumnoActual.matricula);
+  formData.append("tipo", "presentacion");
+
+
+  try {
+
+    const respuesta = await fetch(
+      "http://localhost:3001/documentos/subir",
+      {
+        method:"POST",
+        body:formData
       }
-      setAlumnoActual(actualizado)
-      setEstudiantes(
-        estudiantes.map((estudiante) =>
-          estudiante.matricula === actualizado.matricula
-            ? actualizado
-            : estudiante
-        ))
-      setMostrarTransicion(false);
-    }, 2500);
+    );
+
+
+    const datos = await respuesta.json();
+
+
+    console.log(datos);
+
+
+    alert("PDF subido correctamente");
+
+
+  } catch(error){
+
+    console.error(error);
+
+    alert("Error al subir PDF");
+
   }
+
+};
   const subirCartaAceptacion = () => {
     setDatosTransicion({
       titulo: "Validando Carta de Aceptación...",

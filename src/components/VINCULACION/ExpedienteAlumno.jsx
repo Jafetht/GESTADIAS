@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DocumentosAlumno from "./DocumentosAlumno";
 
 
@@ -10,6 +10,37 @@ function ExpedienteAlumno({
 
 
   const [pestana, setPestana] = useState("datos");
+  const [documentos, setDocumentos] = useState([]);
+  
+
+useEffect(() => {
+
+  if(!alumno) return;
+
+
+  fetch(
+    `http://localhost:3001/documentos/alumno/${alumno.matricula}`
+  )
+  .then(res => res.json())
+  .then(data => {
+
+    console.log("DOCUMENTOS RECIBIDOS:", data);
+
+    setDocumentos(data);
+
+  })
+  .catch(error => {
+
+    console.error(
+      "Error cargando documentos:",
+      error
+    );
+
+  });
+
+
+}, [alumno]); 
+
 
 
   if (!alumno) return null;
@@ -223,15 +254,15 @@ function ExpedienteAlumno({
       {
         pestana === "documentos" && (
 
-          <DocumentosAlumno
+<DocumentosAlumno
 
-            alumno={alumno}
+  alumno={alumno}
 
-            actualizarDocumento={
-              actualizarDocumento
-            }
+  documentos={documentos || []}
 
-          />
+  actualizarDocumento={actualizarDocumento}
+
+/>
 
         )
       }

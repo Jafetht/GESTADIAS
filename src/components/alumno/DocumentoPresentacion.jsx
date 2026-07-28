@@ -92,11 +92,11 @@ if (nombre !== nombreEsperado) {
   </p>
 )}
 
-      <button
-  disabled={!archivo || error !== ""}
+<button
+  disabled={!archivo}
   onClick={() => subirCartaPresentacion(archivo)}
 >
-  Subir Carta de Presentación
+  Subir PDF
 </button>
 
       <p>

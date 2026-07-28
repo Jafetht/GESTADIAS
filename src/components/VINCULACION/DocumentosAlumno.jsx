@@ -1,100 +1,94 @@
+import { useState } from "react";
+
+
 function DocumentosAlumno({
   alumno,
-  actualizarDocumento,
-  subirDocumento
+  documentos = [],
+  actualizarDocumento
 }) {
 
+const [pdfSeleccionado, setPdfSeleccionado] = useState(null);
 
-  const documentos = [
-    {
-      id: "presentacion",
-      nombre: "Carta de Presentación"
-    },
-    {
-      id: "aceptacion",
-      nombre: "Carta de Aceptación"
-    },
-    {
-      id: "compromiso",
-      nombre: "Carta Compromiso"
-    }
-  ];
-
-
-  const obtenerDocumento = (id) => {
-
-    const documento = alumno.documentos?.[id];
+const listaDocumentos = [
+  {
+    id: "presentacion",
+    nombre: "Carta de Presentación"
+  },
+  {
+    id: "aceptacion",
+    nombre: "Carta de Aceptación"
+  },
+  {
+    id: "compromiso",
+    nombre: "Carta Compromiso"
+  }
+];
 
 
-    if (documento === true) {
+const obtenerDocumento = (tipo) => {
 
-      return {
-        estado: "Aprobado",
-        clase: "aprobado",
-        archivo: "Documento registrado"
-      };
-
-    }
+  const documento = documentos.find(
+    doc => doc.tipo === tipo
+  );
 
 
-    if (documento === false || !documento) {
-
-      return {
-        estado: "No entregado",
-        clase: "rechazado",
-        archivo: "Sin archivo"
-      };
-
-    }
-
-
-    if (documento.estado === "rechazado") {
-
-      return {
-        estado: "Rechazado",
-        clase: "rechazado",
-        archivo: documento.archivo
-          ? "Archivo cargado"
-          : "Sin archivo"
-      };
-
-    }
-
-
-    if (documento.estado === "aprobado") {
-
-      return {
-        estado: "Aprobado",
-        clase: "aprobado",
-        archivo: documento.archivo
-          ? "Archivo cargado"
-          : "Documento validado"
-      };
-
-    }
-
+  if(!documento){
 
     return {
-
-      estado:"Pendiente",
-      clase:"pendiente",
-      archivo: documento.archivo
-        ? "Archivo cargado"
-        : "Sin archivo"
-
+      estado:"No entregado",
+      clase:"rechazado",
+      archivo:"Sin archivo"
     };
 
+  }
+
+
+  if(documento.estado === "aprobado"){
+
+    return {
+      estado:"Aprobado",
+      clase:"aprobado",
+      archivo:documento.nombre_archivo
+    };
+
+  }
+
+
+  if(documento.estado === "rechazado"){
+
+    return {
+      estado:"Rechazado",
+      clase:"rechazado",
+      archivo:documento.nombre_archivo
+    };
+
+  }
+
+
+  return {
+    estado:"Pendiente",
+    clase:"pendiente",
+    archivo:documento.nombre_archivo
   };
 
+};
 
 
-  const aprobar = (tipo) => {
 
-    actualizarDocumento(tipo,{
-      estado:"aprobado"
-    });
+const aprobar = (tipo)=>{
 
-  };
+ const documento = documentos.find(
+   d=>d.tipo===tipo
+ );
+
+ if(!documento) return;
+
+
+ actualizarDocumento(documento.id,{
+   estado:"aprobado"
+ });
+
+};
 
 
 
@@ -108,10 +102,16 @@ function DocumentosAlumno({
     if(!motivo) return;
 
 
-    actualizarDocumento(tipo,{
-      estado:"rechazado",
-      motivo
-    });
+const documento = documentos.find(
+ d => d.tipo === tipo
+);
+
+if(!documento) return;
+
+actualizarDocumento(documento.id,{
+ estado:"rechazado",
+ motivo
+});
 
   };
 
@@ -131,7 +131,7 @@ function DocumentosAlumno({
       <div className="documentos-grid">
 
 
-      {documentos.map((doc)=>{
+      {listaDocumentos.map((doc)=>{
 
 
         const informacion =
@@ -183,9 +183,25 @@ function DocumentosAlumno({
             <div className="acciones-documento">
 
 
-              <button>
-                👁 Ver
-              </button>
+<button
+  onClick={() => {
+
+    const documentoReal = documentos?.find(
+  d => d.tipo === doc.id
+);
+
+    if(documentoReal){
+
+      setPdfSeleccionado(
+  `http://localhost:3001/${documentoReal.ruta_archivo.replaceAll("\\","/")}`
+);
+
+    }
+
+  }}
+>
+👁 Ver
+</button>
 
 
 
@@ -219,6 +235,32 @@ function DocumentosAlumno({
 
 
       </div>
+
+
+      {pdfSeleccionado && (
+
+  <div className="visor-pdf">
+
+    <h3>
+      Vista previa del documento
+    </h3>
+
+    <iframe
+      src={pdfSeleccionado}
+      width="100%"
+      height="700px"
+      title="Vista previa PDF"
+    />
+
+    <button
+      onClick={() => setPdfSeleccionado(null)}
+    >
+      Cerrar visor
+    </button>
+
+  </div>
+
+)}
 
 
     </div>
