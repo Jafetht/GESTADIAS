@@ -1,8 +1,15 @@
 body {
-  margin: 0;
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background: #0a0a0f;
-  color: #e5e7eb;
+  margin:0;
+  font-family:'Segoe UI', Arial, sans-serif;
+
+  background:
+  linear-gradient(
+    135deg,
+    #ffffff,
+    #f3f4f6
+  );
+
+  color:#2b2b2b;
 }
 
 /* CONTENEDOR PRINCIPAL */
@@ -12,14 +19,18 @@ body {
 }
 
 /* TITULOS */
-h1, h2, h3 {
-  color: #eaf2ff;
-  text-shadow: 0 0 10px rgba(0, 170, 255, 0.25);
+h1,h2,h3 {
+
+color:#7f1d3d;
+
+text-shadow:
+0 3px 10px rgba(127,29,61,.15);
+
 }
 
 /* BOTONES */
 button {
-  background: linear-gradient(135deg, #38bdf8, #1e3a8a);
+  background: linear-gradient(135deg, #7f1d3d,#4a0f1f);
   color: white;
   border: none;
   padding: 10px 16px;
@@ -30,9 +41,21 @@ button {
   transition: 0.3s ease;
   box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
 }
-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 18px rgba(56, 189, 248, 0.6);
+
+button:hover{
+
+transform:translateY(-3px);
+
+box-shadow:
+0 0 25px rgba(212,175,55,.8);
+
+}
+
+.content{
+ width:100%;
+ max-width:1400px;
+ margin:auto;
+ padding:40px;
 }
 
 /* INPUTS */
@@ -44,7 +67,7 @@ input {
   border-radius: 8px;
   border: 1px solid rgba(255,255,255,0.1);
   background: rgba(255,255,255,0.05);
-  color: white;
+  color: rgb(131, 4, 4);
   outline: none;
 }
 input:focus {
@@ -89,7 +112,7 @@ input:focus {
   border-radius:14px;
   border-left:
   5px solid #334155;
-  color:#e5e7eb;
+  color:#000000;
   transition:.35s ease;
   box-shadow:
   0 0 15px rgba(0,0,0,.25);
@@ -107,7 +130,7 @@ input:focus {
   0 0 25px rgba(56,189,248,.35),
   inset 0 0 15px rgba(56,189,248,.08);
   font-weight:bold;
-  color:#ffffff;
+  color:#000000;
   transform:scale(1.02);
 }
 .fase:hover {
@@ -116,70 +139,195 @@ input:focus {
   rgba(255,255,255,.10);
 }
 
-/* DASHBOARD VINCULACIÓN */
+/* ================================= */
+/* NUEVO DISEÑO PANEL VINCULACIÓN */
+/* WHITE + GUINDA + DORADO */
+/* ================================= */
+
 .dashboard-vinculacion {
-  display: flex;
-  min-height: 100vh;
-  color: white;
+  background:
+  linear-gradient(
+    135deg,
+    #ffffff,
+    #f8fafc
+  );
+
+  color:#1f2937;
 }
+
 
 /* SIDEBAR */
-.sidebar {
-  width: 220px;
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(10px);
-  padding: 20px;
-  border-right: 1px solid rgba(255,255,255,0.1);
+
+.dashboard-vinculacion .sidebar {
+
+  background:
+  linear-gradient(
+    180deg,
+    #7f1d3d,
+    #4a0f1f
+  );
+
+  color:white;
+
+  border-right:
+  3px solid #d4af37;
+
+  box-shadow:
+  5px 0 25px rgba(127,29,61,.25);
+
 }
-.sidebar button {
-  display: block;
-  width: 100%;
-  margin: 10px 0;
+
+
+/* BOTONES MENU */
+
+.dashboard-vinculacion .sidebar button {
+
+  background:
+  rgba(255,255,255,.12);
+
+  border:
+  1px solid rgba(255,255,255,.25);
+
+  color:white;
+
 }
+
+
+.dashboard-vinculacion .sidebar button:hover {
+
+  background:#d4af37;
+
+  color:#4a0f1f;
+
+  transform:translateX(5px);
+
+}
+
 
 /* CONTENIDO */
-.content {
-  flex: 1;
-  padding: 30px;
+
+.dashboard-vinculacion .content {
+
+  background:
+  transparent;
+
 }
 
-/* KPI */
-.kpi-container {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
+
+/* TARJETAS DEL PANEL */
+
+.card-modulo,
+.modulo-opcion {
+
+  background:
+  linear-gradient(
+    145deg,
+    #ffffff,
+    #f9fafb
+  );
+
+  border:
+  1px solid rgba(127,29,61,.18);
+
+  box-shadow:
+  0 15px 35px rgba(0,0,0,.12);
+
 }
-.kpi-card {
-  width: 220px;
-  padding: 18px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 14px;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-  transition: 0.3s;
-  text-align: center;
+
+
+/* TITULOS DE TARJETAS */
+
+.card-modulo h3,
+.modulo-opcion h3 {
+
+  color:#7f1d3d;
+
+  text-shadow:
+  0 0 8px rgba(212,175,55,.35);
+
 }
-.kpi-card:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.1);
+
+
+/* TEXTO */
+
+.card-modulo p,
+.modulo-opcion p {
+
+  color:#374151;
+
 }
-.kpi-card h2 {
-  font-size: 2rem;
-  color: #00ffcc;
-  margin-bottom: 5px;
+
+
+/* BOTONES VER CARRERAS */
+
+.card-modulo button {
+
+  background:
+  linear-gradient(
+    135deg,
+    #7f1d3d,
+    #4a0f1f
+  );
+
+  color:white;
+
+  border:
+  1px solid #d4af37;
+
 }
-.kpi-card p {
-  font-size: 0.9rem;
-  color: #ccc;
+
+
+.card-modulo button:hover {
+
+  background:
+  linear-gradient(
+    135deg,
+    #d4af37,
+    #b8860b
+  );
+
+  color:#4a0f1f;
+
+  box-shadow:
+  0 0 20px rgba(212,175,55,.6);
+
 }
-.kpi-label {
-  color: #8b8b8b;
-  font-size: 0.85rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-top: 6px;
+
+
+/* TITULO PRINCIPAL DEL PANEL */
+
+.dashboard-vinculacion h1,
+.dashboard-vinculacion h2 {
+
+  color:#7f1d3d;
+
+}
+
+
+/* BUSCADOR */
+
+.dashboard-vinculacion input {
+
+  background:white;
+
+  color:#111827;
+
+  border:
+  1px solid rgba(127,29,61,.25);
+
+  box-shadow:
+  0 5px 15px rgba(0,0,0,.08);
+
+}
+
+
+.dashboard-vinculacion input:focus {
+
+  border-color:#d4af37;
+
+  box-shadow:
+  0 0 15px rgba(212,175,55,.5);
+
 }
 
 /* ALUMNO PANEL */
@@ -289,7 +437,7 @@ select{
   border-radius:8px;
   border:1px solid rgba(255,255,255,.1);
   background:rgba(255,255,255,.05);
-  color:white;
+  color:rgb(15, 13, 13);
   outline:none;
   backdrop-filter:blur(10px);
   transition:.3s;
@@ -1563,27 +1711,147 @@ button:disabled {
 
 }
 
+/* =============================== */
+/* DOCUMENTOS EXPEDIENTE ALUMNO */
+/* =============================== */
+
 .documentos-grid{
 
     display:grid;
-
     grid-template-columns:
     repeat(auto-fit,minmax(280px,1fr));
 
-    gap:20px;
+    gap:25px;
 
 }
 
 
+/* TARJETA DOCUMENTO */
+
 .documento-card{
 
-    background:#111827;
+    background:
+    rgba(255,255,255,.75);
 
-    padding:22px;
+    backdrop-filter:blur(15px);
 
-    border-radius:18px;
+    padding:25px;
 
-    border:1px solid rgba(255,255,255,.08);
+    border-radius:20px;
+
+    border:
+    1px solid rgba(127,29,61,.18);
+
+    box-shadow:
+    0 12px 30px rgba(0,0,0,.12);
+
+    transition:.3s ease;
+
+}
+
+
+.documento-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+    0 0 25px rgba(127,29,61,.25);
+
+}
+
+
+
+/* TITULO DEL DOCUMENTO */
+
+.documento-card h3{
+
+    color:#7f1d3d;
+
+    font-size:22px;
+
+    text-shadow:none;
+
+}
+
+
+
+/* ESTADO */
+
+.estado-documento{
+
+    font-weight:bold;
+
+}
+
+
+/* PENDIENTE */
+
+.estado-documento.pendiente{
+
+    color:#b8860b;
+
+}
+
+
+/* APROBADO */
+
+.estado-documento.aprobado{
+
+    color:#15803d;
+
+}
+
+
+/* RECHAZADO */
+
+.estado-documento.rechazado{
+
+    color:#b91c1c;
+
+}
+
+
+
+/* NOMBRE DEL ARCHIVO */
+
+.documento-card p{
+
+    color:#374151;
+
+}
+
+
+
+/* BOTONES */
+
+.acciones-documento button{
+
+    background:
+    linear-gradient(
+        135deg,
+        #7f1d3d,
+        #b8860b
+    );
+
+    color:white;
+
+    border:none;
+
+    border-radius:10px;
+
+    padding:10px 16px;
+
+    font-weight:bold;
+
+}
+
+
+.acciones-documento button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 0 15px rgba(184,134,11,.5);
 
 }
 
@@ -1723,21 +1991,32 @@ button:disabled {
 }
 
 
+
 /* ================================= */
-/* PADRÓN DE ORGANIZACIONES */
+/* PADRÓN ORGANIZACIONES WHITE MODE */
 /* ================================= */
 
 .modulo-organizaciones {
-  width: 100%;
-  padding: 16px;
 
-  box-sizing: border-box;
+  width:100%;
 
-  background: rgba(255, 255, 255, 0.035);
+  padding:30px;
 
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-sizing:border-box;
 
-  border-radius: 14px;
+  background:
+  rgba(255,255,255,.75);
+
+  backdrop-filter:blur(15px);
+
+  border-radius:25px;
+
+  border:
+  1px solid rgba(127,29,61,.15);
+
+  box-shadow:
+  0 15px 35px rgba(0,0,0,.12);
+
 }
 
 
@@ -1746,20 +2025,23 @@ button:disabled {
 /* ================================= */
 
 .modulo-organizaciones h2 {
-  margin: 0 0 5px;
 
-  color: #38bdf8;
+  color:#7f1d3d;
 
-  font-size: 1.2rem;
+  font-size:28px;
+
+  text-shadow:
+  0 0 10px rgba(127,29,61,.25);
+
 }
 
 
 .modulo-organizaciones p {
-  margin: 0 0 15px;
 
-  color: #94a3b8;
+  color:#6b7280;
 
-  font-size: 0.78rem;
+  font-size:15px;
+
 }
 
 
@@ -1768,21 +2050,25 @@ button:disabled {
 /* ================================= */
 
 .tabla-organizaciones {
-  width: 100%;
 
-  border-collapse: separate;
+    width:100%;
 
-  border-spacing: 0;
+    border-collapse:separate;
 
-  table-layout: fixed;
+    border-spacing:0;
 
-  overflow: hidden;
+    background:white;
 
-  border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius:18px;
 
-  border-radius: 10px;
+    overflow:hidden;
 
-  font-size: 0.75rem;
+    border:
+    1px solid rgba(127,29,61,.15);
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.10);
+
 }
 
 
@@ -1791,19 +2077,27 @@ button:disabled {
 /* ================================= */
 
 .tabla-organizaciones th {
-  padding: 10px 12px;
 
-  background: rgba(30, 58, 138, 0.7);
 
-  color: #ffffff;
+background:
+linear-gradient(
+135deg,
+#b8860b
+);
 
-  font-size: 0.7rem;
 
-  font-weight: 600;
+color:white;
 
-  text-align: left;
 
-  vertical-align: middle;
+padding:15px;
+
+
+font-size:.85rem;
+
+
+text-align:center;
+
+
 }
 
 
@@ -1812,15 +2106,21 @@ button:disabled {
 /* ================================= */
 
 .tabla-organizaciones td {
-  padding: 11px 12px;
 
-  color: #e5e7eb;
 
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+padding:14px;
 
-  vertical-align: top;
 
-  line-height: 1.45;
+color:#374151;
+
+
+border-bottom:
+1px solid rgba(127,29,61,.12);
+
+
+font-size:.85rem;
+
+
 }
 
 
@@ -1922,7 +2222,7 @@ button:disabled {
 
 .tabla-organizaciones td:nth-child(2) {
 
-  color: #38bdf8;
+  color:#31121c;
 
   font-weight: 600;
 
@@ -2003,7 +2303,8 @@ button:disabled {
 
 .tabla-organizaciones th:not(:last-child),
 .tabla-organizaciones td:not(:last-child) {
-  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  border-right:
+3px solid rgba(127,29,61,.15);
 }
 
 /* ================================= */
@@ -2017,9 +2318,19 @@ button:disabled {
 }
 
 
-.tabla-organizaciones tbody tr:hover {
+.tabla-organizaciones tbody tr:hover{
 
-  background: rgba(56, 189, 248, 0.06);
+
+background:
+rgba(127,29,61,.08);
+
+
+transform:
+scale(1.01);
+
+
+transition:.3s;
+
 
 }
 
@@ -2030,37 +2341,40 @@ button:disabled {
 
 .tabla-organizaciones button {
 
-  padding: 6px 8px;
 
-  border: none;
+background:
+linear-gradient(
+135deg,
+#7f1d3d,
+#b8860b
+);
 
-  border-radius: 6px;
 
-  background: linear-gradient(
-    135deg,
-    #38bdf8,
-    #1e3a8a
-  );
+color:white;
 
-  color: #ffffff;
 
-  font-size: 0.65rem;
+border-radius:10px;
 
-  cursor: pointer;
 
-  white-space: nowrap;
+padding:8px 14px;
 
-  transition: all 0.2s ease;
+
+font-weight:bold;
+
 
 }
 
 
 .tabla-organizaciones button:hover {
 
-  transform: translateY(-1px);
 
-  box-shadow:
-    0 0 10px rgba(56, 189, 248, 0.45);
+transform:
+translateY(-3px);
+
+
+box-shadow:
+0 0 18px rgba(184,134,11,.55);
+
 
 }
 
@@ -2274,3 +2588,434 @@ button:disabled {
 
 }
 
+.avisos-panel,
+.fases-panel,
+.alumno-card,
+.kpi-card {
+
+
+background:
+rgba(255,255,255,.95);
+
+
+border:
+1px solid rgba(127,29,61,.18);
+
+
+box-shadow:
+
+0 20px 45px rgba(0,0,0,.12);
+
+
+border-radius:24px;
+
+
+}
+
+/* TEXTO DE LAS FASES EN NEGRO */
+.fase,
+.fase h3,
+.fase h4,
+.fase p {
+  color: #000000;
+}
+
+/* ================================= */
+/* TARJETAS GENERACIONES */
+/* TSU Y LICENCIATURA */
+/* ================================= */
+
+.card-modulo {
+
+  background:
+  rgba(107,114,128,0.15);
+
+  backdrop-filter:
+  blur(15px);
+
+  border:
+  1px solid rgba(127,29,61,0.25);
+
+  box-shadow:
+  0 10px 25px rgba(0,0,0,.12);
+
+}
+
+
+/* TITULO */
+
+.card-modulo h3 {
+
+  color:#7f1d3d;
+
+}
+
+
+/* DESCRIPCIÓN */
+
+.card-modulo p {
+
+  color:#374151;
+
+}
+
+
+/* EFECTO AL PASAR MOUSE */
+
+.card-modulo:hover {
+
+  background:
+  rgba(107,114,128,0.25);
+
+  transform:
+  translateY(-5px);
+
+  box-shadow:
+  0 15px 35px rgba(127,29,61,.25);
+
+}
+
+/* ================================= */
+/* GESTIÓN DE ALUMNOS */
+/* PANEL VINCULACIÓN */
+/* ================================= */
+
+.dashboard-vinculacion .modulo-alumnos {
+
+  background:
+  rgba(255,255,255,.75);
+
+  backdrop-filter:
+  blur(15px);
+
+  border:
+  1px solid rgba(127,29,61,.18);
+
+  border-radius:22px;
+
+  padding:30px;
+
+  box-shadow:
+  0 15px 35px rgba(0,0,0,.12);
+
+}
+
+
+/* TITULO */
+
+.dashboard-vinculacion .modulo-alumnos h2 {
+
+  color:#7f1d3d;
+
+  text-shadow:
+  0 0 10px rgba(212,175,55,.3);
+
+}
+
+
+/* BOTÓN REGRESAR */
+
+.dashboard-vinculacion .btn-regresar {
+
+  background:
+  linear-gradient(
+    135deg,
+    #7f1d3d,
+    #4a0f1f
+  );
+
+  color:white;
+
+  border:
+  1px solid #d4af37;
+
+  padding:
+  10px 20px;
+
+  border-radius:12px;
+
+  font-weight:bold;
+
+}
+
+
+.dashboard-vinculacion .btn-regresar:hover {
+
+  background:
+  linear-gradient(
+    135deg,
+    #d4af37,
+    #b8860b
+  );
+
+  color:#4a0f1f;
+
+  transform:
+  translateY(-3px);
+
+  box-shadow:
+  0 0 20px rgba(212,175,55,.6);
+
+}
+
+
+/* TARJETA DEL ALUMNO */
+
+.dashboard-vinculacion .card-alumno {
+
+  background:
+  rgba(107,114,128,.12);
+
+  backdrop-filter:
+  blur(12px);
+
+  border:
+  1px solid rgba(127,29,61,.18);
+
+  border-left:
+  5px solid #7f1d3d;
+
+  border-radius:18px;
+
+  padding:20px;
+
+}
+
+
+/* NOMBRE DEL ALUMNO */
+
+.dashboard-vinculacion .alumno-info strong {
+
+  color:#7f1d3d;
+
+}
+
+
+/* MATRÍCULA Y DATOS */
+
+.dashboard-vinculacion .alumno-info span {
+
+  color:#374151;
+
+}
+
+
+/* DOCUMENTOS */
+
+.dashboard-vinculacion .documentos-estado span {
+
+  color:#4b5563;
+
+}
+
+
+/* DOCUMENTOS APROBADOS */
+
+.dashboard-vinculacion .documentos-estado .aprobado {
+
+  color:#15803d;
+
+}
+
+
+/* BOTÓN BORRAR */
+
+.dashboard-vinculacion .btn-eliminar-alumno {
+
+  background:
+  rgba(127,29,61,.12);
+
+  border:
+  1px solid #7f1d3d;
+
+  color:#7f1d3d;
+
+}
+
+
+.dashboard-vinculacion .btn-eliminar-alumno:hover {
+
+  background:#7f1d3d;
+
+  color:white;
+
+  box-shadow:
+  0 0 20px rgba(127,29,61,.5);
+
+}
+
+/* ================================= */
+/* EXPEDIENTE ALUMNO - VINCULACIÓN */
+/* WHITE + GUINDA + DORADO */
+/* ================================= */
+
+
+/* CONTENEDOR PRINCIPAL */
+
+.dashboard-vinculacion .ficha-alumno,
+.dashboard-vinculacion .encabezado-expediente {
+
+  background:
+  rgba(255,255,255,.75);
+
+  backdrop-filter:
+  blur(15px);
+
+  border:
+  1px solid rgba(127,29,61,.18);
+
+  box-shadow:
+  0 15px 35px rgba(0,0,0,.12);
+
+  border-radius:22px;
+
+}
+
+
+/* NOMBRE DEL ALUMNO */
+
+.dashboard-vinculacion .info-principal h2 {
+
+  color:#7f1d3d;
+
+  text-shadow:
+  0 0 8px rgba(212,175,55,.35);
+
+}
+
+
+/* MATRÍCULA */
+
+.dashboard-vinculacion .matricula {
+
+  color:#6b7280;
+
+}
+
+
+/* CARRERA */
+
+.dashboard-vinculacion .info-principal p {
+
+  color:#374151;
+
+}
+
+
+/* ESTADO */
+
+.dashboard-vinculacion .estado-principal strong {
+
+  color:#15803d;
+
+}
+
+
+/* TARJETAS DE DATOS */
+
+.dashboard-vinculacion .dato-card,
+.dashboard-vinculacion .resumen-card {
+
+  background:
+  rgba(107,114,128,.12);
+
+  border:
+  1px solid rgba(127,29,61,.15);
+
+  border-left:
+  5px solid #7f1d3d;
+
+  border-radius:16px;
+
+}
+
+
+/* TITULOS DE DATOS */
+
+.dashboard-vinculacion .dato-card span,
+.dashboard-vinculacion .resumen-card span {
+
+  color:#6b7280;
+
+}
+
+
+/* VALORES */
+
+.dashboard-vinculacion .dato-card strong,
+.dashboard-vinculacion .resumen-card strong {
+
+  color:#111827;
+
+}
+
+
+/* PESTAÑAS Datos / Documentos */
+
+.dashboard-vinculacion button {
+
+  transition:.3s;
+
+}
+
+
+/* BOTÓN ACTIVO */
+
+.dashboard-vinculacion .tab-activa {
+
+  background:
+  linear-gradient(
+    135deg,
+    #7f1d3d,
+    #4a0f1f
+  );
+
+  color:white;
+
+  border:
+  1px solid #d4af37;
+
+}
+
+
+/* ESTADO ORGANIZACIÓN */
+
+.dashboard-vinculacion .estado-alumno {
+
+  color:#15803d;
+
+  font-weight:bold;
+
+}
+
+
+@media(max-width:768px){
+
+
+.modulo-organizaciones{
+
+padding:15px;
+
+}
+
+
+.tabla-organizaciones{
+
+font-size:.7rem;
+
+display:block;
+
+overflow-x:auto;
+
+}
+
+
+.tabla-organizaciones th,
+.tabla-organizaciones td{
+
+padding:10px;
+
+}
+
+
+}
