@@ -48,7 +48,7 @@ const obtenerDocumento = (tipo) => {
     return {
       estado:"Aprobado",
       clase:"aprobado",
-      archivo:documento.nombre_archivo
+      archivo:documento.nombre
     };
 
   }
@@ -59,7 +59,7 @@ const obtenerDocumento = (tipo) => {
     return {
       estado:"Rechazado",
       clase:"rechazado",
-      archivo:documento.nombre_archivo
+      archivo:documento.nombre
     };
 
   }
@@ -68,7 +68,7 @@ const obtenerDocumento = (tipo) => {
   return {
     estado:"Pendiente",
     clase:"pendiente",
-    archivo:documento.nombre_archivo
+    archivo:documento.nombre
   };
 
 };
@@ -186,15 +186,15 @@ actualizarDocumento(documento.id,{
 <button
   onClick={() => {
 
-    const documentoReal = documentos?.find(
-  d => d.tipo === doc.id
-);
+    const documentoReal = documentos.find(
+      d => d.tipo === doc.id
+    );
 
     if(documentoReal){
 
       setPdfSeleccionado(
-  `http://localhost:3001/${documentoReal.ruta_archivo.replaceAll("\\","/")}`
-);
+        `http://localhost:3001/${documentoReal.ruta}`
+      );
 
     }
 
@@ -202,6 +202,7 @@ actualizarDocumento(documento.id,{
 >
 👁 Ver
 </button>
+
 
 
 
@@ -239,11 +240,12 @@ actualizarDocumento(documento.id,{
 
       {pdfSeleccionado && (
 
-  <div className="visor-pdf">
-
+<div>
     <h3>
       Vista previa del documento
     </h3>
+
+
 
     <iframe
       src={pdfSeleccionado}

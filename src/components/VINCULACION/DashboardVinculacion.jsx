@@ -124,64 +124,41 @@ function DashboardVinculacion({
 
   // ACTUALIZAR ESTADO DEL DOCUMENTO
 
-  const actualizarDocumento = (
-    tipoDocumento,
-    datos
-  ) => {
+const actualizarDocumento = async (id, datos) => {
 
+  try {
 
-    const actualizados = estudiantes.map((alumno) => {
-
-
-      if (
-        alumno.matricula === alumnoSeleccionado.matricula
-      ) {
-
-
-        return {
-
-          ...alumno,
-
-          documentos: {
-
-            ...alumno.documentos,
-
-            [tipoDocumento]: {
-
-              ...alumno.documentos?.[tipoDocumento],
-
-              ...datos
-
-            }
-
-          }
-
-        };
-
+    const respuesta = await fetch(
+      `http://localhost:3001/documentos/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(datos)
       }
-
-
-      return alumno;
-
-
-    });
-
-
-
-    setEstudiantes(actualizados);
-
-
-
-    const alumnoActualizado = actualizados.find(
-      alumno =>
-        alumno.matricula === alumnoSeleccionado.matricula
     );
 
 
-    setAlumnoSeleccionado(alumnoActualizado);
+    const documentoActualizado = await respuesta.json();
 
 
-  };
+    console.log(
+      "Documento actualizado:",
+      documentoActualizado
+    );
+
+
+  } catch(error) {
+
+    console.error(
+      "Error actualizando documento:",
+      error
+    );
+
+  }
+
+};
 
 
 
