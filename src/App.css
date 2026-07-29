@@ -1,14 +1,12 @@
 body {
   margin:0;
   font-family:'Segoe UI', Arial, sans-serif;
-
   background:
   linear-gradient(
     135deg,
     #ffffff,
     #f3f4f6
   );
-
   color:#2b2b2b;
 }
 
@@ -20,12 +18,9 @@ body {
 
 /* TITULOS */
 h1,h2,h3 {
-
 color:#7f1d3d;
-
 text-shadow:
 0 3px 10px rgba(127,29,61,.15);
-
 }
 
 /* BOTONES */
@@ -41,16 +36,11 @@ button {
   transition: 0.3s ease;
   box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
 }
-
 button:hover{
-
 transform:translateY(-3px);
-
 box-shadow:
 0 0 25px rgba(212,175,55,.8);
-
 }
-
 .content{
  width:100%;
  max-width:1400px;
@@ -151,183 +141,124 @@ input:focus {
     #ffffff,
     #f8fafc
   );
-
   color:#1f2937;
 }
 
 
 /* SIDEBAR */
-
 .dashboard-vinculacion .sidebar {
-
   background:
   linear-gradient(
     180deg,
     #7f1d3d,
     #4a0f1f
   );
-
   color:white;
-
   border-right:
   3px solid #d4af37;
-
   box-shadow:
   5px 0 25px rgba(127,29,61,.25);
-
 }
 
 
 /* BOTONES MENU */
-
 .dashboard-vinculacion .sidebar button {
-
   background:
   rgba(255,255,255,.12);
-
   border:
   1px solid rgba(255,255,255,.25);
-
   color:white;
-
 }
-
-
 .dashboard-vinculacion .sidebar button:hover {
-
   background:#d4af37;
-
   color:#4a0f1f;
-
   transform:translateX(5px);
-
 }
 
 
 /* CONTENIDO */
-
 .dashboard-vinculacion .content {
-
   background:
   transparent;
-
 }
 
 
 /* TARJETAS DEL PANEL */
-
 .card-modulo,
 .modulo-opcion {
-
   background:
   linear-gradient(
     145deg,
     #ffffff,
     #f9fafb
   );
-
   border:
   1px solid rgba(127,29,61,.18);
-
   box-shadow:
   0 15px 35px rgba(0,0,0,.12);
-
 }
 
 
 /* TITULOS DE TARJETAS */
-
 .card-modulo h3,
 .modulo-opcion h3 {
-
   color:#7f1d3d;
-
   text-shadow:
   0 0 8px rgba(212,175,55,.35);
-
 }
 
-
 /* TEXTO */
-
 .card-modulo p,
 .modulo-opcion p {
-
   color:#374151;
-
 }
 
 
 /* BOTONES VER CARRERAS */
-
 .card-modulo button {
-
   background:
   linear-gradient(
     135deg,
     #7f1d3d,
     #4a0f1f
   );
-
   color:white;
-
   border:
   1px solid #d4af37;
-
 }
-
-
 .card-modulo button:hover {
-
   background:
   linear-gradient(
     135deg,
     #d4af37,
     #b8860b
   );
-
   color:#4a0f1f;
-
   box-shadow:
   0 0 20px rgba(212,175,55,.6);
-
 }
 
-
 /* TITULO PRINCIPAL DEL PANEL */
-
 .dashboard-vinculacion h1,
 .dashboard-vinculacion h2 {
-
   color:#7f1d3d;
-
 }
 
 
 /* BUSCADOR */
 
 .dashboard-vinculacion input {
-
   background:white;
-
   color:#111827;
-
   border:
   1px solid rgba(127,29,61,.25);
-
   box-shadow:
   0 5px 15px rgba(0,0,0,.08);
-
 }
-
-
 .dashboard-vinculacion input:focus {
-
   border-color:#d4af37;
-
   box-shadow:
   0 0 15px rgba(212,175,55,.5);
-
 }
 
 /* ALUMNO PANEL */
@@ -339,7 +270,7 @@ input:focus {
   justify-content: center;
   text-align: center;
   padding: 40px;
-  background: radial-gradient(circle at top, #1a1a1a, #000);
+  background: transparent;
 }
 .alumno h1,
 .alumno h3,
@@ -423,10 +354,14 @@ input:focus {
   border-left: 6px solid #b8860b; /* dorado */
   color: #ffffff;
 }
+.instrucciones .texto-carta {
+  color: #eeff00 !important;
+}
 .instrucciones li {
   margin-bottom: 8px;
   color: #f5f5f5;
 }
+
 
 /* SELECT */
 select{
@@ -611,7 +546,6 @@ button:disabled {
     border-radius:50%;
     animation:girar 1s linear infinite;
 }
-
 .barra-progreso{
     margin-top:25px;
     height:10px;
@@ -619,22 +553,18 @@ button:disabled {
     border-radius:20px;
     overflow:hidden;
 }
-
 .barra{
     height:100%;
     background:#2ea8ff;
     animation:cargar 2.5s linear forwards;
 }
-
 @keyframes girar{
     to{transform:rotate(360deg);}
 }
-
 @keyframes cargar{
     from{width:0;}
     to{width:100%;}
 }
-
 @keyframes fade{
     from{opacity:0;}
     to{opacity:1;}
@@ -645,277 +575,152 @@ button:disabled {
 /* ============================= */
 
 .fase-final {
-
-  max-width: 850px;
+  width:100%;
+max-width:none;
   margin: 40px auto;
-
   padding: 35px;
-
   background:
   linear-gradient(
     145deg,
     rgba(56,189,248,0.12),
     rgba(30,58,138,0.18)
   );
-
   border-radius: 25px;
-
   border: 1px solid rgba(56,189,248,0.35);
-
   box-shadow:
   0 0 30px rgba(56,189,248,0.15),
   inset 0 0 20px rgba(255,255,255,0.03);
-
   text-align: center;
-
   animation: aparecerFase 0.8s ease;
-
 }
 
 
 /* Animación Fade */
 
 @keyframes aparecerFase {
-
   from {
-
     opacity:0;
     transform:translateY(25px);
-
   }
-
   to {
-
     opacity:1;
     transform:translateY(0);
-
   }
-
 }
 
 
 /* Título principal */
-
 .fase-final h3 {
-
   font-size: 32px;
-
   color:#38bdf8;
-
   margin-bottom:15px;
-
   text-shadow:
   0 0 10px rgba(56,189,248,0.8);
-
 }
 
 
 /* Subtítulo */
-
 .fase-final h4 {
-
   color:#e5e7eb;
-
   font-size:22px;
-
   margin:15px 0;
-
 }
-
-
 
 /* Frase bíblica */
 
 .frase-motivacional {
-
   margin:30px auto;
-
   padding:20px;
-
   max-width:650px;
-
   background:
   rgba(255,255,255,0.05);
-
   border-left:4px solid #38bdf8;
-
   border-radius:15px;
-
   color:#dbeafe;
-
   font-size:18px;
-
   font-style:italic;
-
 }
-
-
 .frase-motivacional strong {
-
   display:block;
-
   margin-top:10px;
-
   color:#38bdf8;
-
   font-style:normal;
-
 }
-
-
 
 /* Texto principal */
-
 .fase-final > p:not(.frase-motivacional) {
-
   color:#d1d5db;
-
   line-height:1.8;
-
   font-size:16px;
-
   margin:25px auto;
-
 }
 
-
-
 /* Aviso Carta Terminación */
-
 .aviso-estadia {
-
   margin:30px 0;
-
   padding:20px;
-
   border-radius:18px;
-
-
   background:
   linear-gradient(
   135deg,
   rgba(56,189,248,0.15),
   rgba(30,58,138,0.25)
   );
-
-
   border:1px solid rgba(56,189,248,0.3);
-
-
   color:#f1f5f9;
-
   font-size:16px;
-
-
   box-shadow:
   0 0 20px rgba(56,189,248,0.15);
-
-
   transition:.3s;
-
 }
-
-
 .aviso-estadia:hover {
-
   transform:scale(1.02);
-
   box-shadow:
   0 0 35px rgba(56,189,248,0.35);
-
 }
-
-
 
 /* Resumen de fases */
-
 .resumen-fases {
-
   margin-top:35px;
-
   padding:25px;
-
   background:
-
   rgba(0,0,0,0.25);
-
-
   border-radius:20px;
-
   text-align:left;
-
 }
-
-
 
 /* Título resumen */
-
 .resumen-fases h4 {
-
   color:#38bdf8;
-
   text-align:center;
-
   margin-bottom:20px;
-
 }
-
-
 
 /* Lista */
-
 .resumen-fases ul {
-
   list-style:none;
-
   padding:0;
-
 }
-
-
 
 /* Cada fase */
-
 .resumen-fases li {
-
   margin:12px 0;
-
   padding:14px 18px;
-
-
   background:
   rgba(56,189,248,0.08);
-
-
   border-radius:12px;
-
-
   color:#e5e7eb;
-
-
   border-left:4px solid #38bdf8;
-
-
   transition:.3s;
-
 }
 
-
-
 /* Animación al pasar mouse */
-
 .resumen-fases li:hover {
-
   transform:translateX(8px);
-
-
   background:
   rgba(56,189,248,0.18);
-
-
   box-shadow:
   0 0 15px rgba(56,189,248,0.25);
-
 }
 
 /* ========================= */
@@ -1051,19 +856,13 @@ button:disabled {
 /* ========================= */
 /* DASHBOARD ALUMNO */
 /* ========================= */
-.alumno {
+.alumno{
   min-height:100vh;
-  padding:35px;
-  background:
-  radial-gradient(
-    circle at top,
-    #111827,
-    #020617
-  );
-  color:white;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
+  width:100%;
+  max-width:1900px;
+  margin:auto;
+  padding:25px 40px;
+  box-sizing:border-box;
 }
 .btn-cerrar-sesion {
   position:absolute;
@@ -1080,12 +879,11 @@ button:disabled {
 
 /* Encabezado */
 .alumno h1 {
-  color:#e5e7eb;
-  font-size:32px;
-  text-align:center;
-  margin-bottom:10px;
-  text-shadow:
-  0 0 15px rgba(56,189,248,.5);
+  color: #0011ff;
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: 10px;
+  text-shadow: none;
 }
 
 /* subtitulo */
@@ -1101,7 +899,6 @@ button:disabled {
   flex-wrap:wrap;
   margin-bottom:35px;
 }
-
 .kpi-card {
   min-width:220px;
   padding:25px;
@@ -1113,14 +910,13 @@ button:disabled {
   );
   backdrop-filter:blur(15px);
   border:
-  1px solid rgba(56,189,248,.18);
+  1px solid rgba(248, 235, 56, 0.18);
   border-radius:20px;
   box-shadow:
   0 0 20px rgba(0,0,0,.5),
   inset 0 0 15px rgba(56,189,248,.05);
   transition:.35s ease;
 }
-
 .kpi-card:hover {
   transform:
   translateY(-8px)
@@ -1135,8 +931,8 @@ button:disabled {
 /* AVISOS DEL ALUMNO */
 /* ========================= */
 .avisos-alumno {
-  width:90%;
-  max-width:900px;
+  width:100%;
+max-width:none;
   margin:30px auto;
   padding:30px;
   background:
@@ -1148,7 +944,7 @@ button:disabled {
   backdrop-filter:blur(15px);
   border-radius:22px;
   border:
-  1px solid rgba(56,189,248,.18);
+  1px solid rgba(235, 248, 56, 0.18);
   box-shadow:
   0 0 30px rgba(0,0,0,.55),
   inset 0 0 20px rgba(56,189,248,.05);
@@ -1192,8 +988,9 @@ button:disabled {
 /* DOCUMENTO PRESENTACION */
 /* =============================== */
 .documento-card {
-  width:90%;
-  max-width:850px;
+  width:100%;
+max-width:none;
+padding:35px;
   margin:40px auto;
   padding:35px;
   background:
@@ -1223,7 +1020,7 @@ button:disabled {
   0 0 12px rgba(56,189,248,.7);
 }
 .documento-card h4 {
-  color:#e5e7eb;
+  color:#0055ff;
 }
 .documento-card button {
   margin-top:25px;
@@ -1236,7 +1033,7 @@ button:disabled {
     #1e3a8a
   );
   box-shadow:
-  0 0 15px rgba(56,189,248,.35);
+  0 0 15px rgb(56, 191, 248);
 }
 
 /* Caja de instrucciones */
@@ -1245,11 +1042,79 @@ button:disabled {
   margin:25px auto;
 }
 
-/* Input archivo */
+/* Input archivo PARA SELECCIONAR PDF*/
+/* =============================== */
+/* SELECTOR DE ARCHIVO PDF */
+/* =============================== */
+
 .documento-card input[type="file"] {
-  margin:20px auto;
-  padding:12px;
+  width:100%;
+  max-width:450px;
+  margin:25px auto;
+  padding:18px;
+
+  background:
+  linear-gradient(
+    145deg,
+    #1e293b,
+    #0f172a
+  );
+
+  border:2px dashed #38bdf8;
+  border-radius:18px;
+
+  color:#e5e7eb;
+  font-size:14px;
+  font-weight:600;
+
+  cursor:pointer;
   display:block;
+
+  box-shadow:
+  0 0 20px rgba(56,189,248,.25);
+
+  transition:.3s ease;
+}
+
+
+/* Hover del área */
+.documento-card input[type="file"]:hover {
+
+  border-color:#d4af37;
+
+  box-shadow:
+  0 0 30px rgba(212,175,55,.45);
+
+  transform:translateY(-3px);
+}
+
+
+/* Botón interno "Seleccionar archivo" */
+.documento-card input[type="file"]::file-selector-button {
+  background:
+  linear-gradient(
+    135deg,
+    #7f1d3d,
+    #b8860b
+  );
+  color:white;
+  border:none;
+  padding:10px 18px;
+  border-radius:12px;
+  font-weight:bold;
+  cursor:pointer;
+  margin-right:15px;
+  transition:.3s ease;
+}
+.documento-card input[type="file"]::file-selector-button:hover {
+  background:
+  linear-gradient(
+    135deg,
+    #b8860b,
+    #7f1d3d
+  );
+  box-shadow:
+  0 0 15px rgba(212,175,55,.7);
 }
 
 /* Botón subir */
@@ -1272,8 +1137,9 @@ button:disabled {
 /* MENU SUPERIOR ALUMNO */
 /* ========================= */
 .menu-alumno {
-  width:90%;
-  max-width:1200px;
+  width:100%;
+max-width:none;
+padding:20px 35px;
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -1294,17 +1160,17 @@ button:disabled {
 }
 .menu-info h2 {
   margin:0;
-  color:#38bdf8;
+  color:#7f1d3d;
   text-shadow:
-  0 0 12px rgba(56,189,248,.7);
+  0 0 12px rgb(255, 209, 4);
 }
 .menu-info p {
   margin:5px 0;
-  color:#e5e7eb;
-  font-weight:bold;
+  color:#111827;
+  font-weight:600;
 }
 .menu-info span {
-  color:#94a3b8;
+  color:#4b5563;
   font-size:14px;
 }
 
@@ -1319,6 +1185,15 @@ button:disabled {
   border:
   1px solid rgba(255,255,255,.15);
   padding:10px 15px;
+}
+.menu-alumno button {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.15);
+  padding: 10px 15px;
+  color: #111827;
+}
+.menu-alumno .btn-salir {
+  color: #ff0000;
 }
 .menu-alumno button:hover {
   background:
@@ -1340,7 +1215,6 @@ button:disabled {
   box-shadow:
   0 0 15px rgba(220,38,38,.5);
 }
-
 .btn-gmail{
     margin-top:15px;
     padding:12px 22px;
@@ -1352,12 +1226,10 @@ button:disabled {
     cursor:pointer;
     transition:.25s;
 }
-
 .btn-gmail:hover{
     background:#1558b0;
     transform:scale(1.03);
 }
-
 .nota-gmail{
     margin-top:10px;
     font-size:.9rem;
@@ -1380,74 +1252,45 @@ button:disabled {
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 25px rgba(0,0,0,0.25);
 }
-
-
 .modulo-opcion:hover {
   transform: translateY(-5px);
   border-color: #38bdf8;
   box-shadow: 
     0 0 20px rgba(56,189,248,0.35);
 }
-
-
 .modulo-opcion::first-letter {
   font-size: 28px;
 }
-
-
 .fila-alumno {
-
   background: rgba(255,255,255,0.04);
   border-left: 4px solid #38bdf8;
   padding: 15px 20px;
   margin: 10px 0;
-
   border-radius: 12px;
-
   cursor: pointer;
-
   transition: 0.25s ease;
-
 }
-
-
 .fila-alumno:hover {
-
   background: rgba(56,189,248,0.12);
   transform: translateX(5px);
-
 }
-
-
 .fila-alumno strong {
-
   color: #38bdf8;
   font-size: 17px;
-
 }
-
 
 /* Responsive móvil */
 
 @media(max-width:768px){
-
   .modulo-opcion{
-
     padding:18px;
     border-radius:14px;
-
   }
-
-
   .fila-alumno{
-
     font-size:14px;
     padding:12px;
-
   }
-
 }
-
 .card-modulo{
   background: rgba(255,255,255,0.05);
   border:1px solid rgba(255,255,255,0.15);
@@ -1457,30 +1300,21 @@ button:disabled {
   cursor:pointer;
   transition:.3s;
 }
-
-
 .card-modulo:hover{
   transform:translateY(-5px);
   box-shadow:0 0 20px rgba(56,189,248,.5);
 }
-
-
 .card-modulo h3{
   color:#38bdf8;
   margin-bottom:10px;
 }
-
-
 .card-modulo p{
   color:#e5e7eb;
 }
-
-
 .card-modulo span{
   color:#60a5fa;
   font-weight:bold;
 }
-
 .card-alumno{
   background:rgba(255,255,255,.05);
   border:1px solid rgba(255,255,255,.12);
@@ -1490,32 +1324,22 @@ button:disabled {
   cursor:pointer;
   transition:.3s;
 }
-
-
 .card-alumno:hover{
   transform:translateX(5px);
   box-shadow:0 0 15px rgba(56,189,248,.35);
 }
-
-
 .alumno-info{
   display:flex;
   gap:15px;
   align-items:center;
   font-size:16px;
 }
-
-
 .alumno-info strong{
   color:#38bdf8;
 }
-
-
 .alumno-info span{
   color:#e5e7eb;
 }
-
-
 .documentos-estado{
   display:flex;
   gap:15px;
@@ -1523,24 +1347,20 @@ button:disabled {
   font-size:14px;
 }
 
-
 .documentos-estado span{
   color:#cbd5e1;
 }
-
 .ficha-alumno{
     background:#1d1d1d;
     border-radius:18px;
     padding:25px;
 }
-
 .ficha-header{
     display:flex;
     align-items:center;
     gap:20px;
     margin-bottom:30px;
 }
-
 .avatar-alumno{
     width:75px;
     height:75px;
@@ -1553,368 +1373,218 @@ button:disabled {
     font-size:32px;
     font-weight:bold;
 }
-
 .matricula{
     color:#9ca3af;
     margin-top:5px;
 }
-
 .datos-grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
     gap:18px;
 }
-
 .dato-card{
     background:#292929;
     border-radius:14px;
     padding:18px;
     border-left:5px solid #0ea5e9;
 }
-
 .dato-card span{
     display:block;
     color:#9ca3af;
     font-size:.9rem;
     margin-bottom:6px;
 }
-
 .dato-card strong{
     color:white;
 }
-
 .resumen-expediente{
-
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:18px;
-    margin-bottom:25px;
-
+    grid-template-columns:
+    repeat(4,1fr);
+    gap:20px;
+    width:100%;
 }
-
 .resumen-card{
-
     background:#111827;
     border-radius:16px;
     padding:18px;
     border:1px solid rgba(255,255,255,.08);
-
 }
-
 .resumen-card span{
-
     display:block;
     color:#9ca3af;
     font-size:.85rem;
     margin-bottom:8px;
-
 }
-
 .resumen-card strong{
-
     color:white;
     font-size:1.15rem;
-
 }
-
 .estado-alumno{
-
     color:#22c55e;
-
 }
-
 .encabezado-expediente{
-
     display:flex;
     align-items:center;
     justify-content:space-between;
     gap:20px;
-
     background:rgba(15,23,42,.8);
-
     padding:25px;
-
     border-radius:20px;
-
     margin-bottom:25px;
-
     border:1px solid rgba(255,255,255,.08);
-
+width:100%;
+padding:30px 40px;
+box-sizing:border-box;
 }
-
-
 .avatar-expediente{
-
     width:85px;
     height:85px;
-
     border-radius:50%;
-
     background:linear-gradient(
         135deg,
         #38bdf8,
         #1e3a8a
     );
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     color:white;
-
     font-size:35px;
-
     font-weight:bold;
-
 }
-
-
 .info-principal h2{
-
     margin:0;
-
     color:#38bdf8;
-
 }
-
-
 .info-principal p{
-
     margin:5px 0;
-
     color:#e5e7eb;
-
 }
-
-
 .estado-principal{
-
     text-align:right;
-
 }
-
-
 .estado-principal span{
-
     display:block;
-
     color:#9ca3af;
-
 }
-
-
 .estado-principal strong{
-
     color:#22c55e;
-
     font-size:1.1rem;
-
 }
 
 /* =============================== */
 /* DOCUMENTOS EXPEDIENTE ALUMNO */
 /* =============================== */
-
 .documentos-grid{
-
     display:grid;
     grid-template-columns:
     repeat(auto-fit,minmax(280px,1fr));
-
     gap:25px;
-
 }
-
 
 /* TARJETA DOCUMENTO */
-
 .documento-card{
-
     background:
     rgba(255,255,255,.75);
-
     backdrop-filter:blur(15px);
-
     padding:25px;
-
     border-radius:20px;
-
     border:
     1px solid rgba(127,29,61,.18);
-
     box-shadow:
     0 12px 30px rgba(0,0,0,.12);
-
     transition:.3s ease;
-
 }
-
-
 .documento-card:hover{
-
     transform:translateY(-5px);
-
     box-shadow:
     0 0 25px rgba(127,29,61,.25);
-
 }
-
 
 
 /* TITULO DEL DOCUMENTO */
-
 .documento-card h3{
-
     color:#7f1d3d;
-
     font-size:22px;
-
     text-shadow:none;
-
 }
 
 
-
 /* ESTADO */
-
 .estado-documento{
-
     font-weight:bold;
-
 }
 
 
 /* PENDIENTE */
-
 .estado-documento.pendiente{
-
-    color:#b8860b;
-
+   color:#b8860b;
 }
-
 
 /* APROBADO */
-
 .estado-documento.aprobado{
-
     color:#15803d;
-
 }
-
 
 /* RECHAZADO */
-
 .estado-documento.rechazado{
-
     color:#b91c1c;
-
 }
-
 
 
 /* NOMBRE DEL ARCHIVO */
-
 .documento-card p{
-
     color:#374151;
-
 }
-
 
 
 /* BOTONES */
 
 .acciones-documento button{
-
     background:
     linear-gradient(
         135deg,
         #7f1d3d,
         #b8860b
     );
-
     color:white;
-
     border:none;
-
     border-radius:10px;
-
     padding:10px 16px;
-
     font-weight:bold;
-
 }
-
-
 .acciones-documento button:hover{
-
     transform:translateY(-3px);
-
     box-shadow:
     0 0 15px rgba(184,134,11,.5);
-
 }
-
-
 .documento-card h3{
-
     color:#38bdf8;
-
 }
-
-
-
 .estado-documento{
-
     margin-left:10px;
-
     font-weight:bold;
-
 }
-
-
 .estado-documento.aprobado{
-
     color:#22c55e;
-
 }
-
-
 .estado-documento.rechazado{
-
     color:#ef4444;
-
 }
-
-
 .estado-documento.pendiente{
-
     color:#f59e0b;
-
 }
-
-
 .acciones-documento{
-
     display:flex;
-
     flex-wrap:wrap;
-
     gap:10px;
-
     margin-top:20px;
-
 }
-
-
 .acciones-documento button{
-
     padding:8px 12px;
-
     border-radius:10px;
-
     cursor:pointer;
-
 }
 
 /* REGISTRO DENTRO DEL PANEL DE VINCULACIÓN */
@@ -1990,33 +1660,22 @@ button:disabled {
   box-shadow: 0 0 14px rgba(239, 68, 68, 0.3);
 }
 
-
-
 /* ================================= */
 /* PADRÓN ORGANIZACIONES WHITE MODE */
 /* ================================= */
 
 .modulo-organizaciones {
-
   width:100%;
-
   padding:30px;
-
   box-sizing:border-box;
-
   background:
   rgba(255,255,255,.75);
-
   backdrop-filter:blur(15px);
-
   border-radius:25px;
-
   border:
   1px solid rgba(127,29,61,.15);
-
   box-shadow:
   0 15px 35px rgba(0,0,0,.12);
-
 }
 
 
@@ -2025,79 +1684,48 @@ button:disabled {
 /* ================================= */
 
 .modulo-organizaciones h2 {
-
   color:#7f1d3d;
-
   font-size:28px;
-
   text-shadow:
   0 0 10px rgba(127,29,61,.25);
-
 }
 
-
 .modulo-organizaciones p {
-
   color:#6b7280;
-
   font-size:15px;
-
 }
 
 
 /* ================================= */
 /* TABLA */
 /* ================================= */
-
 .tabla-organizaciones {
-
     width:100%;
-
     border-collapse:separate;
-
     border-spacing:0;
-
     background:white;
-
     border-radius:18px;
-
     overflow:hidden;
-
     border:
     1px solid rgba(127,29,61,.15);
-
     box-shadow:
     0 10px 25px rgba(0,0,0,.10);
-
 }
 
 
 /* ================================= */
 /* ENCABEZADOS */
 /* ================================= */
-
 .tabla-organizaciones th {
-
-
 background:
 linear-gradient(
 135deg,
 #b8860b
 );
-
-
 color:white;
-
-
 padding:15px;
-
-
 font-size:.85rem;
-
-
 text-align:center;
-
-
 }
 
 
@@ -2106,21 +1734,11 @@ text-align:center;
 /* ================================= */
 
 .tabla-organizaciones td {
-
-
 padding:14px;
-
-
 color:#374151;
-
-
 border-bottom:
 1px solid rgba(127,29,61,.12);
-
-
 font-size:.85rem;
-
-
 }
 
 
@@ -2129,91 +1747,61 @@ font-size:.85rem;
 /* ================================= */
 
 /* No. */
-
 .tabla-organizaciones th:nth-child(1),
 .tabla-organizaciones td:nth-child(1) {
-
   width: 5%;
-
   text-align: center;
-
   color: #94a3b8;
 }
 
-
 /* Organización */
-
 .tabla-organizaciones th:nth-child(2),
 .tabla-organizaciones td:nth-child(2) {
-
   width: 27%;
-
 }
-
 
 /* ================================= */
 /* ANCHO DE COLUMNAS ACTUALES */
 /* ================================= */
 
-
 /* No. */
 
 .tabla-organizaciones th:nth-child(1),
 .tabla-organizaciones td:nth-child(1) {
-
   width: 6%;
-
   text-align: center;
-
 }
-
 
 /* Organización */
 
 .tabla-organizaciones th:nth-child(2),
 .tabla-organizaciones td:nth-child(2) {
-
   width: 46%;
-
 }
-
 
 /* Espacios disponibles */
 
 .tabla-organizaciones th:nth-child(3),
 .tabla-organizaciones td:nth-child(3) {
-
   width: 14%;
-
   text-align: center;
-
 }
-
 
 /* Información */
 
 .tabla-organizaciones th:nth-child(4),
 .tabla-organizaciones td:nth-child(4) {
-
   width: 16%;
-
   text-align: center;
-
 }
-
 
 /* Acciones */
 
 .tabla-organizaciones th:nth-child(5),
 .tabla-organizaciones td:nth-child(5) {
-
   width: 18%;
-
   text-align: center;
-
 }
-
-
 
 
 /* ================================= */
@@ -2221,13 +1809,9 @@ font-size:.85rem;
 /* ================================= */
 
 .tabla-organizaciones td:nth-child(2) {
-
   color:#31121c;
-
   font-weight: 600;
-
   overflow-wrap: break-word;
-
   word-break: normal;
 }
 
@@ -2237,34 +1821,22 @@ font-size:.85rem;
 /* ================================= */
 
 .tabla-organizaciones td:nth-child(3) {
-
   color: #cbd5e1;
-
   font-size: 0.7rem;
-
   white-space: normal;
-
   overflow-wrap: break-word;
-
   word-break: normal;
-
 }
 
 
 /* ================================= */
 /* ESPACIOS DISPONIBLES */
 /* ================================= */
-
 .tabla-organizaciones td:nth-child(4) {
-
   color: #38bdf8;
-
   font-size: 0.9rem;
-
   font-weight: bold;
-
 }
-
 
 
 /* ================================= */
@@ -2273,34 +1845,21 @@ font-size:.85rem;
 
 .tabla-organizaciones th:last-child,
 .tabla-organizaciones td:last-child {
-
   width: 180px;
-
   min-width: 180px;
-
   text-align: center;
-
 }
-
 
 /* CONTENEDOR VISUAL DE LOS BOTONES */
-
 .tabla-organizaciones td:last-child button {
-
   display: inline-block;
-
   margin: 3px;
-
   padding: 8px 10px;
-
   font-size: 0.68rem;
-
 }
-
 
 
 /* LÍNEAS DIVISORAS ENTRE COLUMNAS */
-
 .tabla-organizaciones th:not(:last-child),
 .tabla-organizaciones td:not(:last-child) {
   border-right:
@@ -2310,28 +1869,16 @@ font-size:.85rem;
 /* ================================= */
 /* FILAS */
 /* ================================= */
-
 .tabla-organizaciones tbody tr {
-
   transition: background 0.2s ease;
-
 }
 
-
 .tabla-organizaciones tbody tr:hover{
-
-
 background:
 rgba(127,29,61,.08);
-
-
 transform:
 scale(1.01);
-
-
 transition:.3s;
-
-
 }
 
 
@@ -2340,42 +1887,24 @@ transition:.3s;
 /* ================================= */
 
 .tabla-organizaciones button {
-
-
 background:
 linear-gradient(
 135deg,
 #7f1d3d,
 #b8860b
 );
-
-
 color:white;
-
-
 border-radius:10px;
-
-
 padding:8px 14px;
-
-
 font-weight:bold;
-
-
 }
 
 
 .tabla-organizaciones button:hover {
-
-
 transform:
 translateY(-3px);
-
-
 box-shadow:
 0 0 18px rgba(184,134,11,.55);
-
-
 }
 
 /* ================================= */
@@ -2383,233 +1912,141 @@ box-shadow:
 /* ================================= */
 
 .modal-fondo .modal {
-
   width: 850px;
-
   max-width: 92%;
-
   max-height: 90vh;
-
   overflow-y: auto;
-
   padding: 30px;
-
   background:
     linear-gradient(
       145deg,
       rgba(17, 24, 39, 0.98),
       rgba(15, 23, 42, 0.96)
     );
-
   border: 1px solid rgba(56, 189, 248, 0.25);
-
   border-radius: 20px;
-
   box-shadow:
     0 0 35px rgba(0, 0, 0, 0.65),
     0 0 20px rgba(56, 189, 248, 0.12);
-
 }
 
 
 /* TÍTULO */
 
 .modal h2 {
-
   margin-top: 0;
-
   margin-bottom: 25px;
-
   padding-bottom: 15px;
-
   color: #38bdf8;
-
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-
   text-shadow:
     0 0 10px rgba(56, 189, 248, 0.45);
-
 }
 
 
 /* ETIQUETAS */
-
 .modal > label {
-
   display: block;
-
   margin-top: 18px;
-
   margin-bottom: 8px;
-
   color: #cbd5e1;
-
   font-size: 0.85rem;
-
   font-weight: bold;
-
 }
 
 
 /* INPUTS DEL MODAL */
-
 .modal > input {
-
   width: 100%;
-
   box-sizing: border-box;
-
   margin: 0;
-
   padding: 12px 14px;
-
   background: rgba(255, 255, 255, 0.06);
-
   border: 1px solid rgba(255, 255, 255, 0.15);
-
   border-radius: 10px;
-
   color: white;
-
 }
 
 
 /* SECCIÓN DE CARRERAS */
 
 .carreras-edicion {
-
   display: grid;
-
   grid-template-columns:
     repeat(auto-fit, minmax(280px, 1fr));
-
   gap: 10px;
-
   max-height: 300px;
-
   overflow-y: auto;
-
   margin-top: 10px;
-
   padding: 15px;
-
   background: rgba(0, 0, 0, 0.2);
-
   border: 1px solid rgba(255, 255, 255, 0.08);
-
   border-radius: 14px;
-
 }
 
 
 /* CADA CARRERA */
-
 .carrera-checkbox {
-
   display: flex;
-
   align-items: flex-start;
-
   gap: 10px;
-
   padding: 12px;
-
   background: rgba(255, 255, 255, 0.04);
-
   border: 1px solid rgba(255, 255, 255, 0.08);
-
   border-radius: 10px;
-
   color: #e5e7eb;
-
   font-size: 0.78rem;
-
   line-height: 1.4;
-
   cursor: pointer;
-
   transition: 0.25s ease;
-
 }
 
 
 .carrera-checkbox:hover {
-
   background: rgba(56, 189, 248, 0.1);
-
   border-color: rgba(56, 189, 248, 0.5);
-
   transform: translateY(-2px);
-
 }
 
 
 /* CHECKBOX */
-
 .carrera-checkbox input {
-
   width: auto;
-
   margin: 2px 0 0;
-
   accent-color: #38bdf8;
-
 }
 
 
 /* BOTONES */
-
 .modal button {
-
   margin-top: 22px;
-
   padding: 11px 20px;
-
 }
 
 
 /* BOTÓN CANCELAR */
-
 .modal button:last-child {
-
   background: rgba(255, 255, 255, 0.08);
-
   border: 1px solid rgba(255, 255, 255, 0.15);
-
 }
 
-
 .modal button:last-child:hover {
-
   background: rgba(239, 68, 68, 0.2);
-
   box-shadow:
     0 0 15px rgba(239, 68, 68, 0.35);
-
 }
 
 .avisos-panel,
 .fases-panel,
 .alumno-card,
 .kpi-card {
-
-
 background:
 rgba(255,255,255,.95);
-
-
 border:
 1px solid rgba(127,29,61,.18);
-
-
 box-shadow:
-
 0 20px 45px rgba(0,0,0,.12);
-
-
 border-radius:24px;
-
-
 }
 
 /* TEXTO DE LAS FASES EN NEGRO */
@@ -2624,55 +2061,38 @@ border-radius:24px;
 /* TARJETAS GENERACIONES */
 /* TSU Y LICENCIATURA */
 /* ================================= */
-
 .card-modulo {
-
   background:
   rgba(107,114,128,0.15);
-
   backdrop-filter:
   blur(15px);
-
   border:
   1px solid rgba(127,29,61,0.25);
-
   box-shadow:
   0 10px 25px rgba(0,0,0,.12);
-
 }
 
 
 /* TITULO */
-
 .card-modulo h3 {
-
   color:#7f1d3d;
-
 }
 
 
 /* DESCRIPCIÓN */
-
 .card-modulo p {
-
   color:#374151;
-
 }
 
 
 /* EFECTO AL PASAR MOUSE */
-
 .card-modulo:hover {
-
   background:
   rgba(107,114,128,0.25);
-
   transform:
   translateY(-5px);
-
   box-shadow:
   0 15px 35px rgba(127,29,61,.25);
-
 }
 
 /* ================================= */
@@ -2681,167 +2101,114 @@ border-radius:24px;
 /* ================================= */
 
 .dashboard-vinculacion .modulo-alumnos {
-
   background:
   rgba(255,255,255,.75);
-
   backdrop-filter:
   blur(15px);
-
   border:
   1px solid rgba(127,29,61,.18);
-
   border-radius:22px;
-
   padding:30px;
-
   box-shadow:
   0 15px 35px rgba(0,0,0,.12);
-
 }
 
 
 /* TITULO */
-
 .dashboard-vinculacion .modulo-alumnos h2 {
-
   color:#7f1d3d;
-
   text-shadow:
   0 0 10px rgba(212,175,55,.3);
-
 }
 
 
 /* BOTÓN REGRESAR */
-
 .dashboard-vinculacion .btn-regresar {
-
   background:
   linear-gradient(
     135deg,
     #7f1d3d,
     #4a0f1f
   );
-
   color:white;
-
   border:
   1px solid #d4af37;
-
   padding:
   10px 20px;
-
   border-radius:12px;
-
   font-weight:bold;
-
 }
 
 
 .dashboard-vinculacion .btn-regresar:hover {
-
   background:
   linear-gradient(
     135deg,
     #d4af37,
     #b8860b
   );
-
   color:#4a0f1f;
-
   transform:
   translateY(-3px);
-
   box-shadow:
   0 0 20px rgba(212,175,55,.6);
-
 }
 
 
 /* TARJETA DEL ALUMNO */
-
 .dashboard-vinculacion .card-alumno {
-
   background:
   rgba(107,114,128,.12);
-
   backdrop-filter:
   blur(12px);
-
   border:
   1px solid rgba(127,29,61,.18);
-
   border-left:
   5px solid #7f1d3d;
-
   border-radius:18px;
-
   padding:20px;
-
 }
 
 
 /* NOMBRE DEL ALUMNO */
-
 .dashboard-vinculacion .alumno-info strong {
-
   color:#7f1d3d;
-
 }
 
 
 /* MATRÍCULA Y DATOS */
-
 .dashboard-vinculacion .alumno-info span {
-
   color:#374151;
-
 }
 
 
 /* DOCUMENTOS */
-
 .dashboard-vinculacion .documentos-estado span {
-
   color:#4b5563;
-
 }
 
 
 /* DOCUMENTOS APROBADOS */
-
 .dashboard-vinculacion .documentos-estado .aprobado {
-
   color:#15803d;
-
 }
 
 
 /* BOTÓN BORRAR */
-
 .dashboard-vinculacion .btn-eliminar-alumno {
-
   background:
   rgba(127,29,61,.12);
-
   border:
   1px solid #7f1d3d;
-
   color:#7f1d3d;
-
 }
 
 
 .dashboard-vinculacion .btn-eliminar-alumno:hover {
-
   background:#7f1d3d;
-
   color:white;
-
   box-shadow:
   0 0 20px rgba(127,29,61,.5);
-
 }
 
 /* ================================= */
@@ -2851,171 +2218,107 @@ border-radius:24px;
 
 
 /* CONTENEDOR PRINCIPAL */
-
 .dashboard-vinculacion .ficha-alumno,
 .dashboard-vinculacion .encabezado-expediente {
-
   background:
   rgba(255,255,255,.75);
-
   backdrop-filter:
   blur(15px);
-
   border:
   1px solid rgba(127,29,61,.18);
-
   box-shadow:
   0 15px 35px rgba(0,0,0,.12);
-
   border-radius:22px;
-
 }
 
 
 /* NOMBRE DEL ALUMNO */
-
 .dashboard-vinculacion .info-principal h2 {
-
   color:#7f1d3d;
-
   text-shadow:
   0 0 8px rgba(212,175,55,.35);
-
 }
 
 
 /* MATRÍCULA */
-
 .dashboard-vinculacion .matricula {
-
   color:#6b7280;
-
 }
 
 
 /* CARRERA */
-
 .dashboard-vinculacion .info-principal p {
-
   color:#374151;
-
 }
 
 
 /* ESTADO */
-
 .dashboard-vinculacion .estado-principal strong {
-
   color:#15803d;
-
 }
 
 
 /* TARJETAS DE DATOS */
-
 .dashboard-vinculacion .dato-card,
 .dashboard-vinculacion .resumen-card {
-
   background:
   rgba(107,114,128,.12);
-
   border:
   1px solid rgba(127,29,61,.15);
-
   border-left:
   5px solid #7f1d3d;
-
   border-radius:16px;
-
 }
 
 
 /* TITULOS DE DATOS */
-
 .dashboard-vinculacion .dato-card span,
 .dashboard-vinculacion .resumen-card span {
-
   color:#6b7280;
-
 }
 
 
 /* VALORES */
-
 .dashboard-vinculacion .dato-card strong,
 .dashboard-vinculacion .resumen-card strong {
-
   color:#111827;
-
 }
 
-
 /* PESTAÑAS Datos / Documentos */
-
 .dashboard-vinculacion button {
-
   transition:.3s;
-
 }
 
 
 /* BOTÓN ACTIVO */
-
 .dashboard-vinculacion .tab-activa {
-
   background:
   linear-gradient(
     135deg,
     #7f1d3d,
     #4a0f1f
   );
-
   color:white;
-
   border:
   1px solid #d4af37;
-
 }
-
 
 /* ESTADO ORGANIZACIÓN */
-
 .dashboard-vinculacion .estado-alumno {
-
   color:#15803d;
-
   font-weight:bold;
-
 }
-
-
 @media(max-width:768px){
-
-
 .modulo-organizaciones{
-
 padding:15px;
-
 }
-
-
 .tabla-organizaciones{
-
 font-size:.7rem;
-
 display:block;
-
 overflow-x:auto;
-
 }
-
-
 .tabla-organizaciones th,
 .tabla-organizaciones td{
-
 padding:10px;
-
 }
-
-
 }

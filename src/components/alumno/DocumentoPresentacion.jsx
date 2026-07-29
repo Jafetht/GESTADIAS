@@ -20,20 +20,20 @@ return (
       <h4>Instrucciones para la Carta de Presentación</h4>
 
       <div className="instrucciones">
-        <p>
+        <p className="texto-carta">
           La Dirección de Vinculación te otorga la carta de presentación de
           estadía que te acredita como alumno de la universidad en su último
           cuatrimestre.
         </p>
 
-        <p>
+        <p className="texto-carta">
           Esta carta deberás entregarla a la organización donde realizarás tu
           estadía.
         </p>
 
         <ul>
-          <li>Conserva el documento original.</li>
-          <li>No entregues el original.</li>
+          <li>Conserva el documento original que te entregaron en la reunión.</li>
+          <li>No entregues el original a la organización.</li>
           <li>Entregar solamente COPIA DE LA CARTA.</li>
           <li>Escanéalo en PDF a COLOR.</li>
           <li>Nombra el archivo como:</li>
@@ -100,9 +100,15 @@ if (nombre !== nombreEsperado) {
 </button>
 
       <p>
-        Carta de Presentación:
-        {alumnoActual.documentos.presentacion ? " ✅" : " ❌"}
-      </p>
+  Carta de Presentación:
+
+  {
+    alumnoActual.documentos.presentacion.archivo
+    ? " ✅"
+    : " ❌"
+  }
+
+</p>
     </div>
   );
 }
