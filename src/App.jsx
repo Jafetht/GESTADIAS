@@ -12,6 +12,9 @@ import DocumentoCompromiso from './components/alumno/DocumentoCompromiso';
 import TransicionFase from "./components/alumno/TransicionFase";
 import MenuAlumno from "./components/MenuAlumno";
 import DashboardVinculacion from "./components/VINCULACION/DashboardVinculacion";
+import DashboardAlumno from "./components/alumno/DashboardAlumno";
+import MenuMisDocumentos from "./components/alumno/MenuMisDocumentos";
+
 
 
 function App() {
@@ -112,25 +115,25 @@ const guardarEstudiante = (alFinalizar) => {
     fase: 0,
     estatus: 'Pendiente de selección de organización',
 
-    documentos: {
-      presentacion: {
-        archivo: null,
-        estado: "pendiente",
-        motivo: ""
-      },
+documentos: {
+  presentacion: {
+    archivo: null,
+    nombreArchivo: "",
+    estado: "sin_subir"
+  },
 
-      aceptacion: {
-        archivo: null,
-        estado: "pendiente",
-        motivo: ""
-      },
+  aceptacion: {
+    archivo: null,
+    nombreArchivo: "",
+    estado: "sin_subir"
+  },
 
-      compromiso: {
-        archivo: null,
-        estado: "pendiente",
-        motivo: ""
-      }
-    }
+  compromiso: {
+    archivo: null,
+    nombreArchivo: "",
+    estado: "sin_subir"
+  }
+}
   };
 
   setEstudiantes([...estudiantes, nuevoEstudiante]);
@@ -151,27 +154,78 @@ const guardarEstudiante = (alFinalizar) => {
     setPantalla('inicio');
   }
 };
-  const iniciarSesion = () => {
-    const alumnoEncontrado = estudiantes.find((estudiante) => estudiante.matricula === loginMatricula)
-    if (alumnoEncontrado) {
-      setAlumnoActual(alumnoEncontrado)
-      setPantalla('alumno') // 👈 ESTE ES EL ARREGLO
-    } else {
-      alert('Matrícula no encontrada')
-    }
+
+  const iniciarSesion = async () => {
+  const alumnoEncontrado = estudiantes.find(
+    (estudiante) => estudiante.matricula === loginMatricula
+  );
+  if (!alumnoEncontrado) {
+    alert("Matrícula no encontrada");
+    return;
   }
+  try {
+    const respuesta = await fetch(
+      `http://localhost:3001/documentos/alumno/${alumnoEncontrado.matricula}`
+    );
+    const documentos = await respuesta.json();
+    const actualizado = {
+      ...alumnoEncontrado
+    };
+    documentos.forEach((doc) => {
+      actualizado.documentos[doc.tipo] = {
+        archivo: `http://localhost:3001/${doc.ruta}`,
+        nombreArchivo: doc.nombre,
+        estado: doc.estado
+      };
+    });
+    setAlumnoActual(actualizado);
+
+setEstudiantes(
+  estudiantes.map((estudiante) =>
+    estudiante.matricula === actualizado.matricula
+      ? actualizado
+      : estudiante
+  )
+);
+
+setPantalla("alumno");
+  } catch (error) {
+    console.error(error);
+    setAlumnoActual(alumnoEncontrado);
+    setPantalla("alumno");
+  }
+};
+
   const avisosAlumno = []
-  if (alumnoActual) {
-    if (alumnoActual.fase >= 2 && !alumnoActual.documentos.presentacion) {
-      avisosAlumno.push('⚠ Debes subir la Carta de Presentación para continuar a la siguiente fase')
-    }
-    if (alumnoActual.documentos.presentacion && !alumnoActual.documentos.aceptacion) {
-      avisosAlumno.push('📌 Sube la Carta de Aceptación para avanzar a la Fase 4')
-    }
-    if (alumnoActual.documentos.aceptacion && !alumnoActual.documentos.compromiso) {
-      avisosAlumno.push('📄 Sube la Carta Compromiso para avanzar a la Fase 5')
-    }
+if (alumnoActual) {
+
+  if (
+    alumnoActual.fase >= 2 &&
+    alumnoActual.documentos.presentacion.estado === "sin_subir"
+  ) {
+    avisosAlumno.push(
+      "⚠ Debes subir la Carta de Presentación para continuar a la siguiente fase"
+    );
   }
+
+  if (
+    alumnoActual.documentos.presentacion.estado === "subido" &&
+    alumnoActual.documentos.aceptacion.estado === "sin_subir"
+  ) {
+    avisosAlumno.push(
+      "📌 Sube la Carta de Aceptación para avanzar a la Fase 4"
+    );
+  }
+
+  if (
+    alumnoActual.documentos.aceptacion.estado === "subido" &&
+    alumnoActual.documentos.compromiso.estado === "sin_subir"
+  ) {
+    avisosAlumno.push(
+      "📄 Sube la Carta Compromiso para avanzar a la Fase 5"
+    );
+  }
+}
   const cerrarSesion = () => {
     setAlumnoActual(null)
     localStorage.removeItem('gestadias_alumno_actual')
@@ -198,20 +252,35 @@ const subirCartaPresentacion = async (archivo) => {
 
 
     const datos = await respuesta.json();
-
-
     console.log(datos);
 
+    const actualizado = {
+  ...alumnoActual,
+  documentos: {
+    ...alumnoActual.documentos,
+    presentacion: {
+      archivo: `http://localhost:3001/${datos.ruta}`,
+      nombreArchivo: archivo.name,
+      estado: "en_revision"
+    }
+  },
+  estatus: "Carta de Presentación en revisión"
+};
+
+setAlumnoActual(actualizado);
+
+setEstudiantes(
+  estudiantes.map((estudiante) =>
+    estudiante.matricula === actualizado.matricula
+      ? actualizado
+      : estudiante
+  )
+);
 
     alert("PDF subido correctamente");
-
-
   } catch(error){
-
     console.error(error);
-
     alert("Error al subir PDF");
-
   }
 
 };
@@ -222,16 +291,18 @@ const subirCartaPresentacion = async (archivo) => {
     });
     setMostrarTransicion(true);
     setTimeout(() => {
-      const actualizado =
-      {
-        ...alumnoActual,
-        documentos: {
-          ...alumnoActual.documentos,
-          aceptacion: true
-        },
-        fase: 4,
-        estatus: 'Carta de Aceptación subida'
-      }
+      const actualizado={
+  ...alumnoActual,
+  documentos: {
+    ...alumnoActual.documentos,
+    aceptacion:{
+      archivo:null,
+      nombreArchivo:"",
+      estado:"subido"
+    }},
+  fase:4,
+  estatus:'Carta de Aceptación subida'
+}
       setAlumnoActual(actualizado)
       setEstudiantes(
         estudiantes.map((estudiante) =>
@@ -243,6 +314,7 @@ const subirCartaPresentacion = async (archivo) => {
       setMostrarTransicion(false);
     }, 2500);
   }
+
   const subirCartaCompromiso = () => {
     setDatosTransicion({
       titulo: "🎉 Activando tu Estadía Profesional...",
@@ -252,26 +324,64 @@ const subirCartaPresentacion = async (archivo) => {
     setTimeout(() => {
       const actualizado = {
         ...alumnoActual,
-        documentos: {
-          ...alumnoActual.documentos,
-          compromiso: true
-        },
+        documentos:{
+  ...alumnoActual.documentos,
+  compromiso:{
+    archivo:null,
+    nombreArchivo:"",
+    estado:"subido"
+  }},
         fase: 5,
         estatus: 'Estadía autorizada'
       }
-
       setAlumnoActual(actualizado)
-
       setEstudiantes(
         estudiantes.map((estudiante) =>
           estudiante.matricula === actualizado.matricula
             ? actualizado
             : estudiante
-        )
-      )
+))
       setMostrarTransicion(false);
     }, 2500);
   }
+
+const verDocumento = (documento) => {
+  if(documento.archivo){
+    window.open(
+      documento.archivo,
+      "_blank"
+    );
+  }else{
+    alert("Documento no disponible");
+}};
+
+const borrarDocumento = (tipoDocumento) => {
+  const confirmar = confirm(
+    "¿Seguro que deseas borrar este documento?"
+  );
+  if(!confirmar) return;
+  const actualizado = {
+    ...alumnoActual,
+    documentos:{
+      ...alumnoActual.documentos,
+      [tipoDocumento]:{
+        archivo:null,
+        nombreArchivo:"",
+        estado:"sin_subir"
+}}};
+  setAlumnoActual(actualizado);
+  setEstudiantes(
+    estudiantes.map((estudiante)=>
+      estudiante.matricula === actualizado.matricula
+      ? actualizado
+      : estudiante
+    )
+  );
+  alert("Documento eliminado correctamente");
+};
+
+
+
 const [vistaVinculacion, setVistaVinculacion] = useState("alumnos");
 
 
@@ -507,8 +617,9 @@ if (pantalla === 'perfil') {
   )
 }
 
-if (pantalla === 'documentos') {
+if (pantalla === "documentos") {
   return (
+
     <div className="alumno">
 
       <MenuAlumno
@@ -517,29 +628,15 @@ if (pantalla === 'documentos') {
         setPantalla={setPantalla}
       />
 
-      <div className="documento-card">
-
-        <h3>📄 Mis Documentos</h3>
-
-        <p>
-          Carta de Presentación:
-          {alumnoActual.documentos.presentacion ? " ✅" : " ❌"}
-        </p>
-
-        <p>
-          Carta de Aceptación:
-          {alumnoActual.documentos.aceptacion ? " ✅" : " ❌"}
-        </p>
-
-        <p>
-          Carta Compromiso:
-          {alumnoActual.documentos.compromiso ? " ✅" : " ❌"}
-        </p>
-
-      </div>
+      <MenuMisDocumentos
+  alumnoActual={alumnoActual}
+  verDocumento={verDocumento}
+  borrarDocumento={borrarDocumento}
+/>
 
     </div>
-  )
+
+  );
 }
 
 if (pantalla === 'estadia') {
@@ -624,119 +721,29 @@ if (mostrarTransicion) {
 }
 
 if (alumnoActual) {
-
   return (
+    <DashboardAlumno
+      alumnoActual={alumnoActual}
+      setAlumnoActual={setAlumnoActual}
 
-    <div className="alumno">
-      <MenuAlumno
-        alumnoActual={alumnoActual}
-        cerrarSesion={cerrarSesion}
-        setPantalla={setPantalla}
-      />
-      <h1>HOLA {alumnoActual.nombre}</h1>
+      estudiantes={estudiantes}
+      setEstudiantes={setEstudiantes}
 
-      <h3>Tu avance en GESTADIAS</h3>
-      {avisosAlumno.length > 0 && (
-        <div className="avisos-alumno">
-          <h3>📢 Avisos importantes</h3>
+      avisosAlumno={avisosAlumno}
 
-          {avisosAlumno.map((aviso, index) => (
-            <p key={index} className="aviso-item">
-              {aviso}
-            </p>
-          ))}
-        </div>
-      )}
-      <div className="kpi-grid">
-        <div className="kpi-card">
-          <h2>{alumnoActual.fase}</h2>
-          <p>Fase actual</p>
-        </div>
+      organizacionesFiltradas={organizacionesFiltradas}
 
-        <div className="kpi-card">
-          <p>{alumnoActual.estatus}</p>
+      cerrarSesion={cerrarSesion}
+      setPantalla={setPantalla}
 
-          <p>Estatus</p>
-        </div>
+      seleccionarOrganizacion={seleccionarOrganizacion}
+      solicitarCambioOrganizacion={solicitarCambioOrganizacion}
+      registrarSolicitudOrganizacion={registrarSolicitudOrganizacion}
 
-        <div className="kpi-card">
-          <p>{alumnoActual.organizacion || 'Ninguna'}</p>
-
-          <p>Organización</p>
-        </div>
-      </div>
-
-      {alumnoActual.fase <= 1 && (
-        <Organizaciones
-          alumnoActual={alumnoActual}
-          organizacionesFiltradas={organizacionesFiltradas}
-          seleccionarOrganizacion={seleccionarOrganizacion}
-          solicitarCambioOrganizacion={solicitarCambioOrganizacion}
-          registrarSolicitudOrganizacion={registrarSolicitudOrganizacion}
-        />
-      )}
-
-      {alumnoActual.fase === 2 && (
-        <DocumentoPresentacion
-          alumnoActual={alumnoActual}
-          subirCartaPresentacion={subirCartaPresentacion}
-        />
-      )}
-      {alumnoActual.documentos.presentacion &&
-        !alumnoActual.documentos.aceptacion && (
-          <DocumentoAceptacion
-            alumnoActual={alumnoActual}
-            subirCartaAceptacion={subirCartaAceptacion}
-          />
-        )}
-      {alumnoActual.documentos.aceptacion &&
-        !alumnoActual.documentos.compromiso && (
-          <DocumentoCompromiso
-            alumnoActual={alumnoActual}
-            subirCartaCompromiso={subirCartaCompromiso}
-          />
-        )}
-
-      {alumnoActual.fase === 5 && (
-        <div className="fase-final">
-
-          <h3>🎉 Fase 5 - Estadía Activa</h3>
-
-          <h4>¡Felicidades continúa con éxito tu Estadía Profesional!</h4>
-
-          <p className="frase-motivacional">
-            "Todo lo que te viniere a la mano para hacer, hazlo según tus fuerzas."
-            <br />
-            <strong>— Eclesiastés 9:10</strong>
-          </p>
-
-          <p>
-            Tu estadía profesional ha sido activada correctamente.
-            A partir de este momento podrás desarrollar tus actividades dentro de la organización asignada.
-            Recuerda mantener comunicación con tu asesor académico y con tu asesor empresarial durante todo el proceso.
-          </p>
-
-          <div className="aviso-estadia">
-            📌 Próximamente aquí podrás subir tu Carta de Terminación de Estadía y concluir tu proceso en GESTADIAS.
-          </div>
-
-          <div className="resumen-fases">
-
-            <h4>Resumen de fases concluidas</h4>
-
-            <ul>
-              <li>✅ Organización seleccionada</li>
-              <li>✅ Carta de Presentación entregada</li>
-              <li>✅ Carta de Aceptación entregada</li>
-              <li>✅ Carta Compromiso entregada</li>
-              <li>✅ Estadía Profesional activa</li>
-            </ul>
-
-          </div>
-
-        </div>
-      )}
-    </div>
+      subirCartaPresentacion={subirCartaPresentacion}
+      subirCartaAceptacion={subirCartaAceptacion}
+      subirCartaCompromiso={subirCartaCompromiso}
+    />
   );
 }
 

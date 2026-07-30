@@ -119,16 +119,13 @@ actualizarDocumento(documento.id,{
 
   return (
 
-    <div className="documentos-panel">
-
-
+    <div>
       <h2>
         📄 Documentos del Expediente
       </h2>
-
-
-
-      <div className="documentos-grid">
+    <div className="documentos-layout">
+      <div className="lista-documentos">
+      
 
 
       {listaDocumentos.map((doc)=>{
@@ -237,20 +234,15 @@ actualizarDocumento(documento.id,{
 
       </div>
 
-
       {pdfSeleccionado && (
+  <div className="visor-pdf">
 
-<div>
     <h3>
       Vista previa del documento
     </h3>
 
-
-
     <iframe
       src={pdfSeleccionado}
-      width="100%"
-      height="700px"
       title="Vista previa PDF"
     />
 
@@ -261,12 +253,12 @@ actualizarDocumento(documento.id,{
     </button>
 
   </div>
-
 )}
 
+</div>
 
     </div>
-
+  
   );
 
 }

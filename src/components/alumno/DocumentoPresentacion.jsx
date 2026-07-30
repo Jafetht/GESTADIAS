@@ -36,6 +36,7 @@ return (
           <li>No entregues el original a la organización.</li>
           <li>Entregar solamente COPIA DE LA CARTA.</li>
           <li>Escanéalo en PDF a COLOR.</li>
+          <li>Para subirlo aquí</li>
           <li>Nombra el archivo como:</li>
 
           <strong>

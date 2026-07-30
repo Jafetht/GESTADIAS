@@ -239,9 +239,12 @@ input:focus {
 }
 
 /* TITULO PRINCIPAL DEL PANEL */
-.dashboard-vinculacion h1,
-.dashboard-vinculacion h2 {
+.dashboard-vinculacion h1{
   color:#7f1d3d;
+}
+
+.dashboard-vinculacion h2 {
+  color:#fdfdfd;
 }
 
 
@@ -525,7 +528,6 @@ button:disabled {
     display:flex;
     justify-content:center;
     align-items:center;
-    animation:fade .4s ease;
     z-index:9999;
 }
 .transicion-card{
@@ -809,7 +811,7 @@ max-width:none;
   1px solid rgba(255,255,255,.12);
   box-shadow:
   0 0 35px rgba(0,0,0,.6);
-  animation:aparecer .5s ease;
+  
 }
 .registro-card h1 {
   text-align:center;
@@ -948,8 +950,7 @@ max-width:none;
   box-shadow:
   0 0 30px rgba(0,0,0,.55),
   inset 0 0 20px rgba(56,189,248,.05);
-  animation:
-  aparecer .6s ease;
+
 }
 .avisos-alumno h3 {
   color:#38bdf8;
@@ -1007,8 +1008,7 @@ padding:35px;
   0 0 35px rgba(0,0,0,.55),
   inset 0 0 20px rgba(56,189,248,.05);
   text-align:center;
-  animation:
-  aparecer .6s ease;
+  
 }
 
 /* Títulos */
@@ -1138,20 +1138,24 @@ padding:35px;
 /* ========================= */
 .menu-alumno {
   width:100%;
-max-width:none;
-padding:20px 35px;
+  max-width:none;
+  padding:20px 35px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:18px 25px;
   margin-bottom:25px;
-  background:
-  rgba(255,255,255,.05);
+
+background: #7f1d3d;
+
   backdrop-filter:blur(15px);
+
   border-radius:20px;
-  border:1px solid rgba(255,255,255,.12);
+
+  border:
+  1px solid rgba(127,29,61,.18);
+
   box-shadow:
-  0 0 25px rgba(0,0,0,.5);
+  0 15px 35px rgba(0,0,0,.12);
 }
 
 /* Datos del alumno */
@@ -1160,17 +1164,17 @@ padding:20px 35px;
 }
 .menu-info h2 {
   margin:0;
-  color:#7f1d3d;
+  color:#fcfcfc;
   text-shadow:
   0 0 12px rgb(255, 209, 4);
 }
 .menu-info p {
   margin:5px 0;
-  color:#111827;
+  color:#f6f7fa;
   font-weight:600;
 }
 .menu-info span {
-  color:#4b5563;
+  color:#1bffe1;
   font-size:14px;
 }
 
@@ -1181,16 +1185,22 @@ padding:20px 35px;
 }
 .menu-alumno button {
   background:
-  rgba(255,255,255,.08);
+  rgba(66, 253, 238, 0.08);
   border:
   1px solid rgba(255,255,255,.15);
   padding:10px 15px;
 }
+
+/*COLOR DE LETRAS DEL BOTON MENU 
+🏠 Inicio
+👤 Perfil
+📄 Documentos
+📌 Estadía*/
 .menu-alumno button {
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.15);
-  padding: 10px 15px;
-  color: #111827;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.25);
+  padding:10px 15px;
+  color:white;
 }
 .menu-alumno .btn-salir {
   color: #ff0000;
@@ -1236,6 +1246,17 @@ padding:20px 35px;
     color:#d0ff00;
     font-style:italic;
 }
+
+/*COLOR DE LETRAS DE LAS CARTAS DEL MENU ALUMNO*/
+.documento-card .nombre-documento {
+    color:#ffffff !important;
+    font-size:18px;
+    font-weight:600;
+    text-align:center;
+    margin:15px 0;
+}
+
+
 
 /* ===============================
    PANEL MODULO ALUMNOS
@@ -1486,15 +1507,42 @@ box-sizing:border-box;
 /* TARJETA DOCUMENTO */
 .documento-card{
     background:
-    rgba(255,255,255,.75);
+    linear-gradient(
+        145deg,
+        rgba(15,23,42,.85),
+        rgba(30,41,59,.75)
+    );
     backdrop-filter:blur(15px);
     padding:25px;
     border-radius:20px;
     border:
-    1px solid rgba(127,29,61,.18);
+    1px solid rgba(56,189,248,.25);
     box-shadow:
-    0 12px 30px rgba(0,0,0,.12);
-    transition:.3s ease;
+    0 0 20px rgba(56,189,248,.18),
+    inset 0 0 20px rgba(56,189,248,.05);
+    transition:.35s ease;
+}
+.documento-card h4,
+.documento-card h3{
+    color:#38bdf8;
+    text-shadow:
+    0 0 10px rgba(56,189,248,.7);
+}
+.documento-card p{
+    color:#e5e7eb;
+}
+
+.documento-card strong{
+    color:white;
+}
+.documento-card:hover{
+    transform:
+    translateY(-8px);
+    border-color:
+    #38bdf8;
+    box-shadow:
+    0 0 35px rgba(56,189,248,.55),
+    inset 0 0 20px rgba(56,189,248,.12);
 }
 .documento-card:hover{
     transform:translateY(-5px);
@@ -2043,7 +2091,7 @@ box-shadow:
 background:
 rgba(255,255,255,.95);
 border:
-1px solid rgba(127,29,61,.18);
+1px solid #d4af37;
 box-shadow:
 0 20px 45px rgba(0,0,0,.12);
 border-radius:24px;
@@ -2289,6 +2337,46 @@ border-radius:24px;
   transition:.3s;
 }
 
+/* Vista previa del documento */
+.documentos-layout {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 25px;
+  align-items: start;
+  width:100%;
+}
+
+.lista-documentos {
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+
+/* IMPORTANTE */
+.documentos-grid {
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.visor-pdf {
+  background: rgba(255,255,255,0.05);
+  padding:20px;
+  border-radius:15px;
+  min-height:750px;
+}
+.visor-pdf iframe {
+  width:100%;
+  height:700px;
+  border:none;
+  border-radius:10px;
+}
+.lista-documentos .documento-card {
+  width:320px;
+  padding:15px;
+  border-radius:12px;
+}
 
 /* BOTÓN ACTIVO */
 .dashboard-vinculacion .tab-activa {
@@ -2321,4 +2409,55 @@ overflow-x:auto;
 .tabla-organizaciones td{
 padding:10px;
 }
+}
+
+/* ============================= */
+/* VISOR PDF EXPEDIENTE */
+/* ============================= */
+
+.documentos-layout {
+  display:grid;
+  grid-template-columns:380px minmax(800px,1fr);
+  gap:35px;
+  width:100%;
+  max-width:1600px;
+  margin:30px auto;
+  align-items:start;
+}
+
+
+.lista-documentos {
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+
+.lista-documentos .documento-card {
+  width:100%;
+  max-width:380px;
+  margin:0;
+}
+
+
+.visor-pdf {
+  width:100%;
+  min-width:800px;
+  background:
+  rgba(255,255,255,.75);
+  backdrop-filter:blur(15px);
+  padding:25px;
+  border-radius:20px;
+  border:1px solid rgba(127,29,61,.15);
+  box-shadow:
+  0 15px 35px rgba(0,0,0,.12);
+}
+
+
+.visor-pdf iframe {
+  width:100%;
+  height:800px;
+  border:none;
+  border-radius:15px;
+  background:white;
 }
