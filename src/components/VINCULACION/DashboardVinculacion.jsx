@@ -141,24 +141,15 @@ const actualizarDocumento = async (id, datos) => {
 
 
     const documentoActualizado = await respuesta.json();
-
-
     console.log(
       "Documento actualizado:",
       documentoActualizado
     );
-
-
-  } catch(error) {
-
-    console.error(
+} catch(error) {
+console.error(
       "Error actualizando documento:",
       error
-    );
-
-  }
-
-};
+);}};
 
 
 
@@ -192,6 +183,11 @@ const actualizarDocumento = async (id, datos) => {
           Organizaciones
         </button>
 
+        <button onClick={() => setVista("alumnos")}>
+          Gestión de Estudiantes
+        </button>
+
+
 
       </div>
 
@@ -205,9 +201,32 @@ const actualizarDocumento = async (id, datos) => {
 
 {vista === "alumnos" && (
   <input
-    placeholder="Buscar alumno..."
+    type="text"
+    placeholder="🔍 Buscar por nombre o matrícula..."
     value={busqueda}
-    onChange={(e) => setBusqueda(e.target.value)}
+    onChange={(e) => {
+      const texto = e.target.value;
+      setBusqueda(texto);
+
+      if (texto.trim() === "") {
+  setAlumnoSeleccionado(null);
+  setBusqueda("");
+  return;
+}
+
+
+const encontrado = estudiantes.find(
+  (alumno) =>
+    alumno.nombre.toLowerCase().includes(texto.toLowerCase()) ||
+    alumno.matricula.includes(texto)
+);
+
+if (encontrado) {
+  setAlumnoSeleccionado(encontrado);
+} else {
+  setAlumnoSeleccionado(null);
+}
+    }}
   />
 )}
 
@@ -253,7 +272,10 @@ const actualizarDocumento = async (id, datos) => {
 
     <ExpedienteAlumno
       alumno={alumnoSeleccionado}
-      cerrar={() => setAlumnoSeleccionado(null)}
+      cerrar={() => {
+  setAlumnoSeleccionado(null);
+  setBusqueda("");
+}}
       actualizarDocumento={actualizarDocumento}
       subirDocumento={subirDocumento}
     />

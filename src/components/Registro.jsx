@@ -211,7 +211,7 @@ const años = Array.from(
           className="btn-regresar"
           onClick={() => setPantalla('inicio')}
         >
-          Volver al inicio
+          Estudiantes
         </button>
 
 

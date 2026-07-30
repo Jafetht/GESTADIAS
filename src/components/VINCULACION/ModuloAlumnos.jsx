@@ -23,6 +23,8 @@ function ModuloAlumnos({
     useState(rutaAlumnos.carreraSeleccionada);
 
 
+  
+
 
   const generaciones = [
     "🏢 Estadías TSU 2026",
@@ -128,9 +130,9 @@ function ModuloAlumnos({
 
 
 
-  const alumnosCarrera = estudiantes.filter(
-    alumno=>alumno.carrera===carreraSeleccionada
-  );
+const alumnosCarrera = estudiantes.filter(
+  alumno => alumno.carrera === carreraSeleccionada
+);
 
 
 
@@ -139,7 +141,7 @@ return (
 <div className="modulo-alumnos">
 
 
-<h2>👨‍🎓 Gestión de Alumnos</h2>
+<h2>👨‍🎓 Gestión de Estudiantes</h2>
 
 
 
@@ -241,6 +243,8 @@ Ver alumnos →
 
 
 <h3>🏢 {carreraSeleccionada}</h3>
+
+
 
 
 {alumnosCarrera.map(alumno => (
