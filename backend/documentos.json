@@ -5,8 +5,28 @@
     "tipo": "presentacion",
     "nombre": "24090149_PRESENTACIÓN.pdf",
     "ruta": "uploads/1785372831657.pdf",
-    "estado": "pendiente",
+    "estado": "aprobado",
     "motivo": "",
     "fecha": "2026-07-30T00:53:51.908Z"
+  },
+  {
+    "id": 1785622162556,
+    "matricula": "1234",
+    "tipo": "presentacion",
+    "nombre": "1234_PRESENTACION.pdf",
+    "ruta": "uploads/1785622162135.pdf",
+    "estado": "aprobado",
+    "motivo": "",
+    "fecha": "2026-08-01T22:09:22.566Z"
+  },
+  {
+    "id": 1785623507369,
+    "matricula": "12345",
+    "tipo": "presentacion",
+    "nombre": "12345_PRESENTACIÓN.pdf",
+    "ruta": "uploads/1785623507256.pdf",
+    "estado": "aprobado",
+    "motivo": "",
+    "fecha": "2026-08-01T22:31:47.369Z"
   }
 ]

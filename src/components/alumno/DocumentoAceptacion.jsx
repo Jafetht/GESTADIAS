@@ -9,6 +9,11 @@ function DocumentoAceptacion({
 
 const [archivo, setArchivo] = useState(null);
 const [error, setError] = useState("");
+const documentoSubido =
+  alumnoActual.documentos.aceptacion.estado !== "sin_subir";
+
+
+
 
   return (<div className="documento-card">
     <>
@@ -25,7 +30,7 @@ const [error, setError] = useState("");
 
 <div className="instrucciones">
 
-  <p>
+  <p className="texto-carta">
     La Carta de Aceptación será entregada por la organización donde realizarás 
     tu estadía, una vez que haya sido aceptado tu ingreso.
   </p>
@@ -61,7 +66,10 @@ const [error, setError] = useState("");
   </ul>
 
 </div>
-      
+
+      {!documentoSubido && (
+
+<>
       <input
   type="file"
   accept=".pdf,application/pdf"
@@ -126,6 +134,8 @@ if (
   Subir Carta de Aceptación
 </button>
 
+</>
+)}
       <p>
         Carta de Aceptación:
         {alumnoActual.documentos.aceptacion ? " ✅" : " ❌"}

@@ -19,8 +19,10 @@ return (
         <p className="nombre-documento">Carta de Presentación</p>
         
           <strong>
-  {alumnoActual.documentos.presentacion.estado === "sin_subir"
+{alumnoActual.documentos.presentacion.estado === "sin_subir"
     ? "❌ Pendiente"
+    : alumnoActual.documentos.presentacion.estado === "aprobado"
+    ? "✔ Aprobado"
     : "🕒 En revisión"}
 </strong>
 
@@ -55,8 +57,10 @@ return (
         <p className="nombre-documento">Carta de Aceptación</p>
 
         <strong>
-  {alumnoActual.documentos.aceptacion.estado === "sin_subir"
+{alumnoActual.documentos.aceptacion.estado === "sin_subir"
     ? "❌ Pendiente"
+    : alumnoActual.documentos.aceptacion.estado === "aprobado"
+    ? "✔ Aprobado"
     : "🕒 En revisión"}
 </strong>
 
@@ -91,8 +95,10 @@ onClick={() =>
         <p className="nombre-documento">Carta de Compromiso</p>
 
 <strong>
-  {alumnoActual.documentos.compromiso.estado === "sin_subir"
+{alumnoActual.documentos.compromiso.estado === "sin_subir"
     ? "❌ Pendiente"
+    : alumnoActual.documentos.compromiso.estado === "aprobado"
+    ? "✔ Aprobado"
     : "🕒 En revisión"}
 </strong>
 

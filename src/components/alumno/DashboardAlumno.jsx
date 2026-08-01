@@ -74,15 +74,13 @@ function DashboardAlumno({
           subirCartaPresentacion={subirCartaPresentacion}
         />
       )}
-      {alumnoActual.documentos.presentacion &&
-        !alumnoActual.documentos.aceptacion && (
-          <DocumentoAceptacion
-            alumnoActual={alumnoActual}
-            subirCartaAceptacion={subirCartaAceptacion}
-          />
-        )}
-      {alumnoActual.documentos.aceptacion &&
-        !alumnoActual.documentos.compromiso && (
+{alumnoActual.fase === 3 && (
+  <DocumentoAceptacion
+    alumnoActual={alumnoActual}
+    subirCartaAceptacion={subirCartaAceptacion}
+  />
+)}
+{alumnoActual.documentos.aceptacion.estado === "aprobado" && (
           <DocumentoCompromiso
             alumnoActual={alumnoActual}
             subirCartaCompromiso={subirCartaCompromiso}

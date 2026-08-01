@@ -28,6 +28,7 @@ function DashboardVinculacion({
   setAnio,
   organizaciones,
   setOrganizaciones,
+  actualizarAlumno
   // demás props...
 }) {
 
@@ -109,6 +110,7 @@ function DashboardVinculacion({
 
 
       setAlumnoSeleccionado(alumnoNuevo);
+      actualizarAlumno(alumnoNuevo);
 
 
     };
@@ -141,15 +143,74 @@ const actualizarDocumento = async (id, datos) => {
 
 
     const documentoActualizado = await respuesta.json();
+
+
     console.log(
       "Documento actualizado:",
       documentoActualizado
     );
-} catch(error) {
-console.error(
+
+    const alumnosActualizados = estudiantes.map((alumno) => {
+
+  if (alumno.matricula === documentoActualizado.matricula) {
+
+return {
+  ...alumno,
+
+  documentos: {
+    ...alumno.documentos,
+
+    [documentoActualizado.tipo]: {
+      ...alumno.documentos[documentoActualizado.tipo],
+      estado: "aprobado"
+    }
+  },
+
+  fase:
+    documentoActualizado.tipo === "presentacion"
+      ? 3
+      : documentoActualizado.tipo === "aceptacion"
+      ? 4
+      : alumno.fase,
+
+  estatus:
+    documentoActualizado.tipo === "presentacion"
+      ? "Carta de Presentación aprobada"
+      : documentoActualizado.tipo === "aceptacion"
+      ? "Carta de Aceptación aprobada"
+      : alumno.estatus
+};
+
+  }
+
+  return alumno;
+
+});
+
+
+setEstudiantes(alumnosActualizados);
+
+
+const alumnoNuevo = alumnosActualizados.find(
+  alumno => alumno.matricula === documentoActualizado.matricula
+);
+
+
+setAlumnoSeleccionado(alumnoNuevo);
+actualizarAlumno(alumnoNuevo);
+
+
+
+  } catch(error) {
+
+    console.error(
       "Error actualizando documento:",
       error
-);}};
+    );
+
+  }
+
+};
 
 
 

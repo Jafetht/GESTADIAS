@@ -34,6 +34,26 @@ function App() {
     ? JSON.parse(data)
     : padronOrganizaciones;
 });
+
+const actualizarAlumno = (alumnoActualizado) => {
+
+  setEstudiantes(
+    estudiantes.map((estudiante)=>
+      estudiante.matricula === alumnoActualizado.matricula
+      ? alumnoActualizado
+      : estudiante
+    )
+  );
+
+  if(
+    alumnoActual &&
+    alumnoActual.matricula === alumnoActualizado.matricula
+  ){
+    setAlumnoActual(alumnoActualizado);
+  }
+
+};
+
   const eliminarAlumno = (matricula) => {
     const confirmar = confirm('¿Seguro que deseas eliminar este alumno?')
     if (!confirmar) return
@@ -284,36 +304,52 @@ setEstudiantes(
   }
 
 };
-  const subirCartaAceptacion = () => {
-    setDatosTransicion({
-      titulo: "Validando Carta de Aceptación...",
-      mensaje: "Verificando el documento y habilitando la siguiente fase."
-    });
-    setMostrarTransicion(true);
-    setTimeout(() => {
-      const actualizado={
-  ...alumnoActual,
-  documentos: {
-    ...alumnoActual.documentos,
-    aceptacion:{
-      archivo:null,
-      nombreArchivo:"",
-      estado:"subido"
-    }},
-  fase:4,
-  estatus:'Carta de Aceptación subida'
-}
-      setAlumnoActual(actualizado)
-      setEstudiantes(
-        estudiantes.map((estudiante) =>
-          estudiante.matricula === actualizado.matricula
-            ? actualizado
-            : estudiante
-        )
+const subirCartaAceptacion = async (archivo) => {
+
+  const formData = new FormData();
+  formData.append("archivo", archivo);
+  formData.append("matricula", alumnoActual.matricula);
+  formData.append("tipo", "aceptacion");
+  try {
+    const respuesta = await fetch(
+      "http://localhost:3001/documentos/subir",
+      {
+        method:"POST",
+        body:formData
+      }
+    );
+    const datos = await respuesta.json();
+    const actualizado = {
+      ...alumnoActual,
+      documentos:{
+        ...alumnoActual.documentos,
+        aceptacion:{
+          archivo:`http://localhost:3001/${datos.ruta}`,
+          nombreArchivo:archivo.name,
+          estado:"en_revision"
+        }
+      },
+      estatus:"Carta de Aceptación en revisión",
+      fase: 3
+    };
+
+console.log("Aceptación actualizada:", actualizado);
+
+    setAlumnoActual(actualizado);
+    setEstudiantes(
+      estudiantes.map((estudiante)=>
+        estudiante.matricula === actualizado.matricula
+        ? actualizado
+        : estudiante
       )
-      setMostrarTransicion(false);
-    }, 2500);
+    );
+    alert("Carta de Aceptación subida correctamente");
+  } catch(error){
+    console.error(error);
+    alert("Error al subir Carta de Aceptación");
   }
+
+};
 
   const subirCartaCompromiso = () => {
     setDatosTransicion({
@@ -585,6 +621,8 @@ setVistaVinculacion={setVistaVinculacion}
 
 organizaciones={organizaciones}
 setOrganizaciones={setOrganizaciones}
+
+actualizarAlumno={actualizarAlumno}
 />
 );
 }
