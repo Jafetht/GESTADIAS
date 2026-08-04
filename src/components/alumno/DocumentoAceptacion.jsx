@@ -43,7 +43,7 @@ const documentoSubido =
   </li>
 
   <li>
-    Solicita a tu asesor responsable que firme la carta con 
+    Solicita a tu asesor de la organización responsable que firme la carta con 
     <strong> TINTA AZUL</strong>, ya que este documento será la versión original.
   </li>
 

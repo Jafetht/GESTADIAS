@@ -14,8 +14,11 @@ function DocumentoCompromiso({
 
  <h4>Instrucciones para la Carta de Compromiso</h4>
 <div className="instrucciones">
-<p>En este documento la organización, la Universidad y el alumno se comprometen a aportar lo que les corresponde a fin de que el alumno culmine su proyecto.</p>
-<p>Este documento te lo entrega la Dirección de Vinculación y deberás realizar lo siguiente:</p>
+<p className="texto-carta">
+  En este documento la organización, la Universidad y el alumno se comprometen a aportar 
+  lo que les corresponde a fin de que el alumno culmine su proyecto.</p>
+<p className="texto-carta">
+  Este documento te lo entrega la Dirección de Vinculación EN TU CORREO INSTITUCIONAL y deberás realizar lo siguiente:</p>
 <ul>
    <li>Imprime 3 DOCUMENTOS ORIGINALES A COLOR.</li> 
    <li>Los 3 documentos deben firmarse con bolígrafo de TINTA AZUL por:</li> 

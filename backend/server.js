@@ -73,15 +73,23 @@ const nuevoDocumento = {
     new Date().toISOString()
 
 };
+const documentosSinAnterior = documentos.filter(
+  documento =>
+    !(
+      documento.matricula === req.body.matricula &&
+      documento.tipo === req.body.tipo
+    )
+);
+
+documentosSinAnterior.push(nuevoDocumento);
+
+    
 
 
-    documentos.push(nuevoDocumento);
-
-
-    fs.writeFileSync(
-      archivoDocumentos,
-      JSON.stringify(documentos, null, 2)
-    );
+fs.writeFileSync(
+  archivoDocumentos,
+  JSON.stringify(documentosSinAnterior, null, 2)
+);
 
 
     res.json(nuevoDocumento);

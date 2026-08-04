@@ -1,42 +1,22 @@
 [
   {
-    "id": 1785372831907,
-    "matricula": "24090149",
-    "tipo": "presentacion",
-    "nombre": "24090149_PRESENTACIÓN.pdf",
-    "ruta": "uploads/1785372831657.pdf",
-    "estado": "aprobado",
-    "motivo": "",
-    "fecha": "2026-07-30T00:53:51.908Z"
-  },
-  {
-    "id": 1785622162556,
-    "matricula": "1234",
-    "tipo": "presentacion",
-    "nombre": "1234_PRESENTACION.pdf",
-    "ruta": "uploads/1785622162135.pdf",
-    "estado": "aprobado",
-    "motivo": "",
-    "fecha": "2026-08-01T22:09:22.566Z"
-  },
-  {
-    "id": 1785623507369,
+    "id": 1785853057619,
     "matricula": "12345",
     "tipo": "presentacion",
-    "nombre": "12345_PRESENTACIÓN.pdf",
-    "ruta": "uploads/1785623507256.pdf",
+    "nombre": "12345_PRESENTACION.pdf",
+    "ruta": "uploads/1785853057616.pdf",
     "estado": "aprobado",
     "motivo": "",
-    "fecha": "2026-08-01T22:31:47.369Z"
+    "fecha": "2026-08-04T14:17:37.619Z"
   },
   {
-    "id": 1785801705442,
+    "id": 1785853249473,
     "matricula": "12345",
     "tipo": "aceptacion",
-    "nombre": "12345_ACEPTACIÓN.pdf",
-    "ruta": "uploads/1785801705387.pdf",
+    "nombre": "12345_ACEPTACION.pdf",
+    "ruta": "uploads/1785853249472.pdf",
     "estado": "aprobado",
     "motivo": "",
-    "fecha": "2026-08-04T00:01:45.442Z"
+    "fecha": "2026-08-04T14:20:49.473Z"
   }
 ]
