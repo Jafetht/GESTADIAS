@@ -28,5 +28,15 @@
     "estado": "aprobado",
     "motivo": "",
     "fecha": "2026-08-01T22:31:47.369Z"
+  },
+  {
+    "id": 1785801705442,
+    "matricula": "12345",
+    "tipo": "aceptacion",
+    "nombre": "12345_ACEPTACIÓN.pdf",
+    "ruta": "uploads/1785801705387.pdf",
+    "estado": "aprobado",
+    "motivo": "",
+    "fecha": "2026-08-04T00:01:45.442Z"
   }
 ]

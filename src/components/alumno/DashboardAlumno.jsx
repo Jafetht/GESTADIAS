@@ -80,12 +80,12 @@ function DashboardAlumno({
     subirCartaAceptacion={subirCartaAceptacion}
   />
 )}
-{alumnoActual.documentos.aceptacion.estado === "aprobado" && (
-          <DocumentoCompromiso
-            alumnoActual={alumnoActual}
-            subirCartaCompromiso={subirCartaCompromiso}
-          />
-        )}
+{alumnoActual.fase === 4 && (
+ <DocumentoCompromiso
+  alumnoActual={alumnoActual}
+  subirCartaCompromiso={subirCartaCompromiso}
+ />
+)}
       {alumnoActual.fase === 5 && (
         <div className="fase-final">
 

@@ -10,7 +10,7 @@ function DocumentoAceptacion({
 const [archivo, setArchivo] = useState(null);
 const [error, setError] = useState("");
 const documentoSubido =
-  alumnoActual.documentos.aceptacion.estado !== "sin_subir";
+  alumnoActual.documentos.aceptacion.estado === "aprobado";
 
 
 

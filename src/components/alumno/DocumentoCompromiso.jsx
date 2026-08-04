@@ -2,8 +2,8 @@ import { useState } from "react";
 
 function DocumentoCompromiso({
   alumnoActual,
-  subirCartacompromiso
-}) 
+  subirCartaCompromiso
+})
 {
     const [archivo, setArchivo] = useState(null);
     const [error, setError] = useState("");
@@ -94,7 +94,7 @@ setError("");
 
       <button
   disabled={!archivo || error !== ""}
-  onClick={() => subirCartacompromiso(archivo)}
+  onClick={() => subirCartaCompromiso(archivo)}
 >
   Subir Carta de compromiso
 </button>
