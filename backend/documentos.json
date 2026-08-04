@@ -18,5 +18,35 @@
     "estado": "aprobado",
     "motivo": "",
     "fecha": "2026-08-04T14:20:49.473Z"
+  },
+  {
+    "id": 1785862530908,
+    "matricula": "24090149",
+    "tipo": "presentacion",
+    "nombre": "24090149_PRESENTACION.pdf",
+    "ruta": "uploads/1785862530901.pdf",
+    "estado": "aprobado",
+    "motivo": "",
+    "fecha": "2026-08-04T16:55:30.908Z"
+  },
+  {
+    "id": 1785862620256,
+    "matricula": "24090149",
+    "tipo": "aceptacion",
+    "nombre": "24090149_ACEPTACION.pdf",
+    "ruta": "uploads/1785862620254.pdf",
+    "estado": "aprobado",
+    "motivo": "",
+    "fecha": "2026-08-04T16:57:00.256Z"
+  },
+  {
+    "id": 1785862759750,
+    "matricula": "24090149",
+    "tipo": "compromiso",
+    "nombre": "24090149_COMPROMISO.pdf",
+    "ruta": "uploads/1785862759748.pdf",
+    "estado": "aprobado",
+    "motivo": "",
+    "fecha": "2026-08-04T16:59:19.750Z"
   }
 ]

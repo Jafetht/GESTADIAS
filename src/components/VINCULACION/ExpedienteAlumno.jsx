@@ -26,6 +26,8 @@ useEffect(() => {
 
     console.log("DOCUMENTOS RECIBIDOS:", data);
 
+    console.log("DOCUMENTOS DEL ALUMNO EN VIN:", data);
+
     setDocumentos(data);
 
   })

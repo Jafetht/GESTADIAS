@@ -3,13 +3,16 @@ import { useState } from "react";
 function DocumentoCompromiso({
   alumnoActual,
   subirCartaCompromiso
-})
-{
-    const [archivo, setArchivo] = useState(null);
-    const [error, setError] = useState("");
+}) {
 
- return (
-  <div className="documento-card">
+
+
+const [archivo, setArchivo] = useState(null);
+const [error, setError] = useState("");
+const documentoSubido =
+  alumnoActual.documentos.compromiso.estado === "aprobado";
+
+ return ( <div className="documento-card">
 <h3>Fase 4</h3>
 
  <h4>Instrucciones para la Carta de Compromiso</h4>
@@ -40,67 +43,67 @@ function DocumentoCompromiso({
   </ul>
 </div>
 
-<input
-  type="file"
-  accept=".pdf,application/pdf"
-  onChange={(e) => {
-    const file = e.target.files[0];
+    {!documentoSubido && (
+      <>
+        <input
+          type="file"
+          accept=".pdf,application/pdf"
+          onChange={(e) => {
+            const file = e.target.files[0];
 
-    if (!file) return;
+            if (!file) return;
 
-    if (file.type !== "application/pdf") {
-      setError("❌ Solo se permiten archivos PDF.");
-      setArchivo(null);
-      return;
-    }
+            if (file.type !== "application/pdf") {
+              setError("❌ Solo se permiten archivos PDF.");
+              setArchivo(null);
+              return;
+            }
 
-    if (file.size > 5 * 1024 * 1024) {
-      setError("❌ El archivo no debe superar los 5 MB.");
-      setArchivo(null);
-      return;
+            if (file.size === 0) {
+              setError("❌ El archivo está vacío.");
+              setArchivo(null);
+              return;
+            }
 
-    if (file.size === 0) {
-  setError("❌ El archivo está vacío.");
-  setArchivo(null);
-  return;
-}
-    }
+            if (file.size > 5 * 1024 * 1024) {
+              setError("❌ El archivo no debe superar los 5 MB.");
+              setArchivo(null);
+              return;
+            }
 
-const nombreOriginal = file.name.toUpperCase();
+            const nombreOriginal = file.name.toUpperCase();
+            const nombreEsperado1 = `${alumnoActual.matricula}_COMPROMISO.PDF`;
+            const nombreEsperado2 = `${alumnoActual.matricula}_COMPROMISO.PDF`;
 
-const nombreEsperado1 =
-`${alumnoActual.matricula}_COMPROMISO.PDF`;
+            if (
+              nombreOriginal !== nombreEsperado1 &&
+              nombreOriginal.normalize("NFD").replace(/[\u0300-\u036f]/g, "") !== nombreEsperado2
+            ) {
+              setError(`❌ El archivo debe llamarse: ${alumnoActual.matricula}_COMPROMISO.pdf`);
+              setArchivo(null);
+              return;
+            }
 
-const nombreEsperado2 =
-`${alumnoActual.matricula}_COMPROMISO.PDF`;
-if (
-  nombreOriginal !== nombreEsperado1 &&
-  nombreOriginal.normalize("NFD").replace(/[\u0300-\u036f]/g, "") !== nombreEsperado2
-) {
-  setError(
-`❌ El archivo debe llamarse: ${alumnoActual.matricula}_COMPROMISO.pdf` 
-  );
-  setArchivo(null);
-  return;
-}
-setError("");
-    setArchivo(file);
-  }}
-/>
-{error && <p className="error-documento">{error}</p>}
+            setError("");
+            setArchivo(file);
+          }}
+        />
+        {error && <p className="error-documento">{error}</p>}
 
-{archivo && (
-  <p className="archivo-correcto">
-    ✅ Archivo seleccionado: {archivo.name}
-  </p>
+        {archivo && (
+          <p className="archivo-correcto">
+            ✅ Archivo seleccionado: {archivo.name}
+          </p>
+        )}
+
+        <button
+          disabled={!archivo || error !== ""}
+          onClick={() => subirCartaCompromiso(archivo)}
+        >
+          Subir Carta de compromiso
+        </button>
+      </>
 )}
-
-      <button
-  disabled={!archivo || error !== ""}
-  onClick={() => subirCartaCompromiso(archivo)}
->
-  Subir Carta de compromiso
-</button>
 
       <p>
         Carta de compromiso:

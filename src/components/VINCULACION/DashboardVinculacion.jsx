@@ -166,19 +166,23 @@ return {
     }
   },
 
-  fase:
-    documentoActualizado.tipo === "presentacion"
-      ? 3
-      : documentoActualizado.tipo === "aceptacion"
-      ? 4
-      : alumno.fase,
+fase:
+  documentoActualizado.tipo === "presentacion"
+    ? 3
+    : documentoActualizado.tipo === "aceptacion"
+    ? 4
+    : documentoActualizado.tipo === "compromiso"
+    ? 5
+    : alumno.fase,
 
-  estatus:
-    documentoActualizado.tipo === "presentacion"
-      ? "Carta de Presentación aprobada"
-      : documentoActualizado.tipo === "aceptacion"
-      ? "Carta de Aceptación aprobada"
-      : alumno.estatus
+estatus:
+  documentoActualizado.tipo === "presentacion"
+    ? "Carta de Presentación aprobada"
+    : documentoActualizado.tipo === "aceptacion"
+    ? "Carta de Aceptación aprobada"
+    : documentoActualizado.tipo === "compromiso"
+    ? "Estadía autorizada"
+    : alumno.estatus
 };
 
   }

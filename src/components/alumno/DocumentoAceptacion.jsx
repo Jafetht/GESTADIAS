@@ -12,9 +12,6 @@ const [error, setError] = useState("");
 const documentoSubido =
   alumnoActual.documentos.aceptacion.estado === "aprobado";
 
-
-
-
   return (<div className="documento-card">
     <>
 <a
@@ -24,7 +21,9 @@ const documentoSubido =
 >
   📥 Descargar formato de Carta de Aceptación
 </a>
-      <h3>Fase 3</h3>
+
+
+<h3>Fase 3</h3>
 
       <h4>Instrucciones para la Carta de aceptación</h4>
 

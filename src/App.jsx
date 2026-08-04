@@ -351,35 +351,49 @@ console.log("Aceptación actualizada:", actualizado);
 
 };
 
-  const subirCartaCompromiso = () => {
-    setDatosTransicion({
-      titulo: "🎉 Activando tu Estadía Profesional...",
-      mensaje: "Toda tu documentación ha sido validada correctamente. Preparando tu expediente..."
-    });
-    setMostrarTransicion(true);
-    setTimeout(() => {
-      const actualizado = {
-        ...alumnoActual,
-        documentos:{
-  ...alumnoActual.documentos,
-  compromiso:{
-    archivo:null,
-    nombreArchivo:"",
-    estado:"subido"
-  }},
-        fase: 5,
-        estatus: 'Estadía autorizada'
+const subirCartaCompromiso = async (archivo) => {
+  const formData = new FormData();
+  formData.append("archivo", archivo);
+  formData.append("matricula", alumnoActual.matricula);
+  formData.append("tipo", "compromiso");
+
+  try {
+    const respuesta = await fetch(
+      "http://localhost:3001/documentos/subir",
+      {
+        method: "POST",
+        body: formData
       }
-      setAlumnoActual(actualizado)
-      setEstudiantes(
-        estudiantes.map((estudiante) =>
-          estudiante.matricula === actualizado.matricula
-            ? actualizado
-            : estudiante
-))
-      setMostrarTransicion(false);
-    }, 2500);
+    );
+    const datos = await respuesta.json();
+    const actualizado = {
+      ...alumnoActual,
+      documentos: {
+        ...alumnoActual.documentos,
+        compromiso: {
+  archivo: `http://localhost:3001/${datos.ruta}`,
+  nombreArchivo: archivo.name,
+  estado: "en_revision"
+}
+      },
+      fase: 4,
+      estatus: "Carta de Compromiso en revisión"
+    };
+
+    setAlumnoActual(actualizado);
+    setEstudiantes(
+      estudiantes.map((estudiante) =>
+        estudiante.matricula === actualizado.matricula
+          ? actualizado
+          : estudiante
+      )
+    );
+    alert("Carta de Compromiso subida correctamente");
+  } catch (error) {
+    console.error(error);
+    alert("Error al subir Carta de Compromiso");
   }
+};
 
 const verDocumento = (documento) => {
   if(documento.archivo){
