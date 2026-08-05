@@ -18,11 +18,11 @@ function Inicio({ setPantalla }){
       </h1>
 
       <h2 className="subtitulo">
-        Departamento de Vinculación
+        Dirección de Vinculación
       </h2>
 
       <h3>
-        Si eres alumno, inicia sesión con tu matrícula para continuar
+        Si ya estas cursando el quinto cuatrimestre y el noveno cuatrimestre, puedes iniciar sesión con tu matricula para acceder a tu panel.
       </h3>
 
 
@@ -52,7 +52,9 @@ function Inicio({ setPantalla }){
 
 
         <div className="aviso-card">
-          ⚠ Los estudiantes deben subir primero su Carta de Presentación
+          Es el sistema de gestión de estadía profesional 
+        con el propósito de contribuir a la mejora de la gestión 
+        administrativa del proceso de estadías profesionales.
         </div>
 
 

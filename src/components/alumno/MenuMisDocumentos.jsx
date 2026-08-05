@@ -20,9 +20,11 @@ return (
         
           <strong>
 {alumnoActual.documentos.presentacion.estado === "sin_subir"
-    ? "❌ Pendiente"
+    ? "🟠 Pendiente"
     : alumnoActual.documentos.presentacion.estado === "aprobado"
     ? "✔ Aprobado"
+    : alumnoActual.documentos.presentacion.estado === "rechazado"
+    ? "❌ Rechazado"
     : "🕒 En revisión"}
 </strong>
 
@@ -58,9 +60,11 @@ return (
 
         <strong>
 {alumnoActual.documentos.aceptacion.estado === "sin_subir"
-    ? "❌ Pendiente"
+    ? "🟠 Pendiente"
     : alumnoActual.documentos.aceptacion.estado === "aprobado"
     ? "✔ Aprobado"
+    : alumnoActual.documentos.aceptacion.estado === "rechazado"
+    ? "❌ Rechazado"
     : "🕒 En revisión"}
 </strong>
 
@@ -96,9 +100,11 @@ onClick={() =>
 
 <strong>
 {alumnoActual.documentos.compromiso.estado === "sin_subir"
-    ? "❌ Pendiente"
+    ? "🟠 Pendiente"
     : alumnoActual.documentos.compromiso.estado === "aprobado"
     ? "✔ Aprobado"
+    : alumnoActual.documentos.compromiso.estado === "rechazado"
+    ? "❌ Rechazado"
     : "🕒 En revisión"}
 </strong>
 
@@ -108,7 +114,11 @@ onClick={() =>
     {alumnoActual.documentos.compromiso.nombreArchivo || "Sin archivo"}
   </strong>
 </p>
-
+{alumnoActual.documentos.compromiso.estado === "rechazado" && (
+  <p>
+    Revisa tu correo institucional, 🙃gracias.
+  </p>
+)}
         {alumnoActual.documentos.compromiso.estado !== "sin_subir" && (
           <div>
             <button

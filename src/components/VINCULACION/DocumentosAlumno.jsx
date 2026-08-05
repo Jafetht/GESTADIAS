@@ -10,6 +10,8 @@ function DocumentosAlumno({
 
 const [pdfSeleccionado, setPdfSeleccionado] = useState(null);
 
+
+
 const listaDocumentos = [
   {
     id: "presentacion",
@@ -93,28 +95,21 @@ const aprobar = (tipo)=>{
 
 
 
-  const rechazar = (tipo) => {
+const rechazar = (tipo) => {
 
-    const motivo = prompt(
-      "Ingrese el motivo del rechazo:"
-    );
-
-
-    if(!motivo) return;
+  const documento = documentos.find(
+    d => d.tipo === tipo
+  );
 
 
-const documento = documentos.find(
- d => d.tipo === tipo
-);
+  if(!documento) return;
 
-if(!documento) return;
 
-actualizarDocumento(documento.id,{
- estado:"rechazado",
- motivo
-});
+  actualizarDocumento(documento.id,{
+    estado:"rechazado"
+  });
 
-  };
+};
 
 
 
@@ -292,6 +287,8 @@ actualizarDocumento(documento.id,{
 
   </div>
 )}
+
+
 
 </div>
 

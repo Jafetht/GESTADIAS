@@ -1,3 +1,4 @@
+import Footer from "./Footer";
 import './App.css'
 import { useState, useEffect } from 'react'
 import Inicio from './components/Inicio'
@@ -14,6 +15,7 @@ import MenuAlumno from "./components/MenuAlumno";
 import DashboardVinculacion from "./components/VINCULACION/DashboardVinculacion";
 import DashboardAlumno from "./components/alumno/DashboardAlumno";
 import MenuMisDocumentos from "./components/alumno/MenuMisDocumentos";
+
 
 
 
@@ -805,7 +807,10 @@ if (alumnoActual) {
 }
 
 return (
-  <Inicio setPantalla={setPantalla} />
+  <>
+    <Inicio setPantalla={setPantalla} />
+    <Footer />
+  </>
 );
 }
 

@@ -59,7 +59,7 @@ const [datosEditados, setDatosEditados] = useState({
 
 
   return (
-
+<>
     <div className="modulo-organizaciones">
 
       <h2>🏢 Padrón de Organizaciones</h2>
@@ -145,7 +145,7 @@ const [datosEditados, setDatosEditados] = useState({
         </tbody>
 
       </table>
-
+ </div>
 
       {/* MODAL INFORMACIÓN */}
 
@@ -231,6 +231,8 @@ Universidad Tecnológica del Poniente`
         </div>
 
       )}
+
+
 
 
       {/* MODAL EDITAR */}
@@ -365,7 +367,7 @@ Universidad Tecnológica del Poniente`
 
       )}
 
-    </div>
+      </>
 
   );
 

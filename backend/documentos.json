@@ -1,22 +1,3 @@
 [
-  {
-    "id": 1785879354815,
-    "matricula": "24090149",
-    "tipo": "presentacion",
-    "nombre": "24090149_PRESENTACIÓN.pdf",
-    "ruta": "uploads/1785879354500.pdf",
-    "estado": "aprobado",
-    "motivo": "",
-    "fecha": "2026-08-04T21:35:54.820Z"
-  },
-  {
-    "id": 1785879591701,
-    "matricula": "24090149",
-    "tipo": "aceptacion",
-    "nombre": "24090149_ACEPTACIÓN.pdf",
-    "ruta": "uploads/1785879591666.pdf",
-    "estado": "aprobado",
-    "motivo": "",
-    "fecha": "2026-08-04T21:39:51.701Z"
-  }
+  
 ]

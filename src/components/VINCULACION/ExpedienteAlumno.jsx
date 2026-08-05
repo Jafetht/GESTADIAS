@@ -192,17 +192,28 @@ useEffect(() => {
               </div>
 
 
-              <div className="dato-card">
+<div className="dato-card dato-correo">
 
-                <span>
-                  Correo
-                </span>
+  <span>
+    ✉ Correo institucional
+  </span>
 
-                <strong>
-                  {alumno.correo}
-                </strong>
+  <strong>
+    {alumno.correo}
+  </strong>
 
-              </div>
+  <a
+    href={`https://mail.google.com/mail/?view=cm&to=${encodeURIComponent(
+      alumno.correo
+    )}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="btn-gmail-expediente"
+  >
+    📧 Abrir Gmail
+  </a>
+
+</div>
 
 
               <div className="dato-card">

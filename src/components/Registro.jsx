@@ -31,6 +31,20 @@ const años = Array.from(
 
     <div className="registro-container">
 
+<div className="aviso-registro">
+
+  <h3>📌 Aviso para el personal de Vinculación</h3>
+
+  <p>
+    Solicitar al Departamento de Control Escolar la lista de estudiantes de
+    <strong> Técnico Superior Universitario (quinto cuatrimestre)</strong> y de
+    <strong> Licenciatura (noveno cuatrimestre)</strong> dos semanas antes del
+    inicio del periodo de estadía, con el fin de realizar el registro oportuno
+    de los alumnos en el sistema <strong>GESTADIAS</strong>.
+  </p>
+
+</div>
+
 
       <div className="registro-card">
 

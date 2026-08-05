@@ -160,22 +160,29 @@ return {
   documentos: {
     ...alumno.documentos,
 
-    [documentoActualizado.tipo]: {
-      ...alumno.documentos[documentoActualizado.tipo],
-      estado: "aprobado"
-    }
+[documentoActualizado.tipo]: {
+  ...alumno.documentos[documentoActualizado.tipo],
+  estado: datos.estado
+}
   },
 
 fase:
-  documentoActualizado.tipo === "presentacion"
-    ? 3
-    : documentoActualizado.tipo === "aceptacion"
-    ? 4
-    : documentoActualizado.tipo === "compromiso"
-    ? 5
+  datos.estado === "aprobado"
+    ? (
+        documentoActualizado.tipo === "presentacion"
+          ? 3
+          : documentoActualizado.tipo === "aceptacion"
+          ? 4
+          : documentoActualizado.tipo === "compromiso"
+          ? 5
+          : alumno.fase
+      )
     : alumno.fase,
 
 estatus:
+  datos.estado === "rechazado"
+    ? "Documento rechazado"
+    :
   documentoActualizado.tipo === "presentacion"
     ? "Carta de Presentación aprobada"
     : documentoActualizado.tipo === "aceptacion"

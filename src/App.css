@@ -854,6 +854,23 @@ max-width:none;
   border:
   1px solid rgba(255,255,255,.15);
 }
+.aviso-registro{
+    background:#fff8e1;
+    border-left:6px solid #f4b400;
+    padding:15px 20px;
+    margin-bottom:20px;
+    border-radius:8px;
+}
+
+.aviso-registro h3{
+    margin-bottom:10px;
+}
+
+.aviso-registro p{
+    margin:0;
+    line-height:1.6;
+}
+
 
 /* ========================= */
 /* DASHBOARD ALUMNO */
@@ -2463,4 +2480,67 @@ padding:10px;
 .carta-compromiso-control label {
   color: rgb(251, 255, 2);
   font-weight: bold;
+}
+
+/* BOTÓN GMAIL EXPEDIENTE */
+
+.btn-gmail-expediente {
+    display:inline-block;
+    margin-top:12px;
+    padding:8px 18px;
+    background:
+    linear-gradient(
+      135deg,
+      #1a73e8,
+      #1558b0
+    );
+    color:white;
+    text-decoration:none;
+    border-radius:10px;
+    font-size:.85rem;
+    font-weight:bold;
+    transition:.3s ease;
+    width:max-content;
+}
+.btn-gmail-expediente:hover {
+    transform:translateY(-3px);
+    box-shadow:
+    0 0 18px rgba(26,115,232,.6);
+}
+
+/* =============================== */
+/* FOOTER DEL SISTEMA */
+/* =============================== */
+
+.footer-sistema {
+  width:100%;
+  margin-top:50px;
+  padding:25px 10px;
+  text-align:center;
+  background:
+  linear-gradient(
+    135deg,
+    #7f1d3d,
+    #4a0f1f
+  );
+  color:white;
+  border-top:
+  3px solid #d4af37;
+  box-shadow:
+  0 -10px 30px rgba(0,0,0,.15);
+}
+.footer-sistema p {
+  margin:0;
+  font-size:22px;
+  font-weight:bold;
+  color:#38bdf8;
+}
+.footer-sistema span {
+  display:block;
+  margin-top:8px;
+  color:#f8fafc;
+  font-size:14px;
+}
+.footer-sistema strong {
+  color:#d4af37;
 }
