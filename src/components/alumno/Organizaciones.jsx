@@ -18,21 +18,43 @@ function Organizaciones({
   telefono: "",
   correo: ""
 });
+
 const enviarSolicitud = () => {
 
-  registrarSolicitudOrganizacion(nuevaOrganizacion);
-  
-  seleccionarOrganizacion({
-  nombre: nuevaOrganizacion.razonSocial,
-  direccion: nuevaOrganizacion.direccion,
-  contacto: nuevaOrganizacion.contacto,
-  puesto: nuevaOrganizacion.puesto,
-  telefono: nuevaOrganizacion.telefono,
-  correo: nuevaOrganizacion.correo,
-  enProceso: true
-});
+  const asunto = 
+  `Solicitar convenio de la organización ${nuevaOrganizacion.razonSocial}`;
 
-  alert("Solicitud enviada correctamente a Vinculación.");
+  const cuerpo =
+`Buen día.
+
+Soy el estudiante de ${alumnoActual.nivel || "[NIVEL TSU]"} ${alumnoActual.carrera} de la Universidad Tecnológica del Poniente.
+
+Y estos son los datos de la empresa para convenio:
+
+Razón social: ${nuevaOrganizacion.razonSocial}
+
+Dirección: ${nuevaOrganizacion.direccion}
+
+Nombre del contacto: ${nuevaOrganizacion.contacto}
+
+Cargo/Puesto: ${nuevaOrganizacion.puesto}
+
+Teléfono: ${nuevaOrganizacion.telefono}
+
+Correo: ${nuevaOrganizacion.correo}
+`;
+
+  const url =
+  `https://mail.google.com/mail/?view=cm&fs=1` +
+  `&to=${encodeURIComponent(
+    "direccion.vinculacion@utponiente.edu.mx"
+  )}` +
+  `&su=${encodeURIComponent(asunto)}` +
+  `&body=${encodeURIComponent(cuerpo)}`;
+
+
+  window.open(url, "_blank");
+
 
   setNuevaOrganizacion({
     razonSocial: "",
@@ -64,9 +86,9 @@ const enviarSolicitud = () => {
 Este apartado tiene como propósito brindarte información sobre las organizaciones disponibles 
 para realizar tu estadía profesional. 
 
-Aquí podrás consultar las opciones disponibles, seleccionar la organización de tu interés 
-y solicitar una vacante utilizando tu correo institucional, acompañado de una redacción 
-personalizada generada automáticamente con tus datos.
+Aquí podrás consultar las opciones disponibles, seleccionar la organización
+donde deseas realizar tu estadía profesional o solicitar a Vinculación la
+gestión de convenio con una nueva organización.
       </p>
 </div>
          <table className="tabla-organizaciones">
@@ -179,7 +201,7 @@ para poder enviar esta solicitud.
 
 <div className="modal-fondo">
 <div className="modal">
-<h2>Solicitud de nueva organización</h2>
+<h2>Solicitar convenio de organización</h2>
 <input
 placeholder="Razón social"
 value={nuevaOrganizacion.razonSocial}
@@ -256,12 +278,12 @@ Cancelar
 
 <div className="registrar-org">
 <h3>
-¿La organización que buscas no aparece?
+¿No encuentras la organización donde deseas realizar tu estadía?
 </h3>
 <button
   onClick={() => setMostrarRegistro(true)}
 >
-  Registrar nueva organización
+  Solicitar convenio de organización
 </button>
 </div>
         </>
