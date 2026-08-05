@@ -4,7 +4,8 @@ import { useState } from "react";
 function DocumentosAlumno({
   alumno,
   documentos = [],
-  actualizarDocumento
+  actualizarDocumento,
+  actualizarAlumno
 }) {
 
 const [pdfSeleccionado, setPdfSeleccionado] = useState(null);
@@ -120,9 +121,9 @@ actualizarDocumento(documento.id,{
   return (
 
     <div>
-      <h2>
+      <h1>
         📄 Documentos del Expediente
-      </h2>
+      </h1>
     <div className="documentos-layout">
       <div className="lista-documentos">
       
@@ -223,6 +224,43 @@ actualizarDocumento(documento.id,{
 
             </div>
 
+{doc.id === "aceptacion" && (
+  <div className="carta-compromiso-control">
+
+    <p>
+      Descargar formato editable de la Carta Compromiso del estudiante.
+    </p>
+
+<a
+  href="/FORMATO-COMPROMISO-EDITABLE-CARTA.docx"
+  download
+>
+  <button>
+    📥 Descargar formato
+  </button>
+</a>
+
+<label>
+  <input
+    type="checkbox"
+    checked={alumno.cartaCompromisoEnviada || false}
+    onChange={(e) => {
+
+      const actualizado = {
+        ...alumno,
+        cartaCompromisoEnviada: e.target.checked
+      };
+
+      actualizarAlumno(actualizado);
+
+    }}
+  />
+
+  Se envió carta al estudiante
+</label>
+
+  </div>
+)}
 
           </div>
 

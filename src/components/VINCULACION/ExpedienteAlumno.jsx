@@ -5,7 +5,9 @@ import DocumentosAlumno from "./DocumentosAlumno";
 function ExpedienteAlumno({
   alumno,
   cerrar,
-  actualizarDocumento
+  actualizarDocumento,
+  actualizarAlumno
+  
 }) {
 
 
@@ -263,6 +265,8 @@ useEffect(() => {
   documentos={documentos || []}
 
   actualizarDocumento={actualizarDocumento}
+
+  actualizarAlumno={actualizarAlumno}
 
 />
 

@@ -153,7 +153,10 @@ documentos: {
     nombreArchivo: "",
     estado: "sin_subir"
   }
-}
+},
+
+cartaCompromisoEnviada: false
+
   };
 
   setEstudiantes([...estudiantes, nuevoEstudiante]);
@@ -637,6 +640,8 @@ organizaciones={organizaciones}
 setOrganizaciones={setOrganizaciones}
 
 actualizarAlumno={actualizarAlumno}
+
+setAlumnoActual={setAlumnoActual}
 />
 );
 }

@@ -342,6 +342,7 @@ if (encontrado) {
   setBusqueda("");
 }}
       actualizarDocumento={actualizarDocumento}
+      actualizarAlumno={actualizarAlumno}
       subirDocumento={subirDocumento}
     />
 
