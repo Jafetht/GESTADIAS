@@ -1,4 +1,4 @@
-import carreras from '../data/carreras'
+import carreras from "../Data/carreras";
 
 
 function Registro({
