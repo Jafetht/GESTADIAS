@@ -2544,12 +2544,3 @@ padding:10px;
 .footer-sistema strong {
   color:#d4af37;
 }
-
-/* Números de Gestión de Espacios */
-.gestion-espacios span,
-.gestion-espacios strong,
-.gestion-espacios h2 {
-  color: #7f1d3d !important;
-  font-weight: bold;
-  text-shadow: 0 0 8px rgba(212,175,55,.5);
-}
