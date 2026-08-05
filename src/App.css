@@ -1886,8 +1886,9 @@ font-size:.85rem;
 /* ================================= */
 
 .tabla-organizaciones td:nth-child(3) {
-  color: #cbd5e1;
-  font-size: 0.7rem;
+  color: #7f1d3d;
+  font-size: 0.9rem;
+  font-weight: 800;
   white-space: normal;
   overflow-wrap: break-word;
   word-break: normal;
