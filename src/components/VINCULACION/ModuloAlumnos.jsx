@@ -16,20 +16,38 @@ function ModuloAlumnos({
 
 
   const [generacionSeleccionada, setGeneracionSeleccionada] =
-    useState(rutaAlumnos.generacionSeleccionada);
-
+  useState(rutaAlumnos.generacionSeleccionada);
 
   const [carreraSeleccionada, setCarreraSeleccionada] =
-    useState(rutaAlumnos.carreraSeleccionada);
+  useState(rutaAlumnos.carreraSeleccionada);
 
-
+  const [nivelAcademicoSeleccionado, setNivelAcademicoSeleccionado] =
+  useState(rutaAlumnos.nivelAcademicoSeleccionado || null);
   
 
 
-  const generaciones = [
-    "🏢 Estadías TSU 2026",
-    "🏢 Estadías Licenciatura 2026"
-  ];
+const generaciones = [
+  ...new Set(
+    estudiantes.map(alumno => alumno.generacion)
+  )
+].sort((a, b) => {
+
+  const anioA = Number(a.split(" ").pop());
+  const anioB = Number(b.split(" ").pop());
+
+  // Primero ordenar por año (más reciente arriba)
+  if (anioA !== anioB) {
+    return anioB - anioA;
+  }
+
+  // Si es el mismo año:
+  // Enero - Abril arriba de Mayo - Agosto
+  if (a.includes("Enero")) return -1;
+  if (b.includes("Enero")) return 1;
+
+  return 0;
+
+});
 
 
 
@@ -37,17 +55,33 @@ function ModuloAlumnos({
 
     setGeneracionSeleccionada(generacion);
 
-    setNivel("carreras");
+    setNivel("nivel");
 
 
-    guardarRuta({
-      nivel:"carreras",
-      generacionSeleccionada:generacion,
-      carreraSeleccionada:null
-    });
+guardarRuta({
+  nivel: "nivel",
+  generacionSeleccionada: generacion,
+  nivelAcademicoSeleccionado: null,
+  carreraSeleccionada: null
+});
 
   };
 
+
+  const seleccionarNivelAcademico = (nivel) => {
+
+  setNivelAcademicoSeleccionado(nivel);
+
+  setNivel("carreras");
+
+  guardarRuta({
+    nivel: "carreras",
+    generacionSeleccionada,
+    nivelAcademicoSeleccionado: nivel,
+    carreraSeleccionada: null
+  });
+
+};
 
 
   const seleccionarCarrera = (carrera)=>{
@@ -57,11 +91,12 @@ function ModuloAlumnos({
     setNivel("alumnos");
 
 
-    guardarRuta({
-      nivel:"alumnos",
-      generacionSeleccionada,
-      carreraSeleccionada:carrera
-    });
+guardarRuta({
+  nivel: "alumnos",
+  generacionSeleccionada,
+  nivelAcademicoSeleccionado,
+  carreraSeleccionada: carrera
+});
 
   };
 
@@ -70,55 +105,60 @@ function ModuloAlumnos({
   const volver = ()=>{
 
 
-    if(nivel==="alumnos"){
+if(nivel==="alumnos"){
 
-      setNivel("carreras");
+    setNivel("carreras");
 
-      setCarreraSeleccionada(null);
+    setCarreraSeleccionada(null);
 
-
-      guardarRuta({
+    guardarRuta({
         nivel:"carreras",
         generacionSeleccionada,
+        nivelAcademicoSeleccionado,
         carreraSeleccionada:null
-      });
+    });
 
-    }
+}
+else if(nivel==="carreras"){
 
+    setNivel("nivel");
 
-    else if(nivel==="carreras"){
+    setCarreraSeleccionada(null);
 
-      setNivel("generaciones");
+    guardarRuta({
+        nivel:"nivel",
+        generacionSeleccionada,
+        nivelAcademicoSeleccionado:null,
+        carreraSeleccionada:null
+    });
 
-      setGeneracionSeleccionada(null);
+}
+else if(nivel==="nivel"){
 
+    setNivel("generaciones");
 
-      guardarRuta({
+    setGeneracionSeleccionada(null);
+    setNivelAcademicoSeleccionado(null);
+
+    guardarRuta({
         nivel:"generaciones",
         generacionSeleccionada:null,
+        nivelAcademicoSeleccionado:null,
         carreraSeleccionada:null
-      });
+    });
 
-    }
+}
 
 
   };
 
 
 
-
-  const alumnosGeneracion = estudiantes.filter((alumno)=>{
-
-    if(generacionSeleccionada?.includes("TSU")){
-
-      return alumno.carrera.includes("TSU");
-
-    }
-
-
-    return !alumno.carrera.includes("TSU");
-
-  });
+const alumnosGeneracion = estudiantes.filter(
+  alumno =>
+    alumno.generacion === generacionSeleccionada &&
+    alumno.nivelAcademico === nivelAcademicoSeleccionado
+);
 
 
 
@@ -131,9 +171,15 @@ function ModuloAlumnos({
 
 
 const alumnosCarrera = estudiantes.filter(
-  alumno => alumno.carrera === carreraSeleccionada
+  alumno =>
+    alumno.generacion === generacionSeleccionada &&
+    alumno.nivelAcademico === nivelAcademicoSeleccionado &&
+    alumno.carrera === carreraSeleccionada
 );
 
+const anioGeneracion = generacionSeleccionada
+  ? generacionSeleccionada.split(" ").pop()
+  : "";
 
 
 return (
@@ -193,7 +239,46 @@ Ver carreras →
 )}
 
 
+{nivel==="nivel" && (
 
+<div>
+
+<h3>
+  {generacionSeleccionada} - {nivelAcademicoSeleccionado}
+</h3>
+
+<div
+className="card-modulo"
+onClick={() =>
+  seleccionarNivelAcademico(
+    generacionSeleccionada.includes("Enero")
+      ? "Licenciatura"
+      : "TSU"
+  )
+}
+>
+
+<h3>
+🏢 Estadías {
+  generacionSeleccionada.includes("Enero")
+    ? "Licenciatura"
+    : "TSU"
+} {anioGeneracion}
+</h3>
+
+<p>
+Consultar alumnos y carreras disponibles
+</p>
+
+<span>
+Ver carreras →
+</span>
+
+</div>
+
+</div>
+
+)}
 
 
 {nivel==="carreras" && (
@@ -271,15 +356,15 @@ Ver alumnos →
     <div className="documentos-estado">
 
       <span>
-        Presentación {alumno.documentos.presentacion ? "✔" : "✖"}
+        Presentación { alumno.documentos.presentacion.estado === "sin_subir" ? "✖" : "✔"}
       </span>
 
       <span>
-        Aceptación {alumno.documentos.aceptacion ? "✔" : "✖"}
+        Aceptación {alumno.documentos.aceptacion.estado === "sin_subir" ? "✖" : "✔"}
       </span>
 
       <span>
-        Compromiso {alumno.documentos.compromiso ? "✔" : "✖"}
+        Compromiso {alumno.documentos.compromiso.estado === "sin_subir" ? "✖" : "✔"}
       </span>
 
     </div>

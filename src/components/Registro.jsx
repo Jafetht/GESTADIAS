@@ -200,11 +200,7 @@ const años = Array.from(
     </p>
 
     <strong>
-      {periodo} {anio} - {
-        periodo === "Enero - Abril"
-          ? "Licenciatura"
-          : "TSU"
-      }
+      {periodo} {anio}
     </strong>
 
   </div>

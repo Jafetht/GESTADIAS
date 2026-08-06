@@ -39,6 +39,7 @@ function DashboardVinculacion({
   const [rutaAlumnos, setRutaAlumnos] = useState({
     nivel: "generaciones",
     generacionSeleccionada: null,
+    nivelAcademicoSeleccionado:null,
     carreraSeleccionada: null
   });
 

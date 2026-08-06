@@ -124,12 +124,7 @@ const guardarEstudiante = (alFinalizar) => {
         ? "Licenciatura"
         : "TSU",
 
-    generacion:
-      `${periodo} ${anio} - ${
-        periodo === "Enero - Abril"
-          ? "Licenciatura"
-          : "TSU"
-      }`,
+    generacion: `${periodo} ${anio}`,
 
     organizacion: '',
     solicitudCambio: false,
