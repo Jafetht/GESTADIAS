@@ -21,7 +21,7 @@ useEffect(() => {
 
 
   fetch(
-    `http://localhost:3001/documentos/alumno/${alumno.matricula}`
+    `https://gestadias.onrender.com/documentos/alumno/${alumno.matricula}`
   )
   .then(res => res.json())
   .then(data => {

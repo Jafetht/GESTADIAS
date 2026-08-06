@@ -281,8 +281,8 @@ input:focus {
   margin: 10px 0;
 }
 .alumno button {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: linear-gradient(135deg, #7f1d3d, #4a0f1f);
+  border: 1px solid #d4af37;
   color: white;
   padding: 10px 16px;
   margin: 8px;
@@ -290,6 +290,7 @@ input:focus {
   cursor: pointer;
   transition: 0.3s;
   backdrop-filter: blur(10px);
+  font-weight: bold;
 }
 .alumno button:hover {
   transform: scale(1.05);
@@ -947,7 +948,7 @@ max-width:none;
 }
 
 /* ========================= */
-/* AVISOS DEL ALUMNO */
+/* 📢 Avisos importantes alumno */
 /* ========================= */
 .avisos-alumno {
   width:100%;
@@ -988,7 +989,7 @@ max-width:none;
   border-radius:14px;
   border-left:
   5px solid #38bdf8;
-  color:#e5e7eb;
+  color:#070708;
   transition:.35s;
   box-shadow:
   0 0 12px rgba(56,189,248,.08);
@@ -2545,3 +2546,4 @@ padding:10px;
 .footer-sistema strong {
   color:#d4af37;
 }
+

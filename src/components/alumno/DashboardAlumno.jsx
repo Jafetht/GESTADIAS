@@ -13,6 +13,7 @@ function DashboardAlumno({
   setPantalla,
   organizacionesFiltradas,
   seleccionarOrganizacion,
+  continuarSinOrganizacion,
   solicitarCambioOrganizacion,
   registrarSolicitudOrganizacion,
   subirCartaPresentacion,
@@ -64,6 +65,7 @@ function DashboardAlumno({
           alumnoActual={alumnoActual}
           organizacionesFiltradas={organizacionesFiltradas}
           seleccionarOrganizacion={seleccionarOrganizacion}
+          continuarSinOrganizacion={continuarSinOrganizacion}
           solicitarCambioOrganizacion={solicitarCambioOrganizacion}
           registrarSolicitudOrganizacion={registrarSolicitudOrganizacion}
         />

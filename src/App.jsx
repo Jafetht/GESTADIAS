@@ -190,7 +190,7 @@ cartaCompromisoEnviada: false
   }
   try {
     const respuesta = await fetch(
-      `http://localhost:3001/documentos/alumno/${alumnoEncontrado.matricula}`
+      `https://gestadias.onrender.com/documentos/alumno/${alumnoEncontrado.matricula}`
     );
     const documentos = await respuesta.json();
     const actualizado = {
@@ -198,7 +198,7 @@ cartaCompromisoEnviada: false
     };
     documentos.forEach((doc) => {
       actualizado.documentos[doc.tipo] = {
-        archivo: `http://localhost:3001/${doc.ruta}`,
+        archivo: `https://gestadias.onrender.com/${doc.ruta}`,
         nombreArchivo: doc.nombre,
         estado: doc.estado
       };
@@ -268,7 +268,7 @@ const subirCartaPresentacion = async (archivo) => {
   try {
 
     const respuesta = await fetch(
-      "http://localhost:3001/documentos/subir",
+      "https://gestadias.onrender.com/documentos/subir",
       {
         method:"POST",
         body:formData
@@ -284,7 +284,7 @@ const subirCartaPresentacion = async (archivo) => {
   documentos: {
     ...alumnoActual.documentos,
     presentacion: {
-      archivo: `http://localhost:3001/${datos.ruta}`,
+      archivo: `https://gestadias.onrender.com/${datos.ruta}`,
       nombreArchivo: archivo.name,
       estado: "en_revision"
     }
@@ -317,7 +317,7 @@ const subirCartaAceptacion = async (archivo) => {
   formData.append("tipo", "aceptacion");
   try {
     const respuesta = await fetch(
-      "http://localhost:3001/documentos/subir",
+      "https://gestadias.onrender.com/documentos/subir",
       {
         method:"POST",
         body:formData
@@ -329,7 +329,7 @@ const subirCartaAceptacion = async (archivo) => {
       documentos:{
         ...alumnoActual.documentos,
         aceptacion:{
-          archivo:`http://localhost:3001/${datos.ruta}`,
+          archivo:`https://gestadias.onrender.com/${datos.ruta}`,
           nombreArchivo:archivo.name,
           estado:"en_revision"
         }
@@ -364,7 +364,7 @@ const subirCartaCompromiso = async (archivo) => {
 
   try {
     const respuesta = await fetch(
-      "http://localhost:3001/documentos/subir",
+      "https://gestadias.onrender.com/documentos/subir",
       {
         method: "POST",
         body: formData
@@ -376,7 +376,7 @@ const subirCartaCompromiso = async (archivo) => {
       documentos: {
         ...alumnoActual.documentos,
         compromiso: {
-  archivo: `http://localhost:3001/${datos.ruta}`,
+  archivo: `https://gestadias.onrender.com/${datos.ruta}`,
   nombreArchivo: archivo.name,
   estado: "en_revision"
 }
@@ -507,6 +507,8 @@ const organizacionesFiltradas = alumnoActual
     String(estudiante.matricula).includes(busqueda)
   );
 
+
+
   const seleccionarOrganizacion = (organizacion) => {
     setDatosTransicion({
       titulo: "Registrando organización...",
@@ -541,6 +543,25 @@ const organizacionesFiltradas = alumnoActual
 
     }, 2500);
   }
+const continuarSinOrganizacion = () => {
+
+  const actualizado = {
+    ...alumnoActual,
+    fase: 2,
+    estatus: "Convenio de organización solicitado a Vinculación"
+  };
+
+  setAlumnoActual(actualizado);
+
+  setEstudiantes(
+    estudiantes.map((estudiante) =>
+      estudiante.matricula === actualizado.matricula
+        ? actualizado
+        : estudiante
+    )
+  );
+};
+
 
 
   const aprobarCambio = (matriculaAlumno) => {
@@ -796,6 +817,7 @@ if (alumnoActual) {
       setPantalla={setPantalla}
 
       seleccionarOrganizacion={seleccionarOrganizacion}
+      continuarSinOrganizacion={continuarSinOrganizacion}
       solicitarCambioOrganizacion={solicitarCambioOrganizacion}
       registrarSolicitudOrganizacion={registrarSolicitudOrganizacion}
 

@@ -186,7 +186,7 @@ const rechazar = (tipo) => {
     if(documentoReal){
 
       setPdfSeleccionado(
-        `http://localhost:3001/${documentoReal.ruta}`
+        `https://gestadias.onrender.com/${documentoReal.ruta}`
       );
 
     }

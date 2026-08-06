@@ -131,7 +131,7 @@ const actualizarDocumento = async (id, datos) => {
   try {
 
     const respuesta = await fetch(
-      `http://localhost:3001/documentos/${id}`,
+      `https://gestadias.onrender.com/documentos/${id}`,
       {
         method: "PUT",
         headers: {

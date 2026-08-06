@@ -5,11 +5,13 @@ function Organizaciones({
   alumnoActual,
   organizacionesFiltradas,
   seleccionarOrganizacion,
+  continuarSinOrganizacion,
   solicitarCambioOrganizacion,
   registrarSolicitudOrganizacion
 }) {
   const [organizacionSeleccionada, setOrganizacionSeleccionada] = useState(null);
   const [mostrarRegistro, setMostrarRegistro] = useState(false);
+  const [solicitudEnviada, setSolicitudEnviada] = useState(false);
   const [nuevaOrganizacion, setNuevaOrganizacion] = useState({
   razonSocial: "",
   direccion: "",
@@ -54,6 +56,7 @@ Correo: ${nuevaOrganizacion.correo}
 
 
   window.open(url, "_blank");
+  setSolicitudEnviada(true);
 
 
   setNuevaOrganizacion({
@@ -275,6 +278,36 @@ Cancelar
 </div>
 </div>
 )}
+
+
+{solicitudEnviada && (
+  <div className="mensaje-convenio">
+    <h3>✅ Solicitud enviada</h3>
+
+    <p>
+      Vinculación revisará la información y realizará el proceso de convenio
+      con la organización solicitada.
+    </p>
+
+    <p>
+      Mientras Vinculación realiza el proceso de convenio, puedes continuar con tu proceso de estadía. 
+      Una vez que la organización sea agregada al Padrón de Organizaciones, 
+      podrás seleccionarla desde este mismo apartado.
+    </p>
+
+<button
+  className="btn-seleccionar"
+  onClick={continuarSinOrganizacion}
+>
+  Continuar sin organización seleccionada
+</button>
+
+
+
+
+  </div>
+)}
+
 
 <div className="registrar-org">
 <h3>
