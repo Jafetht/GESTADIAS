@@ -1,3 +1,4 @@
+import LoginVinculacion from "./components/VINCULACION/LoginVinculacion";
 import Footer from "./Footer";
 import './App.css'
 import { useState, useEffect } from 'react'
@@ -20,6 +21,7 @@ import MenuMisDocumentos from "./components/alumno/MenuMisDocumentos";
 
 
 function App() {
+  const [vinculacionAutorizada, setVinculacionAutorizada] = useState(false);
   const [pantalla, setPantalla] = useState('inicio')
   const [estudiantes, setEstudiantes] = useState(() => {
     const data = localStorage.getItem('gestadias_estudiantes')
@@ -246,6 +248,10 @@ if (alumnoActual) {
     );
   }
 }
+const cerrarVinculacion = () => {
+  setVinculacionAutorizada(false);
+  setPantalla("inicio");
+};
   const cerrarSesion = () => {
     setAlumnoActual(null)
     localStorage.removeItem('gestadias_alumno_actual')
@@ -607,7 +613,17 @@ const continuarSinOrganizacion = () => {
       )
     )
   }
-  if (pantalla === "vinculacion") {
+
+if (pantalla === "vinculacion" && !vinculacionAutorizada) {
+  return (
+    <LoginVinculacion
+  autorizar={setVinculacionAutorizada}
+  setPantalla={setPantalla}
+/>
+  );
+}
+
+if (pantalla === "vinculacion" && vinculacionAutorizada) {
     return (
       <DashboardVinculacion
 estudiantes={estudiantes}
