@@ -658,6 +658,8 @@ eliminarAlumno={eliminarAlumno}
 
 setPantalla={setPantalla}
 
+cerrarVinculacion={cerrarVinculacion}
+
 solicitudesCambio={solicitudesCambio}
 editarAlumno={editarAlumno}
 

@@ -10,6 +10,7 @@ function DashboardVinculacion({
   busqueda,
   setBusqueda,
   setPantalla,
+  cerrarVinculacion,
   matricula,
   setMatricula,
   nombre,
@@ -241,10 +242,9 @@ actualizarAlumno(alumnoNuevo);
         </h2>
 
 
-        <button
-          onClick={() => setPantalla("inicio")}>
-          Inicio
-        </button>
+<button onClick={cerrarVinculacion}>
+  Inicio
+</button>
 
         <button 
           onClick={() => setVista("registro")}>

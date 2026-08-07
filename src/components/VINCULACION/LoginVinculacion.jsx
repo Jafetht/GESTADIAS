@@ -13,10 +13,9 @@ function LoginVinculacion({
 
   const ingresar = () => {
 
-
     if (clave === "VIN2026") {
 
-      autorizar();
+      autorizar(true);
 
     } else {
 
