@@ -811,8 +811,13 @@ max-width:none;
   border:
   1px solid rgba(255,255,255,.12);
   box-shadow:
-  0 0 35px rgba(0,0,0,.6);
-  
+  0 0 35px rgb(248, 247, 247);
+}
+select {
+    color: white;
+}
+select option {
+    color: black;
 }
 .registro-card h1 {
   text-align:center;
