@@ -415,24 +415,57 @@ const borrarDocumento = (tipoDocumento) => {
   const confirmar = confirm(
     "¿Seguro que deseas borrar este documento?"
   );
-  if(!confirmar) return;
+
+  if (!confirmar) return;
+
+  let nuevaFase = alumnoActual.fase;
+  let nuevoEstatus = alumnoActual.estatus;
+
+  // Carta de Presentación
+  if (tipoDocumento === "presentacion") {
+    nuevaFase = 2;
+    nuevoEstatus = "Carta de Presentación pendiente de subir";
+  }
+
+  // Carta de Aceptación
+  if (tipoDocumento === "aceptacion") {
+    nuevaFase = 3;
+    nuevoEstatus = "Carta de Aceptación pendiente de subir";
+  }
+
+  // Carta Compromiso
+  if (tipoDocumento === "compromiso") {
+    nuevaFase = 4;
+    nuevoEstatus = "Carta Compromiso pendiente de subir";
+  }
+
   const actualizado = {
     ...alumnoActual,
-    documentos:{
+
+    fase: nuevaFase,
+    estatus: nuevoEstatus,
+
+    documentos: {
       ...alumnoActual.documentos,
-      [tipoDocumento]:{
-        archivo:null,
-        nombreArchivo:"",
-        estado:"sin_subir"
-}}};
+
+      [tipoDocumento]: {
+        archivo: null,
+        nombreArchivo: "",
+        estado: "sin_subir"
+      }
+    }
+  };
+
   setAlumnoActual(actualizado);
+
   setEstudiantes(
-    estudiantes.map((estudiante)=>
+    estudiantes.map((estudiante) =>
       estudiante.matricula === actualizado.matricula
-      ? actualizado
-      : estudiante
+        ? actualizado
+        : estudiante
     )
   );
+
   alert("Documento eliminado correctamente");
 };
 
