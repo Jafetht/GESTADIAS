@@ -583,16 +583,18 @@ max-width:none;
   margin: 40px auto;
   padding: 35px;
   background:
-  linear-gradient(
-    145deg,
-    rgba(56,189,248,0.12),
-    rgba(30,58,138,0.18)
-  );
+linear-gradient(
+135deg,
+#0f172a,
+#1e1b4b,
+#4a0f1f
+);
   border-radius: 25px;
-  border: 1px solid rgba(56,189,248,0.35);
+  border: 1px solid #d4af37;
   box-shadow:
-  0 0 30px rgba(56,189,248,0.15),
-  inset 0 0 20px rgba(255,255,255,0.03);
+0 0 30px rgba(212,175,55,0.25),
+0 0 60px rgba(127,29,61,0.25),
+inset 0 0 20px rgba(255,255,255,0.03);
   text-align: center;
   animation: aparecerFase 0.8s ease;
 }
@@ -614,11 +616,11 @@ max-width:none;
 
 /* Título principal */
 .fase-final h3 {
-  font-size: 32px;
-  color:#38bdf8;
-  margin-bottom:15px;
-  text-shadow:
-  0 0 10px rgba(56,189,248,0.8);
+font-size: 32px;
+color:#d4af37;
+margin-bottom:15px;
+text-shadow:
+0 0 10px rgba(56,189,248,0.8);
 }
 
 
